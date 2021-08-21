@@ -10,7 +10,7 @@ import nyx69.plugins.*
 import org.slf4j.event.Level
 
 fun main() {
-    embeddedServer(CIO, port = System.getenv("PORT").toInt()) {
+    embeddedServer(CIO, port = 9090){//System.getenv("PORT").toInt()) {
         install(ContentNegotiation) {
             json()
         }

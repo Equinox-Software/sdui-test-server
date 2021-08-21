@@ -1,1 +1,1 @@
-rootProject.name = "nyx69.rw-db"
+rootProject.name = "nyx69"
