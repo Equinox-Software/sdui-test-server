@@ -1,2 +1,2 @@
-web: ./build/install/rw-db/bin/rw-db
+web: ./build/install/nyx69/bin/nyx69
 
