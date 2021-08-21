@@ -16,18 +16,18 @@ fun Application.configureRouting() {
 
     routing {
         get("/") {
-                call.respondText("Hello World!")
-            }
+            call.respondText("Hello World!")
+        }
         get<Profile> {
-                call.respondText("Location: name=${it.name}, arg1=${it.arg1}, arg2=${it.arg2}")
-            }
-            // Register nested routes
-            get<Type.Edit> {
-                call.respondText("Inside $it")
-            }
-            get<Type.List> {
-                call.respondText("Inside $it")
-            }
+            call.respondText("Location: name=${it.name}, arg1=${it.arg1}, arg2=${it.arg2}")
+        }
+        // Register nested routes
+        get<Type.Edit> {
+            call.respondText("Inside $it")
+        }
+        get<Type.List> {
+            call.respondText("Inside $it")
+        }
 
 
         get("/cont") {
@@ -37,16 +37,16 @@ fun Application.configureRouting() {
                     ComponentType.SCROLL_VERTICAL,
                     null,
                     listOf(
-                        Component("aa",ComponentType.TEXT, "Hello!"),
+                        Component("aa", ComponentType.TEXT, "Hello!"),
                         Component(
                             "bb", ComponentType.BOX, null,
                             listOf(
-                                Component("ab",ComponentType.TEXT, "Helooolo!"),
+                                Component("ab", ComponentType.TEXT, "Helooolo!"),
                                 Component("ba", ComponentType.TEXT, "Hellppo!")
                             )
                         ),
                         Component(
-                            "122",ComponentType.BUTTON,
+                            "122", ComponentType.BUTTON,
                             "click!!"
                         )
                     )
@@ -61,9 +61,13 @@ fun Application.configureRouting() {
                     call.respond(
                         Component(
                             "abc",
-                            ComponentType.SCROLL_VERTICAL, null,
+                            ComponentType.VERTICAL, null,
                             listOf(
-                                Component("ab", ComponentType.IMAGE, "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                Component(
+                                    "ab",
+                                    ComponentType.IMAGE,
+                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                ),
                                 Component("ba", ComponentType.TEXT, "Helltthppo!")
                             )
 
@@ -75,10 +79,10 @@ fun Application.configureRouting() {
 
         }
 
-authenticate {
-    get("/auth") {
-        call.respondText("Hello World! -- AUTH")
-    }
-}
+        authenticate {
+            get("/auth") {
+                call.respondText("Hello World! -- AUTH")
+            }
+        }
     }
 }
