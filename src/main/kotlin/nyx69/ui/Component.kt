@@ -5,9 +5,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class Component {
     @Serializable
-    data class Layout(val id:String,val type: LayoutType, val children: List<Component>): Component()
+    data class Layout(val id:String,val type: LayoutType, val children: List<Component>)
     @Serializable
-    data class Widget (val id:String, val type: WidgetType, val data:String) : Component()
+    data class Widget (val id:String, val type: WidgetType, val data:String)
 }
 
 
