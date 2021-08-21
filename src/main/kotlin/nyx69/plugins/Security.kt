@@ -1,18 +1,13 @@
 package nyx69.plugins
 
 import io.ktor.auth.*
-import io.ktor.util.*
 import io.ktor.auth.jwt.*
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import io.ktor.sessions.*
 import io.ktor.application.*
 import io.ktor.response.*
-import io.ktor.request.*
 import io.ktor.routing.*
-import nyx69.ui.Component
-import nyx69.ui.LayoutType
-import nyx69.ui.WidgetType
 
 fun Application.configureSecurity() {
 

@@ -8,8 +8,7 @@ import io.ktor.routing.*
 import nyx69.locations.Profile
 import nyx69.locations.Type
 import nyx69.ui.Component
-import nyx69.ui.LayoutType
-import nyx69.ui.WidgetType
+import nyx69.ui.ComponentType
 
 fun Application.configureRouting() {
     install(Locations) {
@@ -33,20 +32,21 @@ fun Application.configureRouting() {
 
         get("/cont") {
             call.respond(
-                Component.Layout(
+                Component(
                     "abc",
-                    LayoutType.SCROLL_VERTICAL,
+                    ComponentType.SCROLL_VERTICAL,
+                    null,
                     listOf(
-                        Component.Widget("aa", WidgetType.TEXT, "Hello!"),
-                        Component.Layout(
-                            "bb", LayoutType.BOX,
+                        Component("aa",ComponentType.TEXT, "Hello!"),
+                        Component(
+                            "bb", ComponentType.BOX, null,
                             listOf(
-                                Component.Widget("ab", WidgetType.TEXT, "Helooolo!"),
-                                Component.Widget("ba", WidgetType.TEXT, "Hellppo!")
+                                Component("ab",ComponentType.TEXT, "Helooolo!"),
+                                Component("ba", ComponentType.TEXT, "Hellppo!")
                             )
                         ),
-                        Component.Widget(
-                            "122", WidgetType.BUTTON,
+                        Component(
+                            "122",ComponentType.BUTTON,
                             "click!!"
                         )
                     )
@@ -59,12 +59,12 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        Component.Layout(
+                        Component(
                             "abc",
-                            LayoutType.SCROLL_VERTICAL,
+                            ComponentType.SCROLL_VERTICAL, null,
                             listOf(
-                                Component.Widget("ab", WidgetType.IMAGE, "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                                Component.Widget("ba", WidgetType.TEXT, "Helltthppo!")
+                                Component("ab", ComponentType.IMAGE, "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                Component("ba", ComponentType.TEXT, "Helltthppo!")
                             )
 
 
