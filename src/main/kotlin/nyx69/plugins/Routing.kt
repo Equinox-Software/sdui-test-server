@@ -9,6 +9,8 @@ import nyx69.locations.Profile
 import nyx69.locations.Type
 import nyx69.ui.Component
 import nyx69.ui.ComponentType
+import nyx69.ui.column
+import nyx69.ui.text
 
 fun Application.configureRouting() {
     install(Locations) {
@@ -72,7 +74,12 @@ fun Application.configureRouting() {
                                     ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component("ba", ComponentType.TEXT, "Helltthppo!")
+                                Component("ba", ComponentType.TEXT, "Helltthppo!"),
+                                text("1111", "Umbertoooo"),
+                                column("1122"){
+                                    text("1123","Helllo")
+                                   text("1233","afasgrg")
+                                }
                             )
 
 
