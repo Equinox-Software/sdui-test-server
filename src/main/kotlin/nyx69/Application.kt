@@ -4,10 +4,11 @@ import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.request.*
 import io.ktor.serialization.*
-import io.ktor.server.engine.*
 import io.ktor.server.cio.*
+import io.ktor.server.engine.*
 import kotlinx.serialization.json.Json
-import nyx69.plugins.*
+import nyx69.plugins.configureRouting
+import nyx69.plugins.configureSecurity
 import org.slf4j.event.Level
 
 fun main() {

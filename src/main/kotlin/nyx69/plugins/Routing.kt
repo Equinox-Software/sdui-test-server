@@ -51,10 +51,10 @@ fun Application.configureRouting() {
                             "122", ComponentType.BUTTON,
                             "click!!"
                         ),
-                            Component(
-                                "112", ComponentType.BUTTON,
-                                "click for scrolll!!"
-                            )
+                        Component(
+                            "112", ComponentType.BUTTON,
+                            "click for scrolll!!"
+                        )
                     )
                 )
             )
@@ -76,10 +76,12 @@ fun Application.configureRouting() {
                                 ),
                                 Component("ba", ComponentType.TEXT, "Helltthppo!"),
                                 text("1111", "Umbertoooo"),
-                                column("1122", listOf(
-                                    text("1123","Helllo"),
-                                   text("1233","afasgrg"))
-                            )
+                                column(
+                                    "1122", listOf(
+                                        text("1123", "Helllo"),
+                                        text("1233", "afasgrg")
+                                    )
+                                )
                             )
 
 
