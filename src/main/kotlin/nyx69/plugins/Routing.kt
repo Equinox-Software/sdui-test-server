@@ -76,10 +76,10 @@ fun Application.configureRouting() {
                                 ),
                                 Component("ba", ComponentType.TEXT, "Helltthppo!"),
                                 text("1111", "Umbertoooo"),
-                                column("1122"){
-                                    text("1123","Helllo")
-                                   text("1233","afasgrg")
-                                }
+                                column("1122", listOf(
+                                    text("1123","Helllo"),
+                                   text("1233","afasgrg"))
+                            )
                             )
 
 
