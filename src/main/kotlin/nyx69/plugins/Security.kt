@@ -51,48 +51,6 @@ fun Application.configureSecurity() {
             call.respondText("Counter is ${session.count}. Refresh to increment.")
         }
 
-        get("/cont") {
-            call.respond(
-                Component.Layout(
-                    "abc",
-                    LayoutType.SCROLL_VERTICAL,
-                    listOf(
-                        Component.Widget("aa", WidgetType.TEXT, "Hello!"),
-                        Component.Layout(
-                            "bb", LayoutType.BOX,
-                            listOf(
-                                Component.Widget("ab", WidgetType.TEXT, "Helooolo!"),
-                                Component.Widget("ba", WidgetType.TEXT, "Hellppo!")
-                            )
-                        ),
-                        Component.Widget(
-                            "122", WidgetType.BUTTON,
-                            "click!!"
-                        )
-                    )
-                )
-            )
-        }
 
-        get("/click{id}") {
-
-            when (call.parameters["id"]) {
-                "122" -> {
-                    call.respond(
-                        Component.Layout(
-                            "abc",
-                            LayoutType.SCROLL_VERTICAL,
-                            listOf(
-                                Component.Widget("ab", WidgetType.IMAGE, "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                                Component.Widget("ba", WidgetType.TEXT, "Helltthppo!")
-                            )
-
-
-                        )
-                    )
-                }
-            }
-
-        }
     }
 }
