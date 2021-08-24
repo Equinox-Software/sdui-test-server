@@ -19,7 +19,7 @@ fun Application.configureSecurity() {
         jwt("auth-jwt") {
 
 
-            val jwtAudience = "http://0.0.0.0:8080/hello"
+            val jwtAudience = "https://rw-ktor-server.herokuapp.com/hello"
             realm = "jwt.realm"
    /*       val  issuer = "http://0.0.0.0:8080/"
         val    audience = "http://0.0.0.0:8080/hello"
