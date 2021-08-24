@@ -156,7 +156,7 @@ fun Application.configureRouting() {
 
         }
 
-        authenticate {
+        authenticate("jwt-auth") {
             get("/auth") {
                 call.respondText("Hello World! -- AUTH")
             }
