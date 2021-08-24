@@ -156,10 +156,10 @@ fun Application.configureRouting() {
 
         }
 
-        authenticate("jwt-auth") {
+  /*      authenticate("jwt-auth") {
             get("/auth") {
                 call.respondText("Hello World! -- AUTH")
             }
-        }
+        } */
     }
 }
