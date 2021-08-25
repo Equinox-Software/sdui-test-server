@@ -3,6 +3,7 @@ package nyx69.plugins
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.locations.*
+import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import nyx69.locations.Profile
@@ -81,12 +82,34 @@ fun Application.configureRouting() {
                                     ComponentType.EDIT_TEXT,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
+                                Component("666", ComponentType.BUTTON, "-- click after entering text"),
                                 column(
                                     "1122", listOf(
                                         text("1123", "Helllo"),
                                         text("1233", "afasgrg")
                                     )
                                 )
+                            )
+
+
+                        )
+                    )
+                }
+
+                "666" -> {
+
+                    call.respond(
+                        Component(
+                            "a6bc",
+                            ComponentType.VERTICAL, null,
+                            listOf(
+                                Component(
+                                    "6ab",
+                                    ComponentType.IMAGE,
+                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                ),
+                                Component("6ba", ComponentType.TEXT, "Helltthppo!"),
+                                text("11116",call.receiveText()),
                             )
 
 
