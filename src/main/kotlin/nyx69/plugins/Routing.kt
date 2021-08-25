@@ -98,7 +98,7 @@ fun Application.configureRouting() {
 
                 "666" -> {
 
-                    print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}---")
+                   // print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}---")
 
                     call.respond(
                         Component(
