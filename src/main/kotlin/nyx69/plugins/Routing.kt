@@ -109,7 +109,7 @@ fun Application.configureRouting() {
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
                                 Component("6ba", ComponentType.TEXT, "Helltthppo!"),
-                                text("11116", call.receive<Map<String,Any>>()["abTuT"] as String),
+                                text("11116", call.receive<Map<String,String>>()["abTuT"].toString()),
                             )
 
 
