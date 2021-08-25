@@ -145,6 +145,11 @@ fun Application.configureRouting() {
                                     ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
+                                Component(
+                                    "abTT",
+                                    ComponentType.EDIT_TEXT,
+                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                ),
                                 Component("ba", ComponentType.TEXT, "Helltthppo!")
                             )
 
