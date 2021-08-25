@@ -98,7 +98,7 @@ fun Application.configureRouting() {
 
                 "666" -> {
 
-                    print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}")
+                    print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}---")
 
                     call.respond(
                         Component(
@@ -110,8 +110,8 @@ fun Application.configureRouting() {
                                     ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component("6ba", ComponentType.TEXT, "Helltthppo!"),
-                                text("11116", "fff"),
+                                Component("6pba", ComponentType.TEXT, "Helltthppo!"),
+                                text("11116", call.receive<Map<String,String>>()["abTuT"].toString()),
                             )
 
 
