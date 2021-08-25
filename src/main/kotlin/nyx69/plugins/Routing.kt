@@ -76,6 +76,11 @@ fun Application.configureRouting() {
                                 ),
                                 Component("ba", ComponentType.TEXT, "Helltthppo!"),
                                 text("1111", "Umbertoooo"),
+                                Component(
+                                    "abTuT",
+                                    ComponentType.EDIT_TEXT,
+                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                ),
                                 column(
                                     "1122", listOf(
                                         text("1123", "Helllo"),
