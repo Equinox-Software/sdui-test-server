@@ -98,6 +98,8 @@ fun Application.configureRouting() {
 
                 "666" -> {
 
+                    print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}")
+
                     call.respond(
                         Component(
                             "a6bc",
@@ -109,7 +111,7 @@ fun Application.configureRouting() {
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
                                 Component("6ba", ComponentType.TEXT, "Helltthppo!"),
-                                text("11116", call.receive<Map<String,String>>()["abTuT"].toString()),
+                                text("11116", "fff"),
                             )
 
 
