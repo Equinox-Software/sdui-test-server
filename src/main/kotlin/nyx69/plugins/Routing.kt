@@ -8,10 +8,14 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.ui.Component
-import nyx69.ui.ComponentType
-import nyx69.ui.column
-import nyx69.ui.text
+import nyx69.ui.*
+import nyx69.ui.Layout.box
+import nyx69.ui.Layout.column
+import nyx69.ui.Layout.lazyColumn
+import nyx69.ui.Widget.button
+import nyx69.ui.Widget.editText
+import nyx69.ui.Widget.image
+import nyx69.ui.Widget.text
 
 fun Application.configureRouting() {
     install(Locations) {
@@ -35,54 +39,33 @@ fun Application.configureRouting() {
 
         get("/cont") {
             call.respond(
-                Component(
-                    "abc",
-                    ComponentType.SCROLL_VERTICAL,
-                    null,
-                    listOf(
-                        Component("aa", ComponentType.TEXT, "Hello!"),
-                        Component(
-                            "bb", ComponentType.BOX, null,
+                lazyColumn("abc", listOf(
+                        text("aa", "Hello!"),
+                        box("bb",
                             listOf(
-                                Component("ab", ComponentType.TEXT, "Helooolo!"),
-                                Component("ba", ComponentType.TEXT, "Hellppo!")
+                                text("ab", "Helooolo!"),
+                                text("ba",  "Hellppo!")
                             )
                         ),
-                        Component(
-                            "122", ComponentType.BUTTON,
-                            "click!!"
-                        ),
-                        Component(
-                            "112", ComponentType.BUTTON,
-                            "click for scrolll!!"
-                        )
+                        button("122", "click!!"),
+                        button("112", "click for scrolll!!")
                     )
                 )
             )
         }
 
-      post("/click{id}") {
+        post("/click{id}") {
 
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        Component(
-                            "abc",
-                            ComponentType.VERTICAL, null,
-                            listOf(
-                                Component(
-                                    "ab",
-                                    ComponentType.IMAGE,
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                Component("ba", ComponentType.TEXT, "Helltthppo!"),
+                        column(
+                            "abc", listOf(
+                                image("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                text("ba", "Helltthppo!"),
                                 text("1111", "Umbertoooo"),
-                                Component(
-                                    "abTuT",
-                                    ComponentType.EDIT_TEXT,
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                Component("666", ComponentType.BUTTON, "-- click after entering text"),
+                                editText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                button("666", "-- click after entering text"),
                                 column(
                                     "1122", listOf(
                                         text("1123", "Helllo"),
@@ -90,28 +73,24 @@ fun Application.configureRouting() {
                                     )
                                 )
                             )
-
-
                         )
                     )
                 }
 
                 "666" -> {
 
-                   // print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}---")
+                    // print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}---")
 
                     call.respond(
-                        Component(
+                        column(
                             "a6bc",
-                            ComponentType.VERTICAL, null,
                             listOf(
-                                Component(
+                                image(
                                     "6ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component("6pba", ComponentType.TEXT, "Helltthppo!"),
-                                text("11116", call.receive<Map<String,String>>()["abTuT"].toString()),
+                                text("6pba", "Helltthppo!"),
+                                text("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
                             )
 
 
@@ -121,66 +100,54 @@ fun Application.configureRouting() {
 
                 "112" -> {
                     call.respond(
-                        Component(
+                        lazyColumn(
                             "abc",
-                            ComponentType.SCROLL_VERTICAL, null,
                             listOf(
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                image(
                                     "ab",
-                                    ComponentType.IMAGE,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component(
+                                editText(
                                     "abTT",
-                                    ComponentType.EDIT_TEXT,
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Component("ba", ComponentType.TEXT, "Helltthppo!")
+                                text("ba", "Helltthppo!")
                             )
 
 
@@ -191,10 +158,10 @@ fun Application.configureRouting() {
 
         }
 
-  /*      authenticate("jwt-auth") {
-            get("/auth") {
-                call.respondText("Hello World! -- AUTH")
-            }
-        } */
+        /*      authenticate("jwt-auth") {
+                  get("/auth") {
+                      call.respondText("Hello World! -- AUTH")
+                  }
+              } */
     }
 }
