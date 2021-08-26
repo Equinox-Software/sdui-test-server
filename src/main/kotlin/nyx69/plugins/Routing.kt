@@ -61,7 +61,7 @@ fun Application.configureRouting() {
             )
         }
 
-       post("/click{id}") {
+      get("/click{id}") {
 
             when (call.parameters["id"]) {
                 "122" -> {
