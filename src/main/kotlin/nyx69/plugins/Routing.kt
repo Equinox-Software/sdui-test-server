@@ -9,13 +9,13 @@ import io.ktor.routing.*
 import nyx69.locations.Profile
 import nyx69.locations.Type
 import nyx69.ui.*
-import nyx69.ui.Layout.box
-import nyx69.ui.Layout.column
-import nyx69.ui.Layout.lazyColumn
-import nyx69.ui.Widget.button
-import nyx69.ui.Widget.editText
-import nyx69.ui.Widget.image
-import nyx69.ui.Widget.text
+import nyx69.ui.Layout.Box
+import nyx69.ui.Layout.Column
+import nyx69.ui.Layout.LazyColumn
+import nyx69.ui.Widget.Text
+import nyx69.ui.Widget.Button
+import nyx69.ui.Widget.EditText
+import nyx69.ui.Widget.Image
 
 fun Application.configureRouting() {
     install(Locations) {
@@ -39,16 +39,16 @@ fun Application.configureRouting() {
 
         get("/cont") {
             call.respond(
-                lazyColumn("abc", listOf(
-                        text("aa", "Hello!"),
-                        box("bb",
+                LazyColumn("abc", listOf(
+                        Text("aa", "Hello!"),
+                        Box("bb",
                             listOf(
-                                text("ab", "Helooolo!"),
-                                text("ba",  "Hellppo!")
+                                Text("ab", "Helooolo!"),
+                                Text("ba",  "Hellppo!")
                             )
                         ),
-                        button("122", "click!!"),
-                        button("112", "click for scrolll!!")
+                        Button("122", "click!!"),
+                        Button("112", "click for scrolll!!")
                     )
                 )
             )
@@ -59,17 +59,17 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        column(
+                        Column(
                             "abc", listOf(
-                                image("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                                text("ba", "Helltthppo!"),
-                                text("1111", "Umbertoooo"),
-                                editText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                                button("666", "-- click after entering text"),
-                                column(
+                                Image("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                Text("ba", "Helltthppo!"),
+                                Text("1111", "Umbertoooo"),
+                                EditText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                Button("666", "-- click after entering text"),
+                                Column(
                                     "1122", listOf(
-                                        text("1123", "Helllo"),
-                                        text("1233", "afasgrg")
+                                        Text("1123", "Helllo"),
+                                        Text("1233", "afasgrg")
                                     )
                                 )
                             )
@@ -82,15 +82,15 @@ fun Application.configureRouting() {
                     // print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}---")
 
                     call.respond(
-                        column(
+                        Column(
                             "a6bc",
                             listOf(
-                                image(
+                                Image(
                                     "6ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                text("6pba", "Helltthppo!"),
-                                text("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
+                                Text("6pba", "Helltthppo!"),
+                                Text("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
                             )
 
 
@@ -100,57 +100,55 @@ fun Application.configureRouting() {
 
                 "112" -> {
                     call.respond(
-                        lazyColumn(
+                        LazyColumn(
                             "abc",
                             listOf(
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                image(
+                                Image(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                editText(
+                                EditText(
                                     "abTT",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                text("ba", "Helltthppo!")
+                                Text("ba", "Helltthppo!")
                             )
-
-
                         )
                     )
                 }
