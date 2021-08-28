@@ -12,11 +12,12 @@ import nyx69.ui.*
 import nyx69.ui.Layout.Box
 import nyx69.ui.Layout.Column
 import nyx69.ui.Layout.LazyColumn
-import nyx69.ui.Widget.Text
 import nyx69.ui.Widget.Button
 import nyx69.ui.Widget.EditText
 import nyx69.ui.Widget.Image
+import nyx69.ui.Widget.Text
 
+@OptIn(KtorExperimentalLocationsAPI::class)
 fun Application.configureRouting() {
     install(Locations) {
     }
@@ -39,12 +40,14 @@ fun Application.configureRouting() {
 
         get("/cont") {
             call.respond(
-                LazyColumn("abc", listOf(
+                LazyColumn(
+                    "abc", listOf(
                         Text("aa", "Hello!"),
-                        Box("bb",
+                        Box(
+                            "bb",
                             listOf(
                                 Text("ab", "Helooolo!"),
-                                Text("ba",  "Hellppo!")
+                                Text("ba", "Hellppo!")
                             )
                         ),
                         Button("122", "click!!"),
