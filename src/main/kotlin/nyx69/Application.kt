@@ -28,7 +28,7 @@ fun main() {
 
         configureSecurity()
 
-        configureRouting() //TODO add JWT
+        configureRouting()
 
     }.start(wait = true)
 }

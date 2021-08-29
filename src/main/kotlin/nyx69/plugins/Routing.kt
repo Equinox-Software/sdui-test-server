@@ -2,12 +2,17 @@ package nyx69.plugins
 
 import io.ktor.application.*
 import io.ktor.auth.*
+import io.ktor.client.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.request.*
 import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
+import nyx69.model.UserProfile
 import nyx69.ui.*
 import nyx69.ui.Layout.Box
 import nyx69.ui.Layout.Column
@@ -21,6 +26,8 @@ import nyx69.ui.Widget.Text
 fun Application.configureRouting() {
     install(Locations) {
     }
+
+    val client = ktorHttpClient
 
     routing {
         get("/") {
@@ -74,16 +81,14 @@ fun Application.configureRouting() {
                                         Text("1123", "Helllo"),
                                         Text("1233", "afasgrg")
                                     )
-                                )
+                                ),
+                                Button("777", "get data from DB"),
                             )
                         )
                     )
                 }
 
                 "666" -> {
-
-                    // print("---\n\n${call.receive<Map<String,String>>()["abTuT"].toString()}---")
-
                     call.respond(
                         Column(
                             "a6bc",
@@ -93,6 +98,29 @@ fun Application.configureRouting() {
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
                                 Text("6pba", "Helltthppo!"),
+                                Text("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
+                            )
+
+
+                        )
+                    )
+                }
+
+                "777" -> {
+
+                    val response = client.post<UserProfile>("click${id}") {
+
+                    }
+
+                    call.respond(
+                        Column(
+                            "a6bc",
+                            listOf(
+                                Image(
+                                    "6ab",
+                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                ),
+                                Text("6pba", "DATA FROM DB --- Helltthppo!"),
                                 Text("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
                             )
 
