@@ -109,18 +109,17 @@ fun Application.configureSecurity() {
 
      */
 
-
     val privateKeyString =
         "MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAtfJaLrzXILUg1U3N1KV8yJr92GHn5OtYZR7qWk1Mc4cy4JGjklYup7weMjBD9f3bBVoIsiUVX6xNcYIr0Ie0AQIDAQABAkEAg+FBquToDeYcAWBe1EaLVyC45HG60zwfG1S4S3IB+y4INz1FHuZppDjBh09jptQNd+kSMlG1LkAc/3znKTPJ7QIhANpyB0OfTK44lpH4ScJmCxjZV52mIrQcmnS3QzkxWQCDAiEA1Tn7qyoh+0rOO/9vJHP8U/beo51SiQMw0880a1UaiisCIQDNwY46EbhGeiLJR1cidr+JHl86rRwPDsolmeEF5AdzRQIgK3KXL3d0WSoS//K6iOkBX3KMRzaFXNnDl0U/XyeGMuUCIHaXv+n+Brz5BDnRbWS+2vkgIe9bUNlkiArpjWvX+2we"
     val issuer = "https://rw-ktor-server.herokuapp.com"
     val audience = "https://rw-ktor-server.herokuapp.com/hello"
     val myRealm = "Access to 'hello'"
 
-
     val jwkProvider = JwkProviderBuilder(issuer)
         .cached(10, 24, TimeUnit.HOURS)
         .rateLimited(10, 1, TimeUnit.MINUTES)
         .build()
+
     install(Authentication) {
         jwt("auth-jwt") {
             realm = myRealm
@@ -139,8 +138,7 @@ fun Application.configureSecurity() {
     routing {
         post("/login") {
             val user = call.receive<User>()
-            // Check username and password
-            // ...
+            // TODO Check username and password
             val publicKey = jwkProvider.get("6f8856ed-9189-488f-9011-0ff4b6c08edc").publicKey
             val keySpecPKCS8 = PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyString))
             val privateKey = KeyFactory.getInstance("RSA").generatePrivate(keySpecPKCS8)
@@ -158,7 +156,7 @@ fun Application.configureSecurity() {
                 val principal = call.principal<JWTPrincipal>()
                 val username = principal!!.payload.getClaim("username").asString()
                 val expiresAt = principal.expiresAt?.time?.minus(System.currentTimeMillis())
-                call.respondText("Hello, $username! Token is expired at $expiresAt ms.")
+                call.respondText("Hello, $username! Token will expire in $expiresAt ms.")
             }
         }
         static(".well-known") {
