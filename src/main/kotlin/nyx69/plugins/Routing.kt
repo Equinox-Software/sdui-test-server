@@ -108,9 +108,9 @@ fun Application.configureRouting() {
 
                 "777" -> {
 
-                    val response = client.post<UserProfile>("click${id}") {
+                  /*  val response = client.post<UserProfile>("click${id}") {
 
-                    }
+                    } */
 
                     call.respond(
                         Column(
