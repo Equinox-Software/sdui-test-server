@@ -1,10 +1,6 @@
 package nyx69.plugins
 
 import io.ktor.application.*
-import io.ktor.auth.*
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.request.*
 import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -12,8 +8,6 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.model.UserProfile
-import nyx69.ui.*
 import nyx69.ui.Layout.Box
 import nyx69.ui.Layout.Column
 import nyx69.ui.Layout.LazyColumn
@@ -43,7 +37,6 @@ fun Application.configureRouting() {
         get<Type.List> {
             call.respondText("Inside $it")
         }
-
 
         get("/cont") {
             call.respond(
