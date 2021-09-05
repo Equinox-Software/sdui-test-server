@@ -1,10 +1,15 @@
 package nyx69.plugins
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import org.jetbrains.compose.web.renderComposable
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
+import io.ktor.http.*
 import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -12,15 +17,15 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.model.UserProfile
 import nyx69.ui.*
-import nyx69.ui.Layout.Box
-import nyx69.ui.Layout.Column
-import nyx69.ui.Layout.LazyColumn
-import nyx69.ui.Widget.Button
-import nyx69.ui.Widget.EditText
-import nyx69.ui.Widget.Image
-import nyx69.ui.Widget.Text
+import nyx69.ui.Layout.CBox
+import nyx69.ui.Layout.CColumn
+import nyx69.ui.Layout.CLazyColumn
+import nyx69.ui.Widget.CButton
+import nyx69.ui.Widget.CEditText
+import nyx69.ui.Widget.CImage
+import nyx69.ui.Widget.CText
+
 
 @OptIn(KtorExperimentalLocationsAPI::class)
 fun Application.configureRouting() {
@@ -28,6 +33,7 @@ fun Application.configureRouting() {
     }
 
     val client = ktorHttpClient
+
 
     routing {
         get("/") {
@@ -44,21 +50,48 @@ fun Application.configureRouting() {
             call.respondText("Inside $it")
         }
 
+        get("/melik") {
+            call.respond {
+                var count: Int by mutableStateOf(0)
+
+
+                renderComposable(rootElementId = "root") {
+                    Div({ style { padding(25.px) } }) {
+                        Button(attrs = {
+                            onClick { io.ktor.http.count -= 1 }
+                        }) {
+                            Text("-")
+                        }
+
+                        Span({ style { padding(15.px) } }) {
+                            Text("${io.ktor.http.count}")
+                        }
+
+                        Button(attrs = {
+                            onClick { io.ktor.http.count += 1 }
+                        }) {
+                           Text("+")
+                        }
+                    }
+                }
+            }
+        }
+
 
         get("/cont") {
             call.respond(
-                LazyColumn(
+                CLazyColumn(
                     "abc", listOf(
-                        Text("aa", "Hello!"),
-                        Box(
+                        CText("aa", "Hello!"),
+                        CBox(
                             "bb",
                             listOf(
-                                Text("ab", "Helooolo!"),
-                                Text("ba", "Hellppo!")
+                                CText("ab", "Helooolo!"),
+                                CText("ba", "Hellppo!")
                             )
                         ),
-                        Button("122", "click!!"),
-                        Button("112", "click for scrolll!!")
+                        CButton("122", "click!!"),
+                        CButton("112", "click for scrolll!!")
                     )
                 )
             )
@@ -69,20 +102,20 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        Column(
+                        CColumn(
                             "abc", listOf(
-                                Image("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                                Text("ba", "Helltthppo!"),
-                                Text("1111", "Umbertoooo"),
-                                EditText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                                Button("666", "-- click after entering text"),
-                                Column(
+                                CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                CText("ba", "Helltthppo!"),
+                                CText("1111", "Umbertoooo"),
+                                CEditText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                CButton("666", "-- click after entering text"),
+                                CColumn(
                                     "1122", listOf(
-                                        Text("1123", "Helllo"),
-                                        Text("1233", "afasgrg")
+                                        CText("1123", "Helllo"),
+                                        CText("1233", "afasgrg")
                                     )
                                 ),
-                                Button("777", "get data from DB"),
+                                CButton("777", "get data from DB"),
                             )
                         )
                     )
@@ -90,15 +123,15 @@ fun Application.configureRouting() {
 
                 "666" -> {
                     call.respond(
-                        Column(
+                        CColumn(
                             "a6bc",
                             listOf(
-                                Image(
+                                CImage(
                                     "6ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Text("6pba", "Helltthppo!"),
-                                Text("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
+                                CText("6pba", "Helltthppo!"),
+                                CText("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
                             )
 
 
@@ -108,20 +141,20 @@ fun Application.configureRouting() {
 
                 "777" -> {
 
-                  /*  val response = client.post<UserProfile>("click${id}") {
+                    /*  val response = client.post<UserProfile>("click${id}") {
 
-                    } */
+                      } */
 
                     call.respond(
-                        Column(
+                        CColumn(
                             "a6bc",
                             listOf(
-                                Image(
+                                CImage(
                                     "6ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Text("6pba", "DATA FROM DB --- Helltthppo!"),
-                                Text("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
+                                CText("6pba", "DATA FROM DB --- Helltthppo!"),
+                                CText("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
                             )
 
 
@@ -131,54 +164,54 @@ fun Application.configureRouting() {
 
                 "112" -> {
                     call.respond(
-                        LazyColumn(
+                        CLazyColumn(
                             "abc",
                             listOf(
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Image(
+                                CImage(
                                     "ab",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                EditText(
+                                CEditText(
                                     "abTT",
                                     "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                                 ),
-                                Text("ba", "Helltthppo!")
+                                CText("ba", "Helltthppo!")
                             )
                         )
                     )

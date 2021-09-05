@@ -12,17 +12,17 @@ data class Component(
 
 @Suppress("FunctionName")
 object Widget {
-    fun Text(id: String, text: String) = Component(id, ComponentType.TEXT, text)
-    fun EditText(id: String, text: String) = Component(id, ComponentType.TEXT, text)
-    fun Image(id: String, url: String) = Component(id, ComponentType.IMAGE, url)
-    fun Button(id: String, text: String) = Component(id, ComponentType.BUTTON, text)
+    fun CText(id: String, text: String) = Component(id, ComponentType.TEXT, text)
+    fun CEditText(id: String, text: String) = Component(id, ComponentType.TEXT, text)
+    fun CImage(id: String, url: String) = Component(id, ComponentType.IMAGE, url)
+    fun CButton(id: String, text: String) = Component(id, ComponentType.BUTTON, text)
 }
 
 @Suppress("FunctionName")
 object Layout {
-    fun Column(id: String, children: List<Component>) = Component(id, ComponentType.VERTICAL, children = children)
-    fun LazyColumn(id: String, children: List<Component>) =
+    fun CColumn(id: String, children: List<Component>) = Component(id, ComponentType.VERTICAL, children = children)
+    fun CLazyColumn(id: String, children: List<Component>) =
         Component(id, ComponentType.SCROLL_VERTICAL, children = children)
 
-    fun Box(id: String, children: List<Component>) = Component(id, ComponentType.BOX, children = children)
+    fun CBox(id: String, children: List<Component>) = Component(id, ComponentType.BOX, children = children)
 }
