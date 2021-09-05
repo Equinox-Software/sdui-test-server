@@ -5,13 +5,15 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.encodeToJsonElement
 import nyx69.ui.ComponentType.*
+import nyx69.ui.ComponentActionType.*
 
 @Serializable
 data class Component(
     val id: String,
     val type: ComponentType,
     val data: JsonElement? = null,
-    val children: List<Component>? = null
+    val children: List<Component>? = null,
+    val actions: Map<ComponentActionType, JsonElement>?=null
 )
 
 @Suppress("FunctionName")
@@ -19,7 +21,7 @@ object Widget {
     fun CText(id: String, text: String) = Component(id, TEXT, Json.encodeToJsonElement(text))
     fun CEditText(id: String, text: String) = Component(id, TEXT, Json.encodeToJsonElement(text))
     fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
-    fun CButton(id: String, text: String) = Component(id, BUTTON, Json.encodeToJsonElement(text))
+    fun CButton(id: String, text: String) = Component(id, BUTTON, Json.encodeToJsonElement(text),actions= mapOf(CLICK to Json.encodeToJsonElement("id")))
 }
 
 @Suppress("FunctionName")
