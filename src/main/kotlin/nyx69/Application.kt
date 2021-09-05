@@ -13,7 +13,7 @@ import nyx69.plugins.configureSecurity
 import org.slf4j.event.Level
 
 fun main() {
-    embeddedServer(CIO, 9090/*System.getenv("PORT").toInt()*/) {
+    embeddedServer(CIO, System.getenv("PORT").toInt()) {
         install(ContentNegotiation) {
             json(Json {
                 //    prettyPrint = true
