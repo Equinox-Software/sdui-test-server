@@ -1,10 +1,8 @@
 package nyx69.ui
 
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.encodeToJsonElement
 import nyx69.ui.ComponentType.*
 
@@ -12,16 +10,16 @@ import nyx69.ui.ComponentType.*
 data class Component(
     val id: String,
     val type: ComponentType,
-    val data: @Contextual Any? = null,
+    val data: JsonElement? = null,
     val children: List<Component>? = null
 )
 
 @Suppress("FunctionName")
 object Widget {
-    fun CText(id: String, text: String) = Component(id, TEXT,text)
-    fun CEditText(id: String, text: String) = Component(id, TEXT, text)
-    fun CImage(id: String, url: String) = Component(id, IMAGE, url)
-    fun CButton(id: String, text: String) = Component(id, BUTTON, text)
+    fun CText(id: String, text: String) = Component(id, TEXT, Json.encodeToJsonElement(text))
+    fun CEditText(id: String, text: String) = Component(id, TEXT, Json.encodeToJsonElement(text))
+    fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
+    fun CButton(id: String, text: String) = Component(id, BUTTON, Json.encodeToJsonElement(text))
 }
 
 @Suppress("FunctionName")
