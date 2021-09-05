@@ -16,8 +16,8 @@ fun main() {
     embeddedServer(CIO, System.getenv("PORT").toInt()) {
         install(ContentNegotiation) {
             json(Json {
-                //    prettyPrint = true
-                isLenient = true
+                    prettyPrint = true
+           //     isLenient = true
                 ignoreUnknownKeys = true
             })
         }

@@ -1,12 +1,13 @@
 package nyx69.ui
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonPrimitive
 
 @Serializable
 data class Component(
     val id: String,
     val type: ComponentType,
-    val data: String? = null,
+    val data: Map<String, JsonPrimitive>? = null,
     val children: List<Component>? = null
 )
 
