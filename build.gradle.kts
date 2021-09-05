@@ -3,23 +3,24 @@ val kotlin_version: String by project
 val logback_version: String by project
 
 plugins {
-   // application
-    kotlin("jvm") version "1.5.21"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.5.21"
+    application
+    kotlin("jvm") version "1.5.30"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.5.30"
    // id("org.jetbrains.compose") version "1.0.0-alpha1"
 }
 
 group = "nyx69"
 version = "0.0.1"
-/*application {
+application {
     mainClass.set("nyx69.ApplicationKt")
-}*/
+}
 
-compose.desktop {
+/*compose.desktop {
     application {
         mainClass = "ApplicationKt"
     }
 }
+ */
 
 tasks.create("stage") {
     dependsOn("installDist")
