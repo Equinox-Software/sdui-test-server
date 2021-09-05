@@ -1,8 +1,10 @@
 rootProject.name = "nyx69"
 
-pluginManagement {
+/*pluginManagement {
     repositories {
         gradlePluginPortal()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
+
+ */

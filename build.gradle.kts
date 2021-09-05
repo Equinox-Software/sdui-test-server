@@ -6,7 +6,7 @@ plugins {
    // application
     kotlin("jvm") version "1.5.21"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.5.21"
-    id("org.jetbrains.compose") version "1.0.0-alpha1"
+   // id("org.jetbrains.compose") version "1.0.0-alpha1"
 }
 
 group = "nyx69"
@@ -27,7 +27,7 @@ tasks.create("stage") {
 
 repositories {
     mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+  //  maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     google()
 }
 
@@ -44,7 +44,9 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
 
-    implementation(compose.web.core)
+/*    implementation(compose.web.core)
     implementation(compose.runtime)
     implementation(compose.desktop.currentOs)
+
+ */
 }
