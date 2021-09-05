@@ -17,7 +17,7 @@ fun main() {
     embeddedServer(CIO, 9090/*System.getenv("PORT").toInt()*/) {
         install(ContentNegotiation) {
             json(Json {
-                prettyPrint = true
+            //    prettyPrint = true
                 isLenient = true
                 ignoreUnknownKeys = true
             })
@@ -31,6 +31,6 @@ fun main() {
         configureSecurity()
 
         configureRouting()
-e
+
     }.start(wait = true)
 }
