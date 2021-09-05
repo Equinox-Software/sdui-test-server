@@ -1,15 +1,6 @@
 package nyx69.plugins
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import org.jetbrains.compose.web.renderComposable
 import io.ktor.application.*
-import io.ktor.auth.*
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.request.*
-import io.ktor.http.*
 import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -17,7 +8,6 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.ui.*
 import nyx69.ui.Layout.CBox
 import nyx69.ui.Layout.CColumn
 import nyx69.ui.Layout.CLazyColumn
