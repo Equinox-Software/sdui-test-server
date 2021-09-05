@@ -10,19 +10,18 @@ import io.ktor.server.engine.*
 import kotlinx.serialization.json.Json
 import nyx69.plugins.configureRouting
 import nyx69.plugins.configureSecurity
-import nyx69.ui.Widget
 import org.slf4j.event.Level
 
 fun main() {
     embeddedServer(CIO, 9090/*System.getenv("PORT").toInt()*/) {
         install(ContentNegotiation) {
             json(Json {
-            //    prettyPrint = true
+                //    prettyPrint = true
                 isLenient = true
                 ignoreUnknownKeys = true
             })
         }
-        
+
         install(CallLogging) {
             level = Level.INFO
             filter { call -> call.request.path().startsWith("/") }

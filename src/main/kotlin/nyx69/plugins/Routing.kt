@@ -40,36 +40,6 @@ fun Application.configureRouting() {
             call.respondText("Inside $it")
         }
 
-        get("/melik") {
-            call.respond {
-         /*       var count: Int by mutableStateOf(0)
-
-
-                renderComposable(rootElementId = "root") {
-                    Div({ style { padding(25.px) } }) {
-                        Button(attrs = {
-                            onClick { io.ktor.http.count -= 1 }
-                        }) {
-                            Text("-")
-                        }
-
-                        Span({ style { padding(15.px) } }) {
-                            Text("${io.ktor.http.count}")
-                        }
-
-                        Button(attrs = {
-                            onClick { io.ktor.http.count += 1 }
-                        }) {
-                           Text("+")
-                        }
-                    }
-                }
-            }
-
-          */
-        }
-
-
         get("/cont") {
             call.respond(
                 CLazyColumn(
@@ -135,7 +105,7 @@ fun Application.configureRouting() {
 
                     /*  val response = client.post<UserProfile>("click${id}") {
 
-                      } */
+                  } */
 
                     call.respond(
                         CColumn(
@@ -213,9 +183,9 @@ fun Application.configureRouting() {
         }
 
         /*      authenticate("jwt-auth") {
-                  get("/auth") {
-                      call.respondText("Hello World! -- AUTH")
-                  }
-              } */
+              get("/auth") {
+                  call.respondText("Hello World! -- AUTH")
+              }
+          } */
     }
 }

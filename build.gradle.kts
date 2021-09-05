@@ -6,7 +6,6 @@ plugins {
     application
     kotlin("jvm") version "1.5.30"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.5.30"
-   // id("org.jetbrains.compose") version "1.0.0-alpha1"
 }
 
 group = "nyx69"
@@ -15,12 +14,6 @@ application {
     mainClass.set("nyx69.ApplicationKt")
 }
 
-/*compose.desktop {
-    application {
-        mainClass = "ApplicationKt"
-    }
-}
- */
 
 tasks.create("stage") {
     dependsOn("installDist")
@@ -28,7 +21,6 @@ tasks.create("stage") {
 
 repositories {
     mavenCentral()
-  //  maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     google()
 }
 
@@ -44,10 +36,4 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
-
-/*    implementation(compose.web.core)
-    implementation(compose.runtime)
-    implementation(compose.desktop.currentOs)
-
- */
 }
