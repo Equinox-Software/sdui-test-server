@@ -52,7 +52,7 @@ fun Application.configureRouting() {
 
         get("/melik") {
             call.respond {
-                var count: Int by mutableStateOf(0)
+         /*       var count: Int by mutableStateOf(0)
 
 
                 renderComposable(rootElementId = "root") {
@@ -75,6 +75,8 @@ fun Application.configureRouting() {
                     }
                 }
             }
+
+          */
         }
 
 
