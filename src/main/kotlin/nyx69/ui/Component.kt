@@ -1,9 +1,11 @@
 package nyx69.ui
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.encodeToJsonElement
+import nyx.sdui.components.base.ComponentStyleType
 import nyx69.ui.ComponentType.*
 import nyx69.ui.ComponentActionType.*
 
@@ -13,12 +15,29 @@ data class Component(
     val type: ComponentType,
     val data: JsonElement? = null,
     val children: List<Component>? = null,
-    val actions: Map<ComponentActionType, JsonElement>?=null
+    val actions: Map<ComponentActionType, JsonElement>?=null,
+    val styles: Map<ComponentStyleType, JsonElement>?= null
 )
 
 @Suppress("FunctionName")
 object Widget {
-    fun CText(id: String, text: String) = Component(id, TEXT, Json.encodeToJsonElement(text))
+    fun CText(id: String, text: String, styles: Map<ComponentStyleType, Any>?=null): Component {
+
+
+        styles?.values!!.map { value ->
+            when (value) {
+                is String -> Json.encodeToJsonElement(value)
+                is Int -> Json.encodeToJsonElement(value)
+                is Boolean -> Json.encodeToJsonElement(value)
+                is Long -> Json.encodeToJsonElement(value)
+                is List<*> -> Json.encodeToJsonElement(value) //might fail
+
+                else -> throw SerializationException("Unsupported Type! Can't serialize $value.")
+            }
+        }
+
+     return   Component(id, TEXT, Json.encodeToJsonElement(text),styles = styles as Map<ComponentStyleType, JsonElement>)
+    }
     fun CEditText(id: String, text: String) = Component(id, TEXT, Json.encodeToJsonElement(text))
     fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
     fun CButton(id: String, text: String) = Component(id, BUTTON, Json.encodeToJsonElement(text),actions= mapOf(CLICK to Json.encodeToJsonElement("id")))

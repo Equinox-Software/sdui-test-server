@@ -5,6 +5,7 @@ import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import nyx.sdui.components.base.ComponentStyleType
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
@@ -17,6 +18,7 @@ import nyx69.ui.Widget.CButton
 import nyx69.ui.Widget.CEditText
 import nyx69.ui.Widget.CImage
 import nyx69.ui.Widget.CText
+import javax.crypto.BadPaddingException
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
@@ -50,7 +52,14 @@ fun Application.configureRouting() {
                         CBox(
                             "bb",
                             listOf(
-                                CText("ab", "Helooolo!"),
+                                CText(
+                                    "ab",
+                                    "Helooolo!",
+                                    styles = mapOf(
+                                        ComponentStyleType.PADDING to 200,
+                                        ComponentStyleType.COLOR to 0xFFAABBDD
+                                    )
+                                ),
                                 CText("ba", "Hellppo!")
                             )
                         ),
