@@ -1,4 +1,4 @@
-package nyx.sdui.components.base
+package nyx69.ui
 
 enum class ComponentStyleType {
     PADDING, COLOR
