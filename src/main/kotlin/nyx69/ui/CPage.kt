@@ -11,16 +11,16 @@ fun CPage(layout: Component, data: Map<String, Any>): Page {
     data.forEach { (k, v) ->
         encodedData[k] =
             when (v) {
-                is String -> {
+                 String -> {
                     Json.encodeToJsonElement(v)
                 }
-                is Int -> {
+                 Int -> {
                     Json.encodeToJsonElement(v)
                 }
-                is Boolean -> {
+                 Boolean -> {
                     Json.encodeToJsonElement(v)
                 }
-                is Long -> {
+                Long -> {
                     Json.encodeToJsonElement(v)
                 }
 
