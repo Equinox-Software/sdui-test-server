@@ -6,6 +6,8 @@ import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.encodeToJsonElement
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
@@ -44,27 +46,26 @@ fun Application.configureRouting() {
 
         get("/cont") {
             call.respond(
-                HttpStatusCode.OK, //why????
                 Page(
-                CLazyColumn(
-                    "abc", listOf(
-                        CText("aa", "Hello!"),
-                        CBox(
-                            "bb",
-                            listOf(
-                                CText("ab", "Helooolo!"),
-                                CText("ba", "Hellppo!")
-                            )
-                        ),
-                        CButton("122", "click!!"),
-                        CButton("112", "click for scrolll!!")
+                    CLazyColumn(
+                        "abc", listOf(
+                            CText("aa", "Hello!"),
+                            CBox(
+                                "bb",
+                                listOf(
+                                    CText("ab", "Helooolo!"),
+                                    CText("ba", "Hellppo!")
+                                )
+                            ),
+                            CButton("122", "click!!"),
+                            CButton("112", "click for scrolll!!")
+                        )
+                    ), mapOf(
+                        "ab" to "Helooo888lo!",
+                        "ba" to "He88899llppo!"
                     )
                 )
-            ),
-            mapOf(
-               "ab" to "Helooo888lo!",
-                "ba" to "He88899llppo!"
-            ))
+            )
         }
 
         post("/click{id}") {
