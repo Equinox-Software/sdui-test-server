@@ -24,7 +24,8 @@ object AnySerializer : KSerializer<Any> {
         }
     }
 
-    override fun deserialize(decoder: Decoder): Any {
+ //   override fun deserialize(decoder: Decoder): Any {
+    //   decoder.decodeString()
       /*  return when {
             is String -> decoder.decodeString()
             is Int -> Json.encodeToJsonElement(value)
@@ -33,6 +34,6 @@ object AnySerializer : KSerializer<Any> {
             else -> Json.encodeToJsonElement("No value found")
         }
          decoder.decodeString()) */
-        return ""
-    }
+
+  //  }
 }
