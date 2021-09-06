@@ -27,6 +27,11 @@ inline fun <reified T> CPage(layout: Component, data: T): Page {
     /*    is List<*> -> Json.encodeToJsonElement(ListSerializer(), data)
 
         ) */
+        is Map<*,*> ->
+
+                    Json.encodeToJsonElement(data)
+
+
         else -> throw SerializationException("Unsupported Type! Can't serialize $data.")
     }
     )
