@@ -61,8 +61,8 @@ fun Application.configureRouting() {
                             CButton("112", "click for scrolll!!")
                         )
                     ), mapOf(
-                        "ab" to "Helooo888lo!",
-                        "ba" to "He88899llppo!"
+                        "ab" to Json.encodeToJsonElement("Helooo888lo!"),
+                        "ba" to Json.encodeToJsonElement("He88899llppo!")
                     )
                 )
             )
