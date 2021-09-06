@@ -3,11 +3,14 @@ package nyx69.ui
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.encoding.encodeStructure
 
 @OptIn(ExperimentalSerializationApi::class)
 @Serializer(forClass = Any::class)
@@ -20,6 +23,7 @@ object AnySerializer : KSerializer<Any> {
             is Int -> encoder.encodeInt(value)
             is Boolean -> encoder.encodeBoolean(value)
             is Long -> encoder.encodeLong(value)
+            is List<*> -> encoder.encodeSerializableValue(ListSerializer(AnySerializer), value as List<Any>)
             else -> encoder.encodeString("No value found")
         }
     }
