@@ -1,6 +1,7 @@
 package nyx69.plugins
 
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -42,7 +43,9 @@ fun Application.configureRouting() {
         }
 
         get("/cont") {
-            call.respond(Page(
+            call.respond(
+                HttpStatusCode.OK, //why????
+                Page(
                 CLazyColumn(
                     "abc", listOf(
                         CText("aa", "Hello!"),
