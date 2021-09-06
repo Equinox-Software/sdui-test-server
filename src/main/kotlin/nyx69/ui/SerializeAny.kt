@@ -2,6 +2,7 @@ package nyx69.ui
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
@@ -23,21 +24,25 @@ object AnySerializer : KSerializer<Any> {
             is Int -> encoder.encodeInt(value)
             is Boolean -> encoder.encodeBoolean(value)
             is Long -> encoder.encodeLong(value)
-            is List<*> -> encoder.encodeSerializableValue(ListSerializer(AnySerializer), value as List<Any>)
-            else -> encoder.encodeString("No value found")
+            is List<*> -> encoder.encodeSerializableValue(
+                ListSerializer(AnySerializer), value as List<@kotlinx.serialization.Serializable(
+                    nyx69.ui.AnySerializer::class
+                ) Any>
+            )
+            else -> throw SerializationException("Unsupported Type! Can't serialize $value.")
         }
     }
 
- //   override fun deserialize(decoder: Decoder): Any {
+    //   override fun deserialize(decoder: Decoder): Any {
     //   decoder.decodeString()
-      /*  return when {
-            is String -> decoder.decodeString()
-            is Int -> Json.encodeToJsonElement(value)
-            is Boolean -> Json.encodeToJsonElement(value)
-            is Long -> Json.encodeToJsonElement(value)
-            else -> Json.encodeToJsonElement("No value found")
-        }
-         decoder.decodeString()) */
+    /*  return when {
+          is String -> decoder.decodeString()
+          is Int -> Json.encodeToJsonElement(value)
+          is Boolean -> Json.encodeToJsonElement(value)
+          is Long -> Json.encodeToJsonElement(value)
+          else -> Json.encodeToJsonElement("No value found")
+      }
+       decoder.decodeString()) */
 
-  //  }
+    //  }
 }
