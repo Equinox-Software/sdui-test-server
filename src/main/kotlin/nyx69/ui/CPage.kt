@@ -8,37 +8,47 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 
 @Suppress("FunctionName")
-inline fun <reified T> CPage(layout: Component, data: T): Page {
+fun CPage(layout: Component, data: CData): Page {
 
-  /*  val encodedData = emptyMap<String, JsonElement>().toMutableMap()
+    /*  val encodedData = emptyMap<String, JsonElement>().toMutableMap()
 
-    data.forEach { (k, v) ->
-        encodedData[k] = SerializeAny().ss(v)
+      data.forEach { (k, v) ->
+          encodedData[k] = SerializeAny().ss(v)
 
-    }
+      }
 
-   */
+     */
 
-    return Page(layout,  when (data) {
-        is String -> Json.encodeToJsonElement(data)
-        is Int -> Json.encodeToJsonElement(data)
-        is Boolean -> Json.encodeToJsonElement(data)
-        is Long ->Json.encodeToJsonElement(data)
-    /*    is List<*> -> Json.encodeToJsonElement(ListSerializer(), data)
+    return Page(
+        layout, when (data) {
+            is CData.CString -> Json.encodeToJsonElement(data.value)
+            is CData.CInt -> Json.encodeToJsonElement(data.value)
+            is CData.CBoolean -> Json.encodeToJsonElement(data.value)
+            is CData.CLong -> Json.encodeToJsonElement(data.value)
+            /*    is List<*> -> Json.encodeToJsonElement(ListSerializer(), data)
 
-        ) */
-        is Map<*,*> ->
+                ) */
+            is CData.CMap -> Json.encodeToJsonElement(data.map)
+            is CData.CMapStr -> Json.encodeToJsonElement(data.map)
+            is CData.CList -> Json.encodeToJsonElement(data.list)
 
-                    Json.encodeToJsonElement(data)
-
-
-        else -> throw SerializationException("Unsupported Type! Can't serialize $data.")
-    }
+        }
     )
-
 }
 
 @Serializable
-data class Page(val layout: Component, val data:  JsonElement)
+sealed class CData {
+    data class CString(val value: String) : CData()
+    data class CInt(val value: Int) : CData()
+    data class CBoolean(val value: Boolean) : CData()
+    data class CLong(val value: Long) : CData()
+    data class CList(val list: List<String>) : CData()
+    data class CMapStr(val map: Map<String, String>) : CData()
+    data class CMap(val map: Map<String, CData>) : CData()
+}
+
+
+@Serializable
+data class Page(val layout: Component, val data: JsonElement)
 
 

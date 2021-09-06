@@ -5,11 +5,10 @@ import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.encodeToJsonElement
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
+import nyx69.ui.CData
 import nyx69.ui.CPage
 import nyx69.ui.Layout.CBox
 import nyx69.ui.Layout.CColumn
@@ -111,9 +110,7 @@ fun Application.configureRouting() {
 
 
                             ),
-                            mapOf(
-                                "umbertott" to listOf(1, 2, 3, "a", "b")
-                            )
+                            CData.CMap(mapOf("umbertott" to CData.CList(listOf(1, 2, 3, "a", "b"))))
                         )
                     )
                 }
@@ -139,10 +136,10 @@ fun Application.configureRouting() {
 
 
                             ),
-                            mapOf(
+                           CData.CMap( mapOf(
                                 "umbert66ott" to listOf(1, 2L, 3, "a", "b")
                             )
-                        )
+                        ))
                     )
                 }
 
