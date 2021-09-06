@@ -89,9 +89,8 @@ fun Application.configureRouting() {
                                     CButton("777", "get data from DB"),
                                 )
                             ),
-                            mapOf(
-                                "11111111" to 1333
-                            )
+                          1333
+
                         )
                     )
                 }
