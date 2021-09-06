@@ -1,12 +1,19 @@
 package nyx69.ui
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.encodeToJsonElement
 
 @Serializable
-sealed class ComponentStyle(val type: ComponentStyleType) {
-    data class Padding(val start: Int, val top: Int, val end: Int, val bottom: Int) : ComponentStyle(ComponentStyleType.PADDING)
-    data class Color(val color: Long) : ComponentStyle(ComponentStyleType.COLOR)
-}
+data class ComponentStyle(val type: ComponentStyleType, val value: JsonElement? = null)
 
-fun padding(all: Int) = ComponentStyle.Padding(all, all, all, all)
-fun padding(vertical: Int,  horizontal: Int)  = ComponentStyle.Padding(vertical, horizontal, vertical, horizontal)
+@Suppress("FunctionName")
+object Style {
+    fun CPadding(all: Int) = CPadding(all, all, all, all)
+    fun CPadding(vertical: Int, horizontal: Int) = CPadding(vertical, horizontal, vertical, horizontal)
+    fun CPadding(start: Int, top: Int, end: Int, bottom: Int) =
+        ComponentStyle(ComponentStyleType.PADDING, Json.encodeToJsonElement(listOf(start, top, end, bottom)))
+
+    fun CColor(color: Long) = ComponentStyle(ComponentStyleType.COLOR, Json.encodeToJsonElement(color))
+}

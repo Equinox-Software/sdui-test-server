@@ -12,6 +12,8 @@ import nyx69.ui.ComponentStyle.*
 import nyx69.ui.Layout.CBox
 import nyx69.ui.Layout.CColumn
 import nyx69.ui.Layout.CLazyColumn
+import nyx69.ui.Style.CColor
+import nyx69.ui.Style.CPadding
 import nyx69.ui.Widget.CButton
 import nyx69.ui.Widget.CEditText
 import nyx69.ui.Widget.CImage
@@ -54,8 +56,8 @@ fun Application.configureRouting() {
                                     "ab",
                                     "Helooolo!",
                                     styles = listOf(
-                                        padding(200),
-                                        Color(0xFFFF5522)
+                                        CPadding(200),
+                                        CColor(0xFFFF5522)
                                     )
                                 ),
                                 CText("ba", "Hellppo!")
