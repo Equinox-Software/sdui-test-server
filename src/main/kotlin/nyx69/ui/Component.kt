@@ -23,8 +23,7 @@ data class Component(
 object Widget {
     fun CText(id: String, text: String, styles: Map<ComponentStyleType, Any>?=null): Component {
 
-
-        styles?.values!!.map { value ->
+        styles?.values?.map { value ->
             when (value) {
                 is String -> Json.encodeToJsonElement(value)
                 is Int -> Json.encodeToJsonElement(value)
