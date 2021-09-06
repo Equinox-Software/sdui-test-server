@@ -90,7 +90,7 @@ fun Application.configureRouting() {
                                 )
                             ),
                             mapOf(
-"11111111" to 1333
+                                "11111111" to 1333
                             )
                         )
                     )
@@ -113,7 +113,7 @@ fun Application.configureRouting() {
 
                             ),
                             mapOf(
-"umbertott" to listOf(1,2,3,"a","b")
+                                "umbertott" to listOf(1, 2, 3, "a", "b")
                             )
                         )
                     )
@@ -141,7 +141,7 @@ fun Application.configureRouting() {
 
                             ),
                             mapOf(
-
+                                "umbert66ott" to listOf(1, 2L, 3, "a", "b")
                             )
                         )
                     )
@@ -201,7 +201,8 @@ fun Application.configureRouting() {
                                 )
                             ),
                             mapOf(
-
+                                "ooo" to "gggggg",
+                                "ppp" to 555
                             )
                         )
                     )
