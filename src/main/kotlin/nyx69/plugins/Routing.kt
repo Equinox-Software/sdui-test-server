@@ -16,6 +16,7 @@ import nyx69.ui.Widget.CButton
 import nyx69.ui.Widget.CEditText
 import nyx69.ui.Widget.CImage
 import nyx69.ui.Widget.CText
+import nyx69.ui.padding
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
@@ -53,7 +54,7 @@ fun Application.configureRouting() {
                                     "ab",
                                     "Helooolo!",
                                     styles = listOf(
-                                        PaddingAll(200),
+                                        padding(200),
                                         Color(0xFFFF5522)
                                     )
                                 ),
