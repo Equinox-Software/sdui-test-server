@@ -10,32 +10,13 @@ fun CPage(layout: Component, data: Map<String, Any>): Page {
     val encodedData = emptyMap<String, JsonElement>().toMutableMap()
 
     data.forEach { (k, v) ->
-
-        print("-- INSTANCE:: " + v.instanceOf(String::class))
-
-        val isStr = (v is String)
-
-        print("-- IS:: $isStr")
-
         encodedData[k] =
             when (v) {
-               is String -> {
-                    Json.encodeToJsonElement(v)
-                }
-                is Int -> {
-                    Json.encodeToJsonElement(v)
-                }
-                is  Boolean -> {
-                    Json.encodeToJsonElement(v)
-                }
-                is  Long -> {
-                    Json.encodeToJsonElement(v)
-                }
-
-                else -> {
-
-                    Json.encodeToJsonElement("No value found")
-                }
+                is String -> Json.encodeToJsonElement(v)
+                is Int -> Json.encodeToJsonElement(v)
+                is Boolean -> Json.encodeToJsonElement(v)
+                is Long -> Json.encodeToJsonElement(v)
+                else -> Json.encodeToJsonElement("No value found")
             }
     }
 
