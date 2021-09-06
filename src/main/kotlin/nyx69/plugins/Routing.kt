@@ -1,7 +1,6 @@
 package nyx69.plugins
 
 import io.ktor.application.*
-import io.ktor.http.*
 import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -11,7 +10,7 @@ import kotlinx.serialization.json.encodeToJsonElement
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.ui.Page
+import nyx69.ui.CPage
 import nyx69.ui.Layout.CBox
 import nyx69.ui.Layout.CColumn
 import nyx69.ui.Layout.CLazyColumn
@@ -46,7 +45,7 @@ fun Application.configureRouting() {
 
         get("/cont") {
             call.respond(
-                Page(
+                CPage(
                     CLazyColumn(
                         "abc", listOf(
                             CText("aa", "Hello!"),
@@ -73,7 +72,7 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        Page(
+                        CPage(
                             CColumn(
                                 "abc", listOf(
                                     CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
@@ -99,7 +98,7 @@ fun Application.configureRouting() {
 
                 "666" -> {
                     call.respond(
-                        Page(
+                        CPage(
                             CColumn(
                                 "a6bc",
                                 listOf(
@@ -127,7 +126,7 @@ fun Application.configureRouting() {
                   } */
 
                     call.respond(
-                        Page(
+                        CPage(
                             CColumn(
                                 "a6bc",
                                 listOf(
@@ -150,7 +149,7 @@ fun Application.configureRouting() {
 
                 "112" -> {
                     call.respond(
-                        Page(
+                        CPage(
                             CLazyColumn(
                                 "abc",
                                 listOf(
