@@ -71,7 +71,6 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        CPage(
                             CColumn(
                                 "abc", listOf(
                                     CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
@@ -87,16 +86,13 @@ fun Application.configureRouting() {
                                     ),
                                     CButton("777", "get data from DB"),
                                 )
-                            ),
-                          1333
-
+                            )
                         )
-                    )
+
                 }
 
                 "666" -> {
                     call.respond(
-                        CPage(
                             CColumn(
                                 "a6bc",
                                 listOf(
@@ -109,10 +105,9 @@ fun Application.configureRouting() {
                                 )
 
 
-                            ),
-                            CData.CMap(mapOf("umbertott" to CData.CList(listOf(1, 2, 3, "a", "b"))))
+                            )
                         )
-                    )
+
                 }
 
                 "777" -> {
@@ -122,7 +117,6 @@ fun Application.configureRouting() {
                   } */
 
                     call.respond(
-                        CPage(
                             CColumn(
                                 "a6bc",
                                 listOf(
@@ -133,19 +127,12 @@ fun Application.configureRouting() {
                                     CText("6pba", "DATA FROM DB --- Helltthppo!"),
                                     CText("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
                                 )
-
-
-                            ),
-                           CData.CMap( mapOf(
-                                "umbert66ott" to listOf(1, 2L, 3, "a", "b")
                             )
-                        ))
                     )
                 }
 
                 "112" -> {
                     call.respond(
-                        CPage(
                             CLazyColumn(
                                 "abc",
                                 listOf(
@@ -195,12 +182,8 @@ fun Application.configureRouting() {
                                     ),
                                     CText("ba", "Helltthppo!")
                                 )
-                            ),
-                            mapOf(
-                                "ooo" to "gggggg",
-                                "ppp" to 555
+
                             )
-                        )
                     )
                 }
             }
