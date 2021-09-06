@@ -19,8 +19,8 @@ data class Component(
 
 @Suppress("FunctionName")
 object Widget {
-    fun CText(id: String, text: String, styles: CStyle? = null): Component {
-        return Component(id, TEXT, Json.encodeToJsonElement(text), style = styles?.encode())
+    fun CText(id: String, text: String, style: Map<ComponentStyleType, JsonElement>? = null): Component {
+        return Component(id, TEXT, Json.encodeToJsonElement(text), style = style)
     }
 
     fun CEditText(id: String, text: String) = Component(id, TEXT, Json.encodeToJsonElement(text))
