@@ -18,7 +18,6 @@ import nyx69.ui.Widget.CButton
 import nyx69.ui.Widget.CEditText
 import nyx69.ui.Widget.CImage
 import nyx69.ui.Widget.CText
-import nyx69.ui.padding
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
