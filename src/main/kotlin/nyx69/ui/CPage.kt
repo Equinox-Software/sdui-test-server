@@ -6,7 +6,16 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.encodeToJsonElement
 
 @Suppress("FunctionName")
-fun CPage(layout:Component, data:Map<String, Any>) = Page(layout,  Json.encodeToJsonElement(data))
+fun CPage(layout:Component, data:Map<String, Any>):Page {
+
+    val encodedData = emptyMap<String,JsonElement>().toMutableMap()
+
+    data.forEach { (k, v) ->
+        encodedData[k] = Json.encodeToJsonElement(v)
+    }
+
+    return   Page(layout, encodedData )
+}
 
 @Serializable
-data class Page(val layout: Component, val data:  JsonElement)
+data class Page(val layout: Component, val data:  Map<String,JsonElement>)
