@@ -1,5 +1,6 @@
 package nyx69.ui
 
+import io.ktor.util.reflect.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
 
@@ -11,7 +12,7 @@ fun CPage(layout: Component, data: Map<String, Any>): Page {
     data.forEach { (k, v) ->
         encodedData[k] =
             when (v) {
-                 String -> {
+                    String::class -> {
                     Json.encodeToJsonElement(v)
                 }
                  Int -> {
