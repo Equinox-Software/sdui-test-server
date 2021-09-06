@@ -19,7 +19,7 @@ fun CPage(layout: Component, data: Map<String, Any>): Page {
 
         encodedData[k] =
             when (v) {
-                    String::class -> {
+                   String -> {
                     Json.encodeToJsonElement(v)
                 }
                  Int -> {
