@@ -1,21 +1,38 @@
 package nyx69.ui
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.encodeToJsonElement
+import kotlinx.serialization.json.*
 
 @Suppress("FunctionName")
-fun CPage(layout:Component, data:Map<String, Any>):Page {
+fun CPage(layout: Component, data: Map<String, Any>): Page {
 
-    val encodedData = emptyMap<String,JsonElement>().toMutableMap()
+    val encodedData = emptyMap<String, JsonElement>().toMutableMap()
 
     data.forEach { (k, v) ->
-        encodedData[k] = Json.encodeToJsonElement(v)
+        encodedData[k] =
+            when (v) {
+                is String -> {
+                    Json.encodeToJsonElement(v)
+                }
+                is Int -> {
+                    Json.encodeToJsonElement(v)
+                }
+                is Boolean -> {
+                    Json.encodeToJsonElement(v)
+                }
+                is Long -> {
+                    Json.encodeToJsonElement(v)
+                }
+
+                else -> {
+
+                    Json.encodeToJsonElement("No value found")
+                }
+            }
     }
 
-    return   Page(layout, encodedData )
+    return Page(layout, encodedData)
 }
 
 @Serializable
-data class Page(val layout: Component, val data:  Map<String,JsonElement>)
+data class Page(val layout: Component, val data: Map<String, JsonElement>)
