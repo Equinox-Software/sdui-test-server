@@ -6,7 +6,7 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.encodeToJsonElement
 
 @Serializable
-data class ComponentStyle(val type: ComponentStyleType, val value: JsonElement? = null)
+data class ComponentStyle(val type: ComponentStyleType, val value: JsonElement){}
 
 @Suppress("FunctionName")
 object Style {
@@ -16,4 +16,17 @@ object Style {
         ComponentStyle(ComponentStyleType.PADDING, Json.encodeToJsonElement(listOf(start, top, end, bottom)))
 
     fun CColor(color: Long) = ComponentStyle(ComponentStyleType.COLOR, Json.encodeToJsonElement(color))
+}
+
+@Serializable
+data class CStyle(val styles:List<ComponentStyle>)
+
+fun CStyle.encode():Map<ComponentStyleType, JsonElement>{
+    val encodedStyles = mutableMapOf<ComponentStyleType,JsonElement>()
+
+    styles.forEach{ style ->
+        encodedStyles[style.type] = style.value
+    }
+
+    return encodedStyles
 }

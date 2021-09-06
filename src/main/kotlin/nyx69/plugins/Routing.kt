@@ -8,6 +8,7 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
+import nyx69.ui.CStyle
 import nyx69.ui.ComponentStyle.*
 import nyx69.ui.Layout.CBox
 import nyx69.ui.Layout.CColumn
@@ -54,7 +55,7 @@ fun Application.configureRouting() {
                                 CText(
                                     "ab",
                                     "Helooolo!",
-                                    styles = listOf(
+                                    style = CStyle(listOf(
                                         CPadding(200),
                                         CColor(0xFFFF5522)
                                     )
