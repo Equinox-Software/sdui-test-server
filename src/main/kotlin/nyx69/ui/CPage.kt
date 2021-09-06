@@ -11,7 +11,7 @@ fun CPage(layout: Component, data: Map<String, Any>): Page {
 
     data.forEach { (k, v) ->
 
-        print("-- INSTANCE:: "+ v.instanceOf(String::class))
+        print("-- INSTANCE:: " + v.instanceOf(String::class))
 
         val isStr = (v is String)
 
@@ -19,16 +19,16 @@ fun CPage(layout: Component, data: Map<String, Any>): Page {
 
         encodedData[k] =
             when (v) {
-                   String -> {
+               is String -> {
                     Json.encodeToJsonElement(v)
                 }
-                 Int -> {
+                is Int -> {
                     Json.encodeToJsonElement(v)
                 }
-                 Boolean -> {
+                is  Boolean -> {
                     Json.encodeToJsonElement(v)
                 }
-                Long -> {
+                is  Long -> {
                     Json.encodeToJsonElement(v)
                 }
 
