@@ -1,6 +1,7 @@
 package nyx69.ui
 
 import io.ktor.util.reflect.*
+import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
 
@@ -20,4 +21,4 @@ fun CPage(layout: Component, data: Map<String,@Serializable(AnySerializer::class
 }
 
 @Serializable
-data class Page(val layout: Component, val data: Map<String, @Serializable(AnySerializer::class)Any>)
+data class Page(val layout: Component, val data: Map<String, @Polymorphic Any>)
