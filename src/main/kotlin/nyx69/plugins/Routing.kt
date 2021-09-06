@@ -8,6 +8,7 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
+import nyx69.ui.CPage
 import nyx69.ui.Layout.CBox
 import nyx69.ui.Layout.CColumn
 import nyx69.ui.Layout.CLazyColumn
@@ -41,7 +42,7 @@ fun Application.configureRouting() {
         }
 
         get("/cont") {
-            call.respond(
+            call.respond(CPage(
                 CLazyColumn(
                     "abc", listOf(
                         CText("aa", "Hello!"),
@@ -56,7 +57,11 @@ fun Application.configureRouting() {
                         CButton("112", "click for scrolll!!")
                     )
                 )
-            )
+            ),
+            mapOf(
+               "ab" to "Helooo888lo!",
+                "ba" to "He88899llppo!"
+            ))
         }
 
         post("/click{id}") {
