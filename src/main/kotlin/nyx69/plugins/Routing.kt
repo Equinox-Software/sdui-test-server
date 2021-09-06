@@ -73,20 +73,25 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        CColumn(
-                            "abc", listOf(
-                                CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                                CText("ba", "Helltthppo!"),
-                                CText("1111", "Umbertoooo"),
-                                CEditText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                                CButton("666", "-- click after entering text"),
-                                CColumn(
-                                    "1122", listOf(
-                                        CText("1123", "Helllo"),
-                                        CText("1233", "afasgrg")
-                                    )
-                                ),
-                                CButton("777", "get data from DB"),
+                        Page(
+                            CColumn(
+                                "abc", listOf(
+                                    CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                    CText("ba", "Helltthppo!"),
+                                    CText("1111", "Umbertoooo"),
+                                    CEditText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                    CButton("666", "-- click after entering text"),
+                                    CColumn(
+                                        "1122", listOf(
+                                            CText("1123", "Helllo"),
+                                            CText("1233", "afasgrg")
+                                        )
+                                    ),
+                                    CButton("777", "get data from DB"),
+                                )
+                            ),
+                            mapOf(
+
                             )
                         )
                     )
@@ -94,18 +99,23 @@ fun Application.configureRouting() {
 
                 "666" -> {
                     call.respond(
-                        CColumn(
-                            "a6bc",
-                            listOf(
-                                CImage(
-                                    "6ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CText("6pba", "Helltthppo!"),
-                                CText("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
+                        Page(
+                            CColumn(
+                                "a6bc",
+                                listOf(
+                                    CImage(
+                                        "6ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CText("6pba", "Helltthppo!"),
+                                    CText("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
+                                )
+
+
+                            ),
+                            mapOf(
+
                             )
-
-
                         )
                     )
                 }
@@ -117,72 +127,82 @@ fun Application.configureRouting() {
                   } */
 
                     call.respond(
-                        CColumn(
-                            "a6bc",
-                            listOf(
-                                CImage(
-                                    "6ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CText("6pba", "DATA FROM DB --- Helltthppo!"),
-                                CText("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
+                        Page(
+                            CColumn(
+                                "a6bc",
+                                listOf(
+                                    CImage(
+                                        "6ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CText("6pba", "DATA FROM DB --- Helltthppo!"),
+                                    CText("11116", call.receive<Map<String, String>>()["abTuT"].toString()),
+                                )
+
+
+                            ),
+                            mapOf(
+
                             )
-
-
                         )
                     )
                 }
 
                 "112" -> {
                     call.respond(
-                        CLazyColumn(
-                            "abc",
-                            listOf(
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CEditText(
-                                    "abTT",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CText("ba", "Helltthppo!")
+                        Page(
+                            CLazyColumn(
+                                "abc",
+                                listOf(
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CImage(
+                                        "ab",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CEditText(
+                                        "abTT",
+                                        "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                    ),
+                                    CText("ba", "Helltthppo!")
+                                )
+                            ),
+                            mapOf(
+
                             )
                         )
                     )
