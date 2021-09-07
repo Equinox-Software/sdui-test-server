@@ -41,10 +41,33 @@ fun Application.configureRouting() {
             call.respondText("Inside $it")
         }
 
-        get("/cont") {
+        get("content/a") {
+
+                call.respond(
+                    CColumn("abc", listOf(
+                        CText("aa", "Hello!"),
+                        CBox("bb", listOf(
+                            CText(
+                                "ab",
+                                "Helooolo!",
+                                style = style {
+                                    color = 0xFFAA66BB
+                                    padding(40)
+                                }),
+                            CText("ba", "Hellppo!")
+                        )),
+                        CButton("122", "click!!"),
+                        CButton("112", "click for scrolll!!")
+                    )))
+
+
+        }
+
+        get("content/b") {
+
             call.respond(
                 CColumn("abc", listOf(
-                    CText("aa", "Hello!"),
+                    CText("aa", " --- BBB ---"),
                     CBox("bb", listOf(
                         CText(
                             "ab",
@@ -57,7 +80,31 @@ fun Application.configureRouting() {
                     )),
                     CButton("122", "click!!"),
                     CButton("112", "click for scrolll!!")
-            )))
+                )))
+
+
+        }
+
+        get("content/c") {
+
+            call.respond(
+                CColumn("abc", listOf(
+                    CText("aa", "--- CCC ---"),
+                    CBox("bb", listOf(
+                        CText(
+                            "ab",
+                            "Helooolo!",
+                            style = style {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }),
+                        CText("ba", "Hellppo!")
+                    )),
+                    CButton("122", "click!!"),
+                    CButton("112", "click for scrolll!!")
+                )))
+
+
         }
 
         post("/click{id}") {
