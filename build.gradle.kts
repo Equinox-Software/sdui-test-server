@@ -14,7 +14,6 @@ application {
     mainClass.set("nyx69.ApplicationKt")
 }
 
-
 tasks.create("stage") {
     dependsOn("installDist")
 }

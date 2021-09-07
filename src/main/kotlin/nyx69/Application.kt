@@ -2,7 +2,6 @@ package nyx69
 
 import io.ktor.application.*
 import io.ktor.features.*
-import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.serialization.*
 import io.ktor.server.cio.*
@@ -16,8 +15,8 @@ fun main() {
     embeddedServer(CIO, System.getenv("PORT").toInt()) {
         install(ContentNegotiation) {
             json(Json {
-                    prettyPrint = true
-           //     isLenient = true
+                prettyPrint = true
+                //     isLenient = true
                 ignoreUnknownKeys = true
             })
         }
