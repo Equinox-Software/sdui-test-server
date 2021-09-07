@@ -31,7 +31,7 @@ object Widget {
 object Layout {
     fun CLazyColumn(id: String, content: List<Component>) = Component(id, SCROLL_VERTICAL, children = content.toMutableList())
     fun CBox(id: String, content: List<Component>) = Component(id, BOX, children = content.toMutableList())
-    fun CColumn(id: String, children: Component.() -> Unit) = Component(id, VERTICAL).apply(children)
+    fun CColumn(id: String, children: Component.() -> Unit) = Component(id, VERTICAL,children = mutableListOf()).apply(children)
 
 
 
