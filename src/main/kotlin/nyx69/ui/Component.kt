@@ -1,6 +1,5 @@
 package nyx69.ui
 
-import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -13,7 +12,7 @@ data class Component(
     val id: String,
     val type: ComponentType,
     val data: JsonElement? = null,
-    var children: Component? = null,
+    var children: (Component.() -> Unit)? = null,
     val actions: Map<ComponentActionType, JsonElement>? = null,
     val style: CStyle? = null
 )
@@ -47,11 +46,6 @@ fun CBox(id: String, content: Component.() -> Unit) = Component(id, BOX).apply(c
 
 fun CColumn(id: String, content: Component.() -> Unit): Component {
 
-    val col = Component(id, VERTICAL)
 
-    col.children?.apply(content)
-
-
-
-    return col
+    return Component(id, VERTICAL).apply(content)
 }
