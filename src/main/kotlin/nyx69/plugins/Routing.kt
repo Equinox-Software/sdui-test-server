@@ -44,7 +44,8 @@ fun Application.configureRouting() {
         get("/cont") {
             call.respond(
                 CColumn(
-                    "abc") {
+                    "abc"
+                ) {
                     CText("aa", "Hello!")
                     CBox("bb") {
                         CText(

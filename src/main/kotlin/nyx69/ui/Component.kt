@@ -1,5 +1,6 @@
 package nyx69.ui
 
+import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -12,10 +13,15 @@ data class Component(
     val id: String,
     val type: ComponentType,
     val data: JsonElement? = null,
-    val children: Component? = null,
+    var children: List<Component>? = null,
     val actions: Map<ComponentActionType, JsonElement>? = null,
     val style: CStyle? = null
-)
+) {
+    @OptIn(InternalAPI::class)
+    fun Component.children(content: List<Component>) {
+        children = content
+    }
+}
 
 @Suppress("FunctionName")
 object Widget {
@@ -32,9 +38,11 @@ object Widget {
 object Layout {
     fun CColumn(id: String, content: Component.() -> Unit) = Component(id, VERTICAL).apply(content)
     fun CLazyColumn(id: String, children: List<Component>) =
-        Component(id, SCROLL_VERTICAL, /*children = children*/)
+        Component(id, SCROLL_VERTICAL /*children = children*/)
 
 
 }
 
-fun CBox(id: String, content: Component.() -> Unit) = Component(id, BOX ).apply(content)
+fun CBox(id: String, content: Component.() -> Unit) = Component(id, BOX).apply(content)
+
+fun CColumn(id: String) = Component(id, VERTICAL)
