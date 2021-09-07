@@ -19,7 +19,7 @@ data class Component(
 
 @Suppress("FunctionName")
 object Widget {
-    fun CText(id: String, text: String, style: Map<ComponentStyleType, JsonElement>? = null): Component {
+    fun CText(id: String, text: String, style: CStyle = null): Component {
         return Component(id, TEXT, Json.encodeToJsonElement(text), style = style)
     }
 
