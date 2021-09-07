@@ -12,15 +12,15 @@ data class Component(
     val id: String,
     val type: ComponentType,
     val data: JsonElement? = null,
-    var children: (Component.() -> Unit)? = null,
+    var children: MutableList<Component>? = null,
     val actions: Map<ComponentActionType, JsonElement>? = null,
     val style: CStyle? = null
 )
 
-/*@OptIn(InternalAPI::class)
+
 fun Component.chh(component: Component) {
     children?.add(component)
-}*/
+}
 
 @Suppress("FunctionName")
 object Widget {
@@ -44,8 +44,4 @@ object Layout {
 
 fun CBox(id: String, content: Component.() -> Unit) = Component(id, BOX).apply(content)
 
-fun CColumn(id: String, content: Component.() -> Unit): Component {
-
-
-    return Component(id, VERTICAL).apply(content)
-}
+fun CColumn(id: String, content: Component.() -> Unit)= Component(id, VERTICAL).content()
