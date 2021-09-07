@@ -14,12 +14,12 @@ data class Component(
     val data: JsonElement? = null,
     val children: List<Component>? = null,
     val actions: Map<ComponentActionType, JsonElement>? = null,
-    val style: Map<ComponentStyleType, JsonElement>? = null
+    val style: CStyle? = null
 )
 
 @Suppress("FunctionName")
 object Widget {
-    fun CText(id: String, text: String, style: CStyle = null): Component {
+    fun CText(id: String, text: String, style: CStyle? = null): Component {
         return Component(id, TEXT, Json.encodeToJsonElement(text), style = style)
     }
 

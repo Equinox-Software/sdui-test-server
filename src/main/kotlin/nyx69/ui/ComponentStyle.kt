@@ -1,6 +1,7 @@
 package nyx69.ui
 
 import io.ktor.util.*
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.encodeToJsonElement
@@ -51,7 +52,7 @@ inline var Style.chhcolor: Long
 
 
 
-
+@Serializable
 data class CStyle(
     @InternalAPI var padding:List<Int>? = null,
     var color:Long?=null
