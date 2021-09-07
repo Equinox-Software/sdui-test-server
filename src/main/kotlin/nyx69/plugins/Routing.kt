@@ -59,8 +59,12 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!"),
-                            CButton("112", "click for scrolll!!")
+                            CButton("122", "click!!") {
+                                click = "333"
+                            },
+                            CButton("112", "click for scrolll!!") {
+                                click = "333"
+                            }
                         )
                     )
                 )
@@ -83,9 +87,15 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!"),
-                            CButton("122", "click!!"),
-                            CButton("112", "click for scrolll!!")
+                            CButton("122", "click!!") {
+                                click = "333"
+                            },
+                            CButton("122", "click!!") {
+                                click = "333"
+                            },
+                            CButton("112", "click for scrolll!!") {
+                                click = "333"
+                            }
                         )
                     )
                 )
@@ -109,7 +119,9 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!"),
+                            CButton("122", "click!!") {
+                                click = "333"
+                            },
                             CBox(
                                 "bb", listOf(
                                     CText(
@@ -122,7 +134,9 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!"),
+                            CButton("122", "click!!") {
+                                click = "333"
+                            },
                             CBox(
                                 "bb", listOf(
                                     CText(
@@ -135,7 +149,9 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!"),
+                            CButton("122", "click!!") {
+                                click = "333"
+                            },
                             CBox(
                                 "bb", listOf(
                                     CText(
@@ -148,8 +164,12 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!"),
-                            CButton("112", "click for scrolll!!")
+                            CButton("122", "click!!") {
+                                click = "333"
+                            },
+                            CButton("112", "click for scrolll!!") {
+                                click = "333"
+                            }
                         )
                     )
                 )
@@ -188,7 +208,9 @@ fun Application.configureRouting() {
                                         CText("1233", "afasgrg")
                                     )
                                 ),
-                                CButton("777", "get data from DB")
+                                CButton("777", "get data from DB") {
+                                    click = "333"
+                                }
                             )
                         )
                     )
