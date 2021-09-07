@@ -4,13 +4,13 @@ import io.ktor.util.*
 import kotlinx.serialization.Serializable
 
 @Serializable
-class CStyle(
+data class CStyle(
     @InternalAPI var padding: List<Int>? = null,
     var color: Long? = null
 ) {
     @OptIn(InternalAPI::class)
     fun CStyle.padding(all: Int) {
-        padding = listOf(all)
+        padding = listOf(all, all, all, all)
     }
 
     @OptIn(InternalAPI::class)
