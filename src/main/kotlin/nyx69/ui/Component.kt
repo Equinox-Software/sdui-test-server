@@ -23,14 +23,14 @@ object Widget {
     fun CEditText(id: String, text: String) = Component(id, EDIT_TEXT, Json.encodeToJsonElement(text))
     fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
     fun CButton(id: String, text: String, action: CAction.() -> Unit) =
-        Component(id, BUTTON, Json.encodeToJsonElement(text), action =CAction().apply(action))
+        Component(id, BUTTON, Json.encodeToJsonElement(text), action = CAction().apply(action))
 }
 
 @Suppress("FunctionName")
-object Layout {
+object Layout  {
     fun CLazyColumn(id: String, content: List<Component>) = Component(id, SCROLL_VERTICAL, children = content)
     fun CBox(id: String, content: List<Component>) = Component(id, BOX, children = content)
-    fun CColumn(id: String, content: List<Component>) = Component(id, VERTICAL, children = content)
+    fun CColumn(id: String, content: Component.() -> Unit) = Component(id, VERTICAL).apply(content)
 }
 
 
