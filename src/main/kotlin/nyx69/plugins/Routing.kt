@@ -70,8 +70,10 @@ fun Application.configureRouting() {
                             CText("ba", "Helltthppo!", style {
                                 padding(25, 77)
                             }),
-                            CText("1111", "Umbertoooo"),
-                            CEditText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                            CText("1111", "Umbertoooo",style{
+                                padding(24,56)
+                            }),
+                            CEditText("abTuT", "some Texttt"),
                             CButton("666", "-- click after entering text"),
                             CColumn("1122", listOf(
                                 CText("1123", "Helllo"),
