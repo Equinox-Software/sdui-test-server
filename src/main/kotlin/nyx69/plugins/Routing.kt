@@ -83,16 +83,16 @@ fun Application.configureRouting() {
                             CButton("777", "get data from DB")
                         }
                     )
-                    )
-
                 }
 
                 "666" -> {
+                    val texxxxt = call.receive<Map<String, String>>()["abTuT"].toString()
+
                     call.respond(
                         CColumn("a6bc") {
                             CImage("6ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
                             CText("6pba", "Helltthppo!")
-                            CText("11116", call.receive<Map<String, String>>()["abTuT"].toString())
+                            CText("11116",texxxxt )
                         }
                     )
 
