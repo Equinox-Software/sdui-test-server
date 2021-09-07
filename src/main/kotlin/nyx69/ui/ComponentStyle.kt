@@ -18,13 +18,16 @@ object Style {
 
 }
 
-fun sstyle(styles: (CStyle.() -> Unit)): Map<ComponentStyleType, JsonElement> {
-    val encodedStyles = emptyMap<ComponentStyleType, JsonElement>().toMutableMap()
+fun sstyle(styles: (CStyle.() -> Unit)): CStyle {
+
+    return CStyle()
+
+//    val encodedStyles = emptyMap<ComponentStyleType, JsonElement>().toMutableMap()
 
 
 
    // encodedStyles.putAll(styles)
-    return encodedStyles
+//   return encodedStyles
 }
 
 /*
