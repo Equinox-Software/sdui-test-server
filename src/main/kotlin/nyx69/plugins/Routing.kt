@@ -88,7 +88,7 @@ fun Application.configureRouting() {
                                 )
                             ),
                             CButton("122", "navigate", action {
-                                navigate = "122"
+                                navigate = "c"
                             }),
                             CButton("122", "click!!", action {
                                 click = "333"
