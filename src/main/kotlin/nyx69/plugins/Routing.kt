@@ -59,12 +59,12 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!") {
+                            CButton("122", "click!!", action {
                                 click = "333"
-                            },
-                            CButton("112", "click for scrolll!!") {
+                            }),
+                            CButton("112", "click for scrolll!!", action {
                                 click = "333"
-                            }
+                            })
                         )
                     )
                 )
@@ -87,15 +87,15 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!") {
+                            CButton("122", "navigate", action {
+                                navigate = "122"
+                            }),
+                            CButton("122", "click!!", action {
                                 click = "333"
-                            },
-                            CButton("122", "click!!") {
+                            }),
+                            CButton("112", "click for scrolll!!", action {
                                 click = "333"
-                            },
-                            CButton("112", "click for scrolll!!") {
-                                click = "333"
-                            }
+                            })
                         )
                     )
                 )
@@ -119,9 +119,9 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!") {
+                            CButton("122", "click!!", action {
                                 click = "333"
-                            },
+                            }),
                             CBox(
                                 "bb", listOf(
                                     CText(
@@ -134,9 +134,9 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!") {
+                            CButton("122", "click!!", action {
                                 click = "333"
-                            },
+                            }),
                             CBox(
                                 "bb", listOf(
                                     CText(
@@ -149,9 +149,9 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!") {
+                            CButton("122", "click!!", action {
                                 click = "333"
-                            },
+                            }),
                             CBox(
                                 "bb", listOf(
                                     CText(
@@ -164,12 +164,12 @@ fun Application.configureRouting() {
                                     CText("ba", "Hellppo!")
                                 )
                             ),
-                            CButton("122", "click!!") {
+                            CButton("122", "click!!", action {
                                 click = "333"
-                            },
-                            CButton("112", "click for scrolll!!") {
+                            }),
+                            CButton("112", "click for scrolll!!", action {
                                 click = "333"
-                            }
+                            })
                         )
                     )
                 )
@@ -198,19 +198,18 @@ fun Application.configureRouting() {
                                     padding(24, 56)
                                 }),
                                 CEditText("abTuT", "some Texttt"),
-                                CButton("666", "-- click after entering text"
-                                ) {
-                                        click = "333"
-                                    },
+                                CButton("666", "-- click after entering text", action {
+                                    click = "333"
+                                }),
                                 CColumn(
                                     "1122", listOf(
                                         CText("1123", "Helllo"),
                                         CText("1233", "afasgrg")
                                     )
                                 ),
-                                CButton("777", "get data from DB") {
+                                CButton("777", "get data from DB", action {
                                     click = "333"
-                                }
+                                })
                             )
                         )
                     )
@@ -318,4 +317,3 @@ fun Application.configureRouting() {
           } */
     }
 }
-

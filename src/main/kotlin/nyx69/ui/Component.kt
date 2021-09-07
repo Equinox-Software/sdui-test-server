@@ -12,7 +12,7 @@ data class Component(
     val type: ComponentType,
     val data: JsonElement? = null,
     var children: List<Component>? = null,
-    val action: (CAction.() -> Unit)? = null,
+    val action: CAction? = null,
     val style: CStyle? = null
 )
 
@@ -22,7 +22,7 @@ object Widget {
         Component(id, TEXT, Json.encodeToJsonElement(text), style = style)
     fun CEditText(id: String, text: String) = Component(id, EDIT_TEXT, Json.encodeToJsonElement(text))
     fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
-    fun CButton(id: String, text: String, action: CAction.()-> Unit) =
+    fun CButton(id: String, text: String, action: CAction) =
         Component(id, BUTTON, Json.encodeToJsonElement(text), action =action)
 }
 
