@@ -21,8 +21,8 @@ object Style {
 
 fun sstyle(styles: (CStyle.() -> Unit)): CStyle {
 
-    return CStyle()
 
+return CStyle(listOf(69))
 //    val encodedStyles = emptyMap<ComponentStyleType, JsonElement>().toMutableMap()
 
 
