@@ -13,15 +13,15 @@ data class Component(
     val id: String,
     val type: ComponentType,
     val data: JsonElement? = null,
-    var children: List<Component>? = null,
+    var children: Component? = null,
     val actions: Map<ComponentActionType, JsonElement>? = null,
     val style: CStyle? = null
-) {
-    @OptIn(InternalAPI::class)
-    fun Component.children(content: List<Component>) {
-        children = content
-    }
-}
+)
+
+/*@OptIn(InternalAPI::class)
+fun Component.chh(component: Component) {
+    children?.add(component)
+}*/
 
 @Suppress("FunctionName")
 object Widget {
@@ -36,7 +36,7 @@ object Widget {
 
 @Suppress("FunctionName")
 object Layout {
-    fun CColumn(id: String, content: Component.() -> Unit) = Component(id, VERTICAL).apply(content)
+    // fun CColumn(id: String, content: Component.() -> Unit) = Component(id, VERTICAL).apply(content)
     fun CLazyColumn(id: String, children: List<Component>) =
         Component(id, SCROLL_VERTICAL /*children = children*/)
 
@@ -45,4 +45,13 @@ object Layout {
 
 fun CBox(id: String, content: Component.() -> Unit) = Component(id, BOX).apply(content)
 
-fun CColumn(id: String) = Component(id, VERTICAL)
+fun CColumn(id: String, content: Component.() -> Unit): Component {
+
+    val col = Component(id, VERTICAL)
+
+    col.children?.apply(content)
+
+
+
+    return col
+}
