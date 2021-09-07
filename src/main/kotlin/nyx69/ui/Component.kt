@@ -11,15 +11,16 @@ data class Component(
     val id: String,
     val type: ComponentType,
     val data: JsonElement? = null,
-    var children: List<Component>? = null,
+    var children: MutableList<Component>? = null,
     val action: CAction? = null,
     val style: CStyle? = null
 )
 
 @Suppress("FunctionName")
 object Widget {
-    fun CText(id: String, text: String, style: CStyle? = null) =
-        Component(id, TEXT, Json.encodeToJsonElement(text), style = style)
+    fun CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
+        Component(id, TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
+
     fun CEditText(id: String, text: String) = Component(id, EDIT_TEXT, Json.encodeToJsonElement(text))
     fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
     fun CButton(id: String, text: String, action: CAction.() -> Unit) =
@@ -27,13 +28,20 @@ object Widget {
 }
 
 @Suppress("FunctionName")
-object Layout  {
-    fun CLazyColumn(id: String, content: List<Component>) = Component(id, SCROLL_VERTICAL, children = content)
-    fun CBox(id: String, content: List<Component>) = Component(id, BOX, children = content)
-    fun CColumn(id: String, children: Component.() -> Unit) = Component(id, VERTICAL).apply {
-       this. children = listOf(apply(children))
+object Layout {
+    fun CLazyColumn(id: String, content: List<Component>) = Component(id, SCROLL_VERTICAL, children = content.toMutableList())
+    fun CBox(id: String, content: List<Component>) = Component(id, BOX, children = content.toMutableList())
+    fun CColumn(id: String, children: Component.() -> Unit) = Component(id, VERTICAL).chil {
+       children()
     }
 
+
+
+
+}
+
+fun Component.chil(chiii: Component.() -> Unit){
+    this.children?.addAll(listOf(apply(chiii)))
 }
 
 

@@ -51,7 +51,7 @@ fun Application.configureRouting() {
                                 CText(
                                     "ab",
                                     "Helooolo!",
-                                    style = style {
+                                    style =  {
                                         color = 0xFFAA66BB
                                         padding(40)
                                     }),
@@ -78,7 +78,7 @@ fun Application.configureRouting() {
                                 CText(
                                     "ab",
                                     "Helooolo!",
-                                    style = style {
+                                    style =  {
                                         color = 0xFFAA66BB
                                         padding(40)
                                     }),
@@ -109,7 +109,7 @@ fun Application.configureRouting() {
                                     CText(
                                         "ab",
                                         "Helooolo!",
-                                        style = style {
+                                        style =  {
                                             color = 0xFFAA66BB
                                             padding(40)
                                         }),
@@ -124,7 +124,7 @@ fun Application.configureRouting() {
                                     CText(
                                         "ab",
                                         "Helooolo!",
-                                        style = style {
+                                        style =  {
                                             color = 0xFFAA66BB
                                             padding(40)
                                         }),
@@ -139,7 +139,7 @@ fun Application.configureRouting() {
                                     CText(
                                         "ab",
                                         "Helooolo!",
-                                        style = style {
+                                        style =  {
                                             color = 0xFFAA66BB
                                             padding(40)
                                         }),
@@ -154,7 +154,7 @@ fun Application.configureRouting() {
                                     CText(
                                         "ab",
                                         "Helooolo!",
-                                        style = style {
+                                        style =  {
                                             color = 0xFFAA66BB
                                             padding(40)
                                         }),
@@ -188,12 +188,12 @@ fun Application.configureRouting() {
                         CColumn(
                             "abc" ) {
                             CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
-                            CText("ba", "Helltthppo!", style {
+                            CText("ba", "Helltthppo!") {
                                 padding(25, 77)
-                            })
-                            CText("1111", "Umbertoooo", style {
+                            }
+                            CText("1111", "Umbertoooo") {
                                 padding(24, 56)
-                            })
+                            }
                             CEditText("abTuT", "some Texttt")
                             CButton("666", "-- click after entering text") {
                                 click = "333"
