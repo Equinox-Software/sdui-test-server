@@ -43,24 +43,22 @@ fun Application.configureRouting() {
 
         get("/cont") {
             call.respond(
-                CLazyColumn(
-                    "abc", listOf(
-                        CText("aa", "Hello!"),
-                        CBox("bb") {
-                            CText(
-                                "ab",
-                                "Helooolo!",
-                                style = style {
-                                    color = 0xFFAA66BB
-                                    padding(40)
-                                })
-                            CText("ba", "Hellppo!")
-                        },
-                        CButton("122", "click!!"),
-                        CButton("112", "click for scrolll!!")
-                    )
-                )
-            )
+                CColumn(
+                    "abc") {
+                    CText("aa", "Hello!")
+                    CBox("bb") {
+                        CText(
+                            "ab",
+                            "Helooolo!",
+                            style = style {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            })
+                        CText("ba", "Hellppo!")
+                    }
+                    CButton("122", "click!!")
+                    CButton("112", "click for scrolll!!")
+                })
         }
 
         post("/click{id}") {
