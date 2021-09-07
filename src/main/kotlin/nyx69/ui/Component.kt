@@ -22,7 +22,7 @@ object Widget {
     fun CText(id: String, text: String, style: CStyle? = null) =
         Component(id, TEXT, Json.encodeToJsonElement(text), style = style)
 
-    fun CEditText(id: String, text: String) = Component(id, TEXT, Json.encodeToJsonElement(text))
+    fun CEditText(id: String, text: String) = Component(id, EDIT_TEXT, Json.encodeToJsonElement(text))
     fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
     fun CButton(id: String, text: String) =
         Component(id, BUTTON, Json.encodeToJsonElement(text), actions = mapOf(CLICK to Json.encodeToJsonElement("id")))
