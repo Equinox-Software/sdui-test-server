@@ -25,7 +25,6 @@ fun Application.configureRouting() {
 
     val client = ktorHttpClient
 
-
     routing {
         get("/") {
             call.respondText("Hello World!")
@@ -41,104 +40,126 @@ fun Application.configureRouting() {
             call.respondText("Inside $it")
         }
 
-        get("content/a") {
+        route("content") {
+            get("a") {
+                call.respond(
+                    CColumn(
+                        "abc", listOf(
+                            CText("aa", "AAAAAAA"),
+                            CBox(
+                                "bb", listOf(
+                                    CText(
+                                        "ab",
+                                        "Helooolo!",
+                                        style = style {
+                                            color = 0xFFAA66BB
+                                            padding(40)
+                                        }),
+                                    CText("ba", "Hellppo!")
+                                )
+                            ),
+                            CButton("122", "click!!"),
+                            CButton("112", "click for scrolll!!")
+                        )
+                    )
+                )
+            }
+
+            get("b") {
+                call.respond(
+                    CColumn(
+                        "abc", listOf(
+                            CText("aa", " --- BBB ---"),
+                            CBox(
+                                "bb", listOf(
+                                    CText(
+                                        "ab",
+                                        "Helooolo!",
+                                        style = style {
+                                            color = 0xFFAA66BB
+                                            padding(40)
+                                        }),
+                                    CText("ba", "Hellppo!")
+                                )
+                            ),
+                            CButton("122", "click!!"),
+                            CButton("122", "click!!"),
+                            CButton("112", "click for scrolll!!")
+                        )
+                    )
+                )
+            }
+
+            get("c") {
 
                 call.respond(
-                    CColumn("abc", listOf(
-                        CText("aa", "AAAAAAA"),
-                        CBox("bb", listOf(
-                            CText(
-                                "ab",
-                                "Helooolo!",
-                                style = style {
-                                    color = 0xFFAA66BB
-                                    padding(40)
-                                }),
-                            CText("ba", "Hellppo!")
-                        )),
-                        CButton("122", "click!!"),
-                        CButton("112", "click for scrolll!!")
-                    )))
+                    CLazyColumn(
+                        "abc", listOf(
+                            CText("aa", "--- CCC ---"),
+                            CBox(
+                                "bb", listOf(
+                                    CText(
+                                        "ab",
+                                        "Helooolo!",
+                                        style = style {
+                                            color = 0xFFAA66BB
+                                            padding(40)
+                                        }),
+                                    CText("ba", "Hellppo!")
+                                )
+                            ),
+                            CButton("122", "click!!"),
+                            CBox(
+                                "bb", listOf(
+                                    CText(
+                                        "ab",
+                                        "Helooolo!",
+                                        style = style {
+                                            color = 0xFFAA66BB
+                                            padding(40)
+                                        }),
+                                    CText("ba", "Hellppo!")
+                                )
+                            ),
+                            CButton("122", "click!!"),
+                            CBox(
+                                "bb", listOf(
+                                    CText(
+                                        "ab",
+                                        "Helooolo!",
+                                        style = style {
+                                            color = 0xFFAA66BB
+                                            padding(40)
+                                        }),
+                                    CText("ba", "Hellppo!")
+                                )
+                            ),
+                            CButton("122", "click!!"),
+                            CBox(
+                                "bb", listOf(
+                                    CText(
+                                        "ab",
+                                        "Helooolo!",
+                                        style = style {
+                                            color = 0xFFAA66BB
+                                            padding(40)
+                                        }),
+                                    CText("ba", "Hellppo!")
+                                )
+                            ),
+                            CButton("122", "click!!"),
+                            CButton("112", "click for scrolll!!")
+                        )
+                    )
+                )
 
+
+            }
 
         }
 
-        get("content/b") {
-
-            call.respond(
-                CColumn("abc", listOf(
-                    CText("aa", " --- BBB ---"),
-                    CBox("bb", listOf(
-                        CText(
-                            "ab",
-                            "Helooolo!",
-                            style = style {
-                                color = 0xFFAA66BB
-                                padding(40)
-                            }),
-                        CText("ba", "Hellppo!")
-                    )),
-                    CButton("122", "click!!"),
-                    CButton("122", "click!!"),
-                    CButton("112", "click for scrolll!!")
-                )))
-
-
-        }
-
-        get("content/c") {
-
-            call.respond(
-                CLazyColumn("abc", listOf(
-                    CText("aa", "--- CCC ---"),
-                    CBox("bb", listOf(
-                        CText(
-                            "ab",
-                            "Helooolo!",
-                            style = style {
-                                color = 0xFFAA66BB
-                                padding(40)
-                            }),
-                        CText("ba", "Hellppo!")
-                    )),
-                    CButton("122", "click!!"),
-                    CBox("bb", listOf(
-                        CText(
-                            "ab",
-                            "Helooolo!",
-                            style = style {
-                                color = 0xFFAA66BB
-                                padding(40)
-                            }),
-                        CText("ba", "Hellppo!")
-                    )),
-                    CButton("122", "click!!"),
-                    CBox("bb", listOf(
-                        CText(
-                            "ab",
-                            "Helooolo!",
-                            style = style {
-                                color = 0xFFAA66BB
-                                padding(40)
-                            }),
-                        CText("ba", "Hellppo!")
-                    )),
-                    CButton("122", "click!!"),
-                    CBox("bb", listOf(
-                        CText(
-                            "ab",
-                            "Helooolo!",
-                            style = style {
-                                color = 0xFFAA66BB
-                                padding(40)
-                            }),
-                        CText("ba", "Hellppo!")
-                    )),
-                    CButton("122", "click!!"),
-                    CButton("112", "click for scrolll!!")
-                )))
-
-
+        get("routes") {
+            call.respond(listOf("a", "b", "c"))
         }
 
         post("/click{id}") {
@@ -146,34 +167,40 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        CColumn("abc", listOf(
-                            CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                            CText("ba", "Helltthppo!", style {
-                                padding(25, 77)
-                            }),
-                            CText("1111", "Umbertoooo",style{
-                                padding(24,56)
-                            }),
-                            CEditText("abTuT", "some Texttt"),
-                            CButton("666", "-- click after entering text"),
-                            CColumn("1122", listOf(
-                                CText("1123", "Helllo"),
-                                CText("1233", "afasgrg")
-                            )),
-                            CButton("777", "get data from DB")
+                        CColumn(
+                            "abc", listOf(
+                                CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                CText("ba", "Helltthppo!", style {
+                                    padding(25, 77)
+                                }),
+                                CText("1111", "Umbertoooo", style {
+                                    padding(24, 56)
+                                }),
+                                CEditText("abTuT", "some Texttt"),
+                                CButton("666", "-- click after entering text"),
+                                CColumn(
+                                    "1122", listOf(
+                                        CText("1123", "Helllo"),
+                                        CText("1233", "afasgrg")
+                                    )
+                                ),
+                                CButton("777", "get data from DB")
+                            )
                         )
-                    ))
+                    )
                 }
 
                 "666" -> {
                     val texxxxt = call.receive<Map<String, String>>()["abTuT"].toString()
 
                     call.respond(
-                        CColumn("a6bc", listOf(
-                            CImage("6ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
-                            CText("6pba", "Helltthppo!"),
-                            CText("11116", texxxxt)
-                    ))
+                        CColumn(
+                            "a6bc", listOf(
+                                CImage("6ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                                CText("6pba", "Helltthppo!"),
+                                CText("11116", texxxxt)
+                            )
+                        )
                     )
                 }
 
@@ -186,14 +213,16 @@ fun Application.configureRouting() {
                     val texxt = call.receive<Map<String, String>>()["abTuT"].toString()
 
                     call.respond(
-                        CColumn("a6bc", listOf(
-                            CImage(
-                                "6ab",
-                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                            ),
-                            CText("6pba", "DATA FROM DB --- Helltthppo!"),
-                            CText("11116", texxt)
-                            ))
+                        CColumn(
+                            "a6bc", listOf(
+                                CImage(
+                                    "6ab",
+                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                ),
+                                CText("6pba", "DATA FROM DB --- Helltthppo!"),
+                                CText("11116", texxt)
+                            )
+                        )
                     )
                 }
 
@@ -263,3 +292,4 @@ fun Application.configureRouting() {
           } */
     }
 }
+
