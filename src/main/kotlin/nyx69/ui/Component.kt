@@ -34,6 +34,7 @@ object Layout {
     fun CLazyColumn(id: String, children: List<Component>) =
         Component(id, SCROLL_VERTICAL, children = children)
 
-    fun CBox(id: String, content: Component.() -> Unit) = Component(id, BOX).apply(content)
+
 }
 
+fun CBox(id: String, content: Component.() -> Unit) = Component(id, BOX).apply(content)
