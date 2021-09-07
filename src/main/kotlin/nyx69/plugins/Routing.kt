@@ -45,7 +45,7 @@ fun Application.configureRouting() {
 
                 call.respond(
                     CColumn("abc", listOf(
-                        CText("aa", "Hello!"),
+                        CText("aa", "AAAAAAA"),
                         CBox("bb", listOf(
                             CText(
                                 "ab",
@@ -79,6 +79,7 @@ fun Application.configureRouting() {
                         CText("ba", "Hellppo!")
                     )),
                     CButton("122", "click!!"),
+                    CButton("122", "click!!"),
                     CButton("112", "click for scrolll!!")
                 )))
 
@@ -88,8 +89,41 @@ fun Application.configureRouting() {
         get("content/c") {
 
             call.respond(
-                CColumn("abc", listOf(
+                CLazyColumn("abc", listOf(
                     CText("aa", "--- CCC ---"),
+                    CBox("bb", listOf(
+                        CText(
+                            "ab",
+                            "Helooolo!",
+                            style = style {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }),
+                        CText("ba", "Hellppo!")
+                    )),
+                    CButton("122", "click!!"),
+                    CBox("bb", listOf(
+                        CText(
+                            "ab",
+                            "Helooolo!",
+                            style = style {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }),
+                        CText("ba", "Hellppo!")
+                    )),
+                    CButton("122", "click!!"),
+                    CBox("bb", listOf(
+                        CText(
+                            "ab",
+                            "Helooolo!",
+                            style = style {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }),
+                        CText("ba", "Hellppo!")
+                    )),
+                    CButton("122", "click!!"),
                     CBox("bb", listOf(
                         CText(
                             "ab",
