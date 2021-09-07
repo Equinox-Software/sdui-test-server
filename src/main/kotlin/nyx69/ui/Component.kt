@@ -30,7 +30,9 @@ object Widget {
 object Layout  {
     fun CLazyColumn(id: String, content: List<Component>) = Component(id, SCROLL_VERTICAL, children = content)
     fun CBox(id: String, content: List<Component>) = Component(id, BOX, children = content)
-    fun CColumn(id: String, children: Component.() -> Unit) = Component(id, VERTICAL).apply(children)
+    fun CColumn(id: String, children: Component.() -> Unit) = Component(id, VERTICAL).apply {
+       this. children = listOf(apply(children))
+    }
 
 }
 
