@@ -31,18 +31,18 @@ object Widget {
 object Layout {
     fun CLazyColumn(id: String, content: List<Component>) = Component(id, SCROLL_VERTICAL, children = content.toMutableList())
     fun CBox(id: String, content: List<Component>) = Component(id, BOX, children = content.toMutableList())
-    fun CColumn(id: String, children: Component.() -> Unit) = Component(id, VERTICAL).chil {
-       children()
-    }
+    fun CColumn(id: String, children: Component.() -> Unit) = Component(id, VERTICAL).apply(children)
 
 
 
 
 }
 
-fun Component.chil(chiii: Component.() -> Unit){
-    this.children?.addAll(listOf(apply(chiii)))
+
+fun Component.CEditText(id: String, text: String) {
+    this.children?.add( Component(id, EDIT_TEXT, Json.encodeToJsonElement(text)))
 }
+
 
 
 

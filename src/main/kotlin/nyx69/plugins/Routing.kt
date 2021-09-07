@@ -187,6 +187,7 @@ fun Application.configureRouting() {
                     call.respond(
                         CColumn(
                             "abc" ) {
+                            CEditText("abTuT", "some Texttt")
                             CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
                             CText("ba", "Helltthppo!") {
                                 padding(25, 77)
