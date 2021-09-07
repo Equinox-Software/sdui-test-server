@@ -8,15 +8,8 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.ui.CEditText
-import nyx69.ui.Layout.CBox
 import nyx69.ui.Layout.CColumn
 import nyx69.ui.Layout.CLazyColumn
-import nyx69.ui.Widget.CButton
-import nyx69.ui.Widget.CEditText
-import nyx69.ui.Widget.CImage
-import nyx69.ui.Widget.CText
-import nyx69.ui.style
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
@@ -45,22 +38,21 @@ fun Application.configureRouting() {
             get("a") {
                 call.respond(
                     CColumn(
-                        "abc" ) {
+                        "abc"
+                    ) {
                         CEditText("abTuT", "some zzTexttt")
                         CEditText("abTuT", "someio Texttt")
                         CText("aa", "AAAAAAA")
-                        CBox(
-                            "bb", listOf(
-                                CText(
-                                    "ab",
-                                    "Helooolo!",
-                                    style =  {
-                                        color = 0xFFAA66BB
-                                        padding(40)
-                                    }),
-                                CText("ba", "Hellppo!")
-                            )
-                        )
+                        CBox("bb") {
+                            CText(
+                                "ab",
+                                "Helooolo!",
+                            ) {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }
+                            CText("ba", "Hellppo!")
+                        }
                         CButton("122", "click!!") {
                             click = "333"
                         }
@@ -74,20 +66,18 @@ fun Application.configureRouting() {
             get("b") {
                 call.respond(
                     CColumn(
-                        "abc" ) {
+                        "abc"
+                    ) {
                         CText("aa", " --- BBB ---")
                         CBox(
-                            "bb", listOf(
-                                CText(
-                                    "ab",
-                                    "Helooolo!",
-                                    style =  {
-                                        color = 0xFFAA66BB
-                                        padding(40)
-                                    }),
-                                CText("ba", "Hellppo!")
-                            )
-                        )
+                            "bb"
+                        ) {
+                            CText("ab", "Helooolo!") {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }
+                            CText("ba", "Hellppo!")
+                        }
                         CButton("122", "navigate") {
                             navigate = "c"
                         }
@@ -104,77 +94,53 @@ fun Application.configureRouting() {
             get("c") {
 
                 call.respond(
-                    CLazyColumn(
-                        "abc", listOf(
-                            CText("aa", "--- CCC ---"),
-                            CBox(
-                                "bb", listOf(
-                                    CText(
-                                        "ab",
-                                        "Helooolo!",
-                                        style =  {
-                                            color = 0xFFAA66BB
-                                            padding(40)
-                                        }),
-                                    CText("ba", "Hellppo!")
-                                )
-                            ),
-                            CButton("122", "click!!") {
-                                click = "333"
-                            },
-                            CBox(
-                                "bb", listOf(
-                                    CText(
-                                        "ab",
-                                        "Helooolo!",
-                                        style =  {
-                                            color = 0xFFAA66BB
-                                            padding(40)
-                                        }),
-                                    CText("ba", "Hellppo!")
-                                )
-                            ),
-                            CButton("122", "click!!") {
-                                click = "333"
-                            },
-                            CBox(
-                                "bb", listOf(
-                                    CText(
-                                        "ab",
-                                        "Helooolo!",
-                                        style =  {
-                                            color = 0xFFAA66BB
-                                            padding(40)
-                                        }),
-                                    CText("ba", "Hellppo!")
-                                )
-                            ),
-                            CButton("122", "click!!") {
-                                click = "333"
-                            },
-                            CBox(
-                                "bb", listOf(
-                                    CText(
-                                        "ab",
-                                        "Helooolo!",
-                                        style =  {
-                                            color = 0xFFAA66BB
-                                            padding(40)
-                                        }),
-                                    CText("ba", "Hellppo!")
-                                )
-                            ),
-                            CButton("122", "click!!") {
-                                click = "333"
-                            },
-                            CButton("112", "click for scrolll!!") {
-                                click = "333"
+                    CLazyColumn("abc") {
+                        CText("aa", "--- CCC ---")
+                        CBox("bb") {
+                            CText("ab", "Helooolo!") {
+                                color = 0xFFAA66BB
+                                padding(40)
                             }
-                        )
-                    )
+                            CText("ba", "Hellppo!")
+                        }
+                        CButton("122", "click!!") {
+                            click = "333"
+                        }
+                        CBox("bb") {
+                            CText("ab", "Helooolo!") {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }
+                            CText("ba", "Hellppo!")
+                        }
+                        CButton("122", "click!!") {
+                            click = "333"
+                        }
+                        CBox("bb") {
+                            CText("ab", "Helooolo!") {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }
+                            CText("ba", "Hellppo!")
+                        }
+                        CButton("122", "click!!") {
+                            click = "333"
+                        }
+                        CBox("bb") {
+                            CText("ab", "Helooolo!") {
+                                color = 0xFFAA66BB
+                                padding(40)
+                            }
+                            CText("ba", "Hellppo!")
+                        }
+                        CButton("122", "click!!") {
+                            click = "333"
+                        }
+                        CButton("112", "click for scrolll!!") {
+                            click = "333"
+                        }
+                    }
                 )
-
-
             }
 
         }
@@ -189,7 +155,8 @@ fun Application.configureRouting() {
                 "122" -> {
                     call.respond(
                         CColumn(
-                            "abc" ) {
+                            "abc"
+                        ) {
                             CEditText("abTuT", "some Texttt")
                             CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
                             CText("ba", "Helltthppo!") {
@@ -243,62 +210,58 @@ fun Application.configureRouting() {
                             CText("6pba", "DATA FROM DB --- Helltthppo!")
                             CText("11116", texxt)
                         }
-                        )
+                    )
                 }
 
                 "112" -> {
                     call.respond(
-                        CLazyColumn(
-                            "abc",
-                            listOf(
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CImage(
-                                    "ab",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CEditText(
-                                    "abTT",
-                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                                ),
-                                CText("ba", "Helltthppo!")
+                        CLazyColumn("abc") {
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-
-                        )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CEditText(
+                                "abTT",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            CText("ba", "Helltthppo!")
+                        }
                     )
                 }
             }
