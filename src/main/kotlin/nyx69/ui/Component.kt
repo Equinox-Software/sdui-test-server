@@ -22,8 +22,8 @@ object Widget {
         Component(id, TEXT, Json.encodeToJsonElement(text), style = style)
     fun CEditText(id: String, text: String) = Component(id, EDIT_TEXT, Json.encodeToJsonElement(text))
     fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
-    fun CButton(id: String, text: String, action: CAction) =
-        Component(id, BUTTON, Json.encodeToJsonElement(text), action =action)
+    fun CButton(id: String, text: String, action: CAction.() -> Unit) =
+        Component(id, BUTTON, Json.encodeToJsonElement(text), action =CAction().apply(action))
 }
 
 @Suppress("FunctionName")
