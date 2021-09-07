@@ -8,9 +8,8 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.ui.CBox
-import nyx69.ui.CColumn
-import nyx69.ui.Component
+import nyx69.ui.Layout.CBox
+import nyx69.ui.Layout.CColumn
 import nyx69.ui.Layout.CLazyColumn
 import nyx69.ui.Widget.CButton
 import nyx69.ui.Widget.CEditText
@@ -44,23 +43,21 @@ fun Application.configureRouting() {
 
         get("/cont") {
             call.respond(
-                CColumn(
-                    "abc"
-                ) {
-                    CText("aa", "Hello!")
-                    CBox("bb") {
+                CColumn("abc", listOf(
+                    CText("aa", "Hello!"),
+                    CBox("bb", listOf(
                         CText(
                             "ab",
                             "Helooolo!",
                             style = style {
                                 color = 0xFFAA66BB
                                 padding(40)
-                            })
+                            }),
                         CText("ba", "Hellppo!")
-                    }
-                    CButton("122", "click!!")
+                    )),
+                    CButton("122", "click!!"),
                     CButton("112", "click for scrolll!!")
-                })
+            )))
         }
 
         post("/click{id}") {
@@ -68,34 +65,33 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        CColumn("abc") {
-                            CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
+                        CColumn("abc", listOf(
+                            CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
                             CText("ba", "Helltthppo!", style {
                                 padding(25, 77)
-                            })
-                            CText("1111", "Umbertoooo")
-                            CEditText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
-                            CButton("666", "-- click after entering text")
-                            CColumn("1122") {
-                                CText("1123", "Helllo")
+                            }),
+                            CText("1111", "Umbertoooo"),
+                            CEditText("abTuT", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                            CButton("666", "-- click after entering text"),
+                            CColumn("1122", listOf(
+                                CText("1123", "Helllo"),
                                 CText("1233", "afasgrg")
-                            }
+                            )),
                             CButton("777", "get data from DB")
-                        }
-                    )
+                        )
+                    ))
                 }
 
                 "666" -> {
                     val texxxxt = call.receive<Map<String, String>>()["abTuT"].toString()
 
                     call.respond(
-                        CColumn("a6bc") {
-                            CImage("6ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
-                            CText("6pba", "Helltthppo!")
+                        CColumn("a6bc", listOf(
+                            CImage("6ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"),
+                            CText("6pba", "Helltthppo!"),
                             CText("11116", texxxxt)
-                        }
+                    ))
                     )
-
                 }
 
                 "777" -> {
@@ -107,16 +103,14 @@ fun Application.configureRouting() {
                     val texxt = call.receive<Map<String, String>>()["abTuT"].toString()
 
                     call.respond(
-                        CColumn("a6bc") {
-
-
+                        CColumn("a6bc", listOf(
                             CImage(
                                 "6ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                            )
-                            CText("6pba", "DATA FROM DB --- Helltthppo!")
+                            ),
+                            CText("6pba", "DATA FROM DB --- Helltthppo!"),
                             CText("11116", texxt)
-                        }
+                            ))
                     )
                 }
 
