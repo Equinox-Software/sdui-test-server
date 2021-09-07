@@ -10,6 +10,7 @@ import nyx69.locations.Profile
 import nyx69.locations.Type
 import nyx69.ui.CBox
 import nyx69.ui.CColumn
+import nyx69.ui.Component
 import nyx69.ui.Layout.CLazyColumn
 import nyx69.ui.Widget.CButton
 import nyx69.ui.Widget.CEditText
