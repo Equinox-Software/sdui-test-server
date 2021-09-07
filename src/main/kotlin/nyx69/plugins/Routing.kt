@@ -15,6 +15,7 @@ import nyx69.ui.Widget.CButton
 import nyx69.ui.Widget.CEditText
 import nyx69.ui.Widget.CImage
 import nyx69.ui.Widget.CText
+import nyx69.ui.setP
 import nyx69.ui.sstyle
 
 
@@ -66,6 +67,7 @@ fun Application.configureRouting() {
                              //     padding = listOf(200)
 
                                    color=0xFFAA66BB
+                                   setP(40)
                                 }
 
 
