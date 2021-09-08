@@ -8,9 +8,9 @@ import nyx69.ui.type.ComponentType
 
 @Suppress("FunctionName")
 class AppWidget(
-    id: String,
-    type: ComponentType,
-    action: CAction? = null,
-    style: CStyle? = null,
+    override val id: String,
+    override val type: ComponentType,
+    override val action: CAction? = null,
+    override val  style: CStyle? = null,
     private val data: JsonElement,
-) : AppComponent(id,type,action,style)
+) : AppComponent
