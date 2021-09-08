@@ -10,25 +10,25 @@ import nyx69.ui.type.LayoutType
 class AppLayout(
     override val id: String,
     override val type: LayoutType,
-    override val action: CAction? =null,
-    override var style: CStyle? =null,
+    override val action: CAction? = null,
+    override var style: CStyle? = null,
     var children: MutableList<AppComponent> = mutableListOf()
 ) : AppComponent {
     fun AppText(
-        id: String, text: String, action: (CAction.() -> Unit)? = null,
-        style: (CStyle.() -> Unit)? = null
+        id: String, text: String, action: (CAction.() -> Unit)?,
+        style: (CStyle.() -> Unit)?
     ) =
         this.children.add(TopLevelWidget.AppText(id, text, action, style))
 
     fun AppEditText(
-        id: String, text: String, action: (CAction.() -> Unit)? = null,
-        style: (CStyle.() -> Unit)? = null
+        id: String, text: String, action: (CAction.() -> Unit)?,
+        style: (CStyle.() -> Unit)?
     ) =
         this.children.add(TopLevelWidget.AppEditText(id, text, action, style))
 
     fun AppImage(
-        id: String, url: String, action: (CAction.() -> Unit)? = null,
-        style: (CStyle.() -> Unit)? = null
+        id: String, url: String, action: (CAction.() -> Unit)?,
+        style: (CStyle.() -> Unit)?
     ) =
         this.children.add(TopLevelWidget.AppImage(id, url, action, style))
 

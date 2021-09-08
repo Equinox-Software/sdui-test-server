@@ -10,7 +10,7 @@ object TopLevelLayout {
         id: String,
         action: (CAction.() -> Unit)? = null,
         style: (CStyle.() -> Unit)? = null,
-        content: AppComponent.() -> Unit
+        content: AppLayout.() -> Unit
     ) =
         AppLayout(
             id,
@@ -22,7 +22,7 @@ object TopLevelLayout {
         id: String,
         action: (CAction.() -> Unit)? = null,
         style: (CStyle.() -> Unit)? = null,
-        content: AppComponent.() -> Unit
+        content: AppLayout.() -> Unit
     ) =
         AppLayout(id, LayoutType.BOX, action?.let { CAction().apply(it) }, style?.let { CStyle().apply(it) }).apply(
             content
@@ -32,7 +32,7 @@ object TopLevelLayout {
         id: String,
         action: (CAction.() -> Unit)? = null,
         style: (CStyle.() -> Unit)? = null,
-        content: AppComponent.() -> Unit
+        content: AppLayout.() -> Unit
     ) =
         AppLayout(
             id,

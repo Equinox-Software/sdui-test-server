@@ -8,7 +8,7 @@ import nyx69.ui.type.WidgetType
 
 @Suppress("FunctionName")
 object TopLevelWidget {
-    fun AppText(id: String, text: String, action: (CAction.() -> Unit)? = null, style: (CStyle.() -> Unit)? = null) =
+    fun AppText(id: String, text: String, action: (CAction.() -> Unit)?, style: (CStyle.() -> Unit)?) =
         AppWidget(
             id,
             WidgetType.TEXT,
@@ -20,8 +20,8 @@ object TopLevelWidget {
     fun AppEditText(
         id: String,
         text: String,
-        action: (CAction.() -> Unit)? = null,
-        style: (CStyle.() -> Unit)? = null
+        action: (CAction.() -> Unit)?,
+        style: (CStyle.() -> Unit)?
     ) =
         AppWidget(
             id, WidgetType.EDIT_TEXT, action?.let { CAction().apply(it) },

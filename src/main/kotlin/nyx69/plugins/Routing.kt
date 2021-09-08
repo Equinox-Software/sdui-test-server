@@ -8,13 +8,9 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.ui.component.TopLevelLayout.AppBox
 import nyx69.ui.component.TopLevelLayout.AppColumn
 import nyx69.ui.component.TopLevelLayout.AppLazyColumn
-import nyx69.ui.component.TopLevelWidget.AppButton
-import nyx69.ui.component.TopLevelWidget.AppEditText
 import nyx69.ui.component.TopLevelWidget.AppImage
-import nyx69.ui.component.TopLevelWidget.AppText
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
