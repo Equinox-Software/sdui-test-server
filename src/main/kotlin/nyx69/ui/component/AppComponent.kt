@@ -1,6 +1,7 @@
 package nyx69.ui.component
 
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 import nyx69.ui.action.CAction
@@ -9,85 +10,61 @@ import nyx69.ui.type.ComponentType
 
 @Suppress("FunctionName")
 @Serializable
-sealed class AppComponent {
-    abstract val id: String
-    abstract val componentType: ComponentType
-    abstract val action: CAction?
-    abstract val  style: CStyle?
+class AppComponent (
+    val id: String,
+    val type: ComponentType,
+    val action: CAction? = null,
+    val style: CStyle? = null,
+    val data: JsonElement? = null,
+    val children: MutableList<@Contextual AppComponent>? = null
+) {
+    fun AppText(
+        id: String, text: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null
+    ) = this.children?.add(TopLevelWidget.AppText(id, text, action, style))
 
-    @Serializable
-    data class AppGeneric(
-        override val id: String,
-        override val componentType: ComponentType,
-        override val action: CAction? = null,
-        override val style: CStyle? = null,
-    ) : AppComponent()
+    fun AppEditText(
+        id: String, text: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null
+    ) = this.children?.add(TopLevelWidget.AppEditText(id, text, action, style))
 
-    @Serializable
-    data class AppWidget(
-        override val id: String,
-        override val componentType: ComponentType,
-        override val action: CAction? = null,
-        override val style: CStyle? = null,
-        private val data: JsonElement,
-    ) : AppComponent()
+    fun AppImage(
+        id: String, url: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null
+    ) = this.children?.add(TopLevelWidget.AppImage(id, url, action, style))
 
-    @Serializable
-    data class AppLayout(
-        override val id: String,
-        override val componentType: ComponentType,
-        override val action: CAction? = null,
-        override val style: CStyle? = null,
-        private val children: MutableList<@Contextual AppComponent> = mutableListOf()
-    ) : AppComponent() {
+    fun AppButton(
+        id: String, text: String,
+        style: (CStyle.() -> Unit)? = null,
+        action: (CAction.() -> Unit),
+    ) = this.children?.add(TopLevelWidget.AppButton(id, text, style, action))
 
-        fun AppText(
-            id: String, text: String,
-            action: (CAction.() -> Unit)? = null,
-            style: (CStyle.() -> Unit)? = null
-        ) = this.children.add(TopLevelWidget.AppText(id, text, action, style))
+    fun AppLazyColumn(
+        id: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null,
+        content: AppComponent.() -> Unit
+    ) = this.children?.add(TopLevelLayout.AppLazyColumn(id, action, style, content))
 
-        fun AppEditText(
-            id: String, text: String,
-            action: (CAction.() -> Unit)? = null,
-            style: (CStyle.() -> Unit)? = null
-        ) = this.children.add(TopLevelWidget.AppEditText(id, text, action, style))
+    fun AppBox(
+        id: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null,
+        content: AppComponent.() -> Unit
+    ) = this.children?.add(TopLevelLayout.AppBox(id, action, style, content))
 
-        fun AppImage(
-            id: String, url: String,
-            action: (CAction.() -> Unit)? = null,
-            style: (CStyle.() -> Unit)? = null
-        ) = this.children.add(TopLevelWidget.AppImage(id, url, action, style))
+    fun AppColumn(
+        id: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null,
+        content: AppComponent.() -> Unit
+    ) = this.children?.add(TopLevelLayout.AppColumn(id, action, style, content))
 
-        fun AppButton(
-            id: String, text: String,
-            style: (CStyle.() -> Unit)? = null,
-            action: (CAction.() -> Unit),
-        ) = this.children.add(TopLevelWidget.AppButton(id, text, style, action))
+    fun AppDivider(
+        id: String, style: (CStyle.() -> Unit)? = null
+    ) = this.children?.add(TopLevelGeneric.AppDivider(id, style))
 
-        fun AppLazyColumn(
-            id: String,
-            action: (CAction.() -> Unit)? = null,
-            style: (CStyle.() -> Unit)? = null,
-            content: AppComponent.() -> Unit
-        ) = this.children.add(TopLevelLayout.AppLazyColumn(id, action, style, content))
-
-        fun AppBox(
-            id: String,
-            action: (CAction.() -> Unit)? = null,
-            style: (CStyle.() -> Unit)? = null,
-            content: AppComponent.() -> Unit
-        ) = this.children.add(TopLevelLayout.AppBox(id, action, style, content))
-
-        fun AppColumn(
-            id: String,
-            action: (CAction.() -> Unit)? = null,
-            style: (CStyle.() -> Unit)? = null,
-            content: AppComponent.() -> Unit
-        ) = this.children.add(TopLevelLayout.AppColumn(id, action, style, content))
-
-        fun AppDivider(
-            id: String, style: (CStyle.() -> Unit)? = null
-        ) = this.children.add(TopLevelGeneric.AppDivider(id, style))
-    }
 }

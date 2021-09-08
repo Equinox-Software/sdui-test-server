@@ -3,7 +3,7 @@ package nyx69.ui.component
 import nyx69.ui.action.CAction
 import nyx69.ui.style.CStyle
 import nyx69.ui.type.ComponentType.*
-import nyx69.ui.component.AppComponent.AppLayout
+import nyx69.ui.component.AppComponent
 
 @Suppress("FunctionName")
 object TopLevelLayout {
@@ -11,35 +11,35 @@ object TopLevelLayout {
         id: String,
         action: (CAction.() -> Unit)? = null,
         style: (CStyle.() -> Unit)? = null,
-        content: AppLayout.() -> Unit
+        children: AppComponent.() -> Unit
     ) =
-        AppLayout(
+        AppComponent(
             id,
             SCROLL_VERTICAL,
             action?.let { CAction().apply(it) },
-            style?.let { CStyle().apply(it) }).apply(content)
+            style?.let { CStyle().apply(it) }).apply(children)
 
     fun AppBox(
         id: String,
         action: (CAction.() -> Unit)? = null,
         style: (CStyle.() -> Unit)? = null,
-        content: AppLayout.() -> Unit
+        children: AppComponent.() -> Unit
     ) =
-        AppLayout(
+        AppComponent(
             id,
             BOX,
             action?.let { CAction().apply(it) },
-            style?.let { CStyle().apply(it) }).apply(content)
+            style?.let { CStyle().apply(it) }).apply(children)
 
     fun AppColumn(
         id: String,
         action: (CAction.() -> Unit)? = null,
         style: (CStyle.() -> Unit)? = null,
-        content: AppLayout.() -> Unit
+        children: AppComponent.() -> Unit
     ) =
-        AppLayout(
+        AppComponent(
             id,
             VERTICAL,
             action?.let { CAction().apply(it) },
-            style?.let { CStyle().apply(it) }).apply(content)
+            style?.let { CStyle().apply(it) }).apply(children)
 }

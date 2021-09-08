@@ -5,12 +5,12 @@ import kotlinx.serialization.json.encodeToJsonElement
 import nyx69.ui.action.CAction
 import nyx69.ui.style.CStyle
 import nyx69.ui.type.ComponentType.*
-import nyx69.ui.component.AppComponent.AppWidget
+import nyx69.ui.component.AppComponent
 
 @Suppress("FunctionName")
 object TopLevelWidget {
     fun AppText(id: String, text: String, action: (CAction.() -> Unit)? = null, style: (CStyle.() -> Unit)? = null) =
-        AppWidget(
+        AppComponent(
             id,
             TEXT,
             action?.let { CAction().apply(it) },
@@ -24,7 +24,7 @@ object TopLevelWidget {
         action: (CAction.() -> Unit)? = null,
         style: (CStyle.() -> Unit)? = null
     ) =
-        AppWidget(
+        AppComponent(
             id,
             EDIT_TEXT,
             action?.let { CAction().apply(it) },
@@ -33,7 +33,7 @@ object TopLevelWidget {
         )
 
     fun AppImage(id: String, url: String, action: (CAction.() -> Unit)? = null, style: (CStyle.() -> Unit)? = null) =
-        AppWidget(
+        AppComponent(
             id,
             IMAGE,
             action?.let { CAction().apply(it) },
@@ -42,7 +42,7 @@ object TopLevelWidget {
         )
 
     fun AppButton(id: String, text: String, style: (CStyle.() -> Unit)? = null, action: (CAction.() -> Unit)) =
-        AppWidget(
+        AppComponent(
             id,
             BUTTON,
             CAction().apply(action),
