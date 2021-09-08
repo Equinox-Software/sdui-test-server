@@ -11,7 +11,7 @@ object TopLevelWidget {
     fun AppText(id: String, text: String, action: (CAction.() -> Unit)? = null, style: (CStyle.() -> Unit)? = null) =
         AppWidget(
             id,
-            TEXT,
+            Json.encodeToJsonElement(TEXT),
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) },
             Json.encodeToJsonElement(text)
@@ -25,7 +25,7 @@ object TopLevelWidget {
     ) =
         AppWidget(
             id,
-            EDIT_TEXT,
+            Json.encodeToJsonElement(EDIT_TEXT),
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) },
             Json.encodeToJsonElement(text)
@@ -34,7 +34,7 @@ object TopLevelWidget {
     fun AppImage(id: String, url: String, action: (CAction.() -> Unit)? = null, style: (CStyle.() -> Unit)? = null) =
         AppWidget(
             id,
-            IMAGE,
+            Json.encodeToJsonElement(IMAGE),
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) },
             Json.encodeToJsonElement(url)
@@ -43,7 +43,7 @@ object TopLevelWidget {
     fun AppButton(id: String, text: String, style: (CStyle.() -> Unit)? = null, action: (CAction.() -> Unit)) =
         AppWidget(
             id,
-            BUTTON,
+            Json.encodeToJsonElement(BUTTON),
             CAction().apply(action),
             style?.let { CStyle().apply(it) },
             Json.encodeToJsonElement(text)
