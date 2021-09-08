@@ -9,37 +9,37 @@ import nyx69.ui.type.ComponentType
 
 @Suppress("FunctionName")
 @Serializable
-sealed class AppComponent(
-    val i: String,
-    val t: ComponentType,
-    val a: CAction?,
-    val s: CStyle?
-) {
+sealed class AppComponent {
+    abstract val id: String
+    abstract val type: ComponentType
+    abstract val action: CAction?
+    abstract val  style: CStyle?
+
     @Serializable
     data class AppGeneric(
-        val id: String,
-        val type: ComponentType,
-        val action: CAction? = null,
-        val style: CStyle? = null,
-    ) : AppComponent(id, type, action, style)
+        override val id: String,
+        override val type: ComponentType,
+        override val action: CAction? = null,
+        override val style: CStyle? = null,
+    ) : AppComponent()
 
     @Serializable
     data class AppWidget(
-        val id: String,
-        val type: ComponentType,
-        val action: CAction? = null,
-        val style: CStyle? = null,
+        override val id: String,
+        override val type: ComponentType,
+        override val action: CAction? = null,
+        override val style: CStyle? = null,
         private val data: JsonElement,
-    ) : AppComponent(id, type, action, style)
+    ) : AppComponent()
 
     @Serializable
     data class AppLayout(
-        val id: String,
-        val type: ComponentType,
-        val action: CAction? = null,
-        val style: CStyle? = null,
+        override val id: String,
+        override val type: ComponentType,
+        override val action: CAction? = null,
+        override val style: CStyle? = null,
         private val children: MutableList<@Contextual AppComponent> = mutableListOf()
-    ) : AppComponent(id, type, action, style) {
+    ) : AppComponent() {
 
         fun AppText(
             id: String, text: String,
