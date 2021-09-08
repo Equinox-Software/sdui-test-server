@@ -1,4 +1,4 @@
-package nyx69.ui
+package nyx69.ui.action
 
 import kotlinx.serialization.Serializable
 

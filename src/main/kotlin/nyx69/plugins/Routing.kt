@@ -8,12 +8,13 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.ui.CBox
-import nyx69.ui.CCBox
-import nyx69.ui.CCText
-import nyx69.ui.CText
-import nyx69.ui.Layout.CColumn
-import nyx69.ui.Layout.CLazyColumn
+import nyx69.ui.component.TopLevelLayout.AppBox
+import nyx69.ui.component.TopLevelLayout.AppColumn
+import nyx69.ui.component.TopLevelLayout.AppLazyColumn
+import nyx69.ui.component.TopLevelWidget.AppButton
+import nyx69.ui.component.TopLevelWidget.AppEditText
+import nyx69.ui.component.TopLevelWidget.AppImage
+import nyx69.ui.component.TopLevelWidget.AppText
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
@@ -41,34 +42,33 @@ fun Application.configureRouting() {
         route("content") {
             get("a") {
                 call.respond(
-                    CColumn(
+                    AppColumn(
                         "abc"
                     ) {
-                        CEditText("abTuT", "some zzTexttt")
-
-
-                        CCBox("",style = {
+                        AppEditText("abTuT", "some zzTexttt")
+                        AppBox("",style = {
                             padding(200)
                             color = 0xFF553345
                         }){
+                            AppText("aa", "AAjjjjjAAAAA")
+                            AppText("aa", "AAAAAkkkkkkkkkkkAA")
                         }
-
-                        CEditText("abTuT", "someio Texttt")
-                        CCText("aa", "AAAAAAA")
-                        CBox("bb") {
-                            CText(
+                        AppEditText("abTuT", "someio Texttt")
+                        AppText("aa", "AAAAAAA")
+                        AppBox("bb") {
+                            AppText(
                                 "ab",
                                 "Helooolo!",
                             ) {
                                 color = 0xFFAA66BB
                                 padding(40)
                             }
-                            CText("ba", "Hellppo!")
+                            AppText("ba", "Hellppo!")
                         }
-                        CButton("122", "click!!") {
+                        AppButton("122", "click!!") {
                             click = "333"
                         }
-                        CButton("112", "click for scrolll!!") {
+                        AppButton("112", "click for scrolll!!") {
                             click = "333"
                         }
                     }
@@ -77,26 +77,26 @@ fun Application.configureRouting() {
 
             get("b") {
                 call.respond(
-                    CColumn(
+                    AppColumn(
                         "abc"
                     ) {
-                        CText("aa", " --- BBB ---")
-                        CBox(
+                        AppText("aa", " --- BBB ---")
+                        AppBox(
                             "bb"
                         ) {
-                            CText("ab", "Helooolo!") {
+                            AppText("ab", "Helooolo!") {
                                 color = 0xFFAA66BB
                                 padding(40)
                             }
-                            CText("ba", "Hellppo!")
+                            AppText("ba", "Hellppo!")
                         }
-                        CButton("122", "navigate") {
+                        AppButton("122", "navigate") {
                             navigate = "c"
                         }
-                        CButton("122", "click!!") {
+                        AppButton("122", "click!!") {
                             click = "333"
                         }
-                        CButton("112", "click for scrolll!!") {
+                        AppButton("112", "click for scrolll!!") {
                             navigate = "d"
                         }
                     }
@@ -106,49 +106,49 @@ fun Application.configureRouting() {
             get("c") {
 
                 call.respond(
-                    CLazyColumn("abc") {
-                        CText("aa", "--- CCC ---")
-                        CBox("bb") {
-                            CText("ab", "Helooolo!") {
+                    AppLazyColumn("abc") {
+                        AppText("aa", "--- CCC ---")
+                        AppBox("bb") {
+                            AppText("ab", "Helooolo!") {
                                 color = 0xFFAA66BB
                                 padding(40)
                             }
-                            CText("ba", "Hellppo!")
+                            AppText("ba", "Hellppo!")
                         }
-                        CButton("122", "click!!") {
+                        AppButton("122", "click!!") {
                             click = "333"
                         }
-                        CBox("bb") {
-                            CText("ab", "Helooolo!") {
+                        AppBox("bb") {
+                            AppText("ab", "Helooolo!") {
                                 color = 0xFFAA66BB
                                 padding(40)
                             }
-                            CText("ba", "Hellppo!")
+                            AppText("ba", "Hellppo!")
                         }
-                        CButton("122", "click!!") {
+                        AppButton("122", "click!!") {
                             click = "333"
                         }
-                        CBox("bb") {
-                            CText("ab", "Helooolo!") {
+                        AppBox("bb") {
+                            AppText("ab", "Helooolo!") {
                                 color = 0xFFAA66BB
                                 padding(40)
                             }
-                            CText("ba", "Hellppo!")
+                            AppText("ba", "Hellppo!")
                         }
-                        CButton("122", "click!!") {
+                        AppButton("122", "click!!") {
                             click = "333"
                         }
-                        CBox("bb") {
-                            CText("ab", "Helooolo!") {
+                        AppBox("bb") {
+                            AppText("ab", "Helooolo!") {
                                 color = 0xFFAA66BB
                                 padding(40)
                             }
-                            CText("ba", "Hellppo!")
+                            AppText("ba", "Hellppo!")
                         }
-                        CButton("122", "click!!") {
+                        AppButton("122", "click!!") {
                             click = "333"
                         }
-                        CButton("112", "click for scrolll!!") {
+                        AppButton("112", "click for scrolll!!") {
                             click = "333"
                         }
                     }
@@ -157,19 +157,20 @@ fun Application.configureRouting() {
 
             get("d") {
                 call.respond(
-                    CLazyColumn("abc") {
-                        (0..15).forEach {
-                            CImage(
+                    AppLazyColumn("abc") {
+                        (0..15).forEach { entry->
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
+                            AppText("ba", "Image $entry")
                         }
 
-                        CEditText(
+                        AppEditText(
                             "abTT",
                             "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                         )
-                        CText("ba", "Helltthppo!")
+                        AppText("ba", "Helltthppo!")
                     }
                 )
             }
@@ -184,26 +185,26 @@ fun Application.configureRouting() {
             when (call.parameters["id"]) {
                 "122" -> {
                     call.respond(
-                        CColumn(
+                        AppColumn(
                             "abc"
                         ) {
-                            CEditText("abTuT", "some Texttt")
-                            CImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
-                            CText("ba", "Helltthppo!") {
+                            AppEditText("abTuT", "some Texttt")
+                            AppImage("ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
+                            AppText("ba", "Helltthppo!") {
                                 padding(25, 77)
                             }
-                            CText("1111", "Umbertoooo") {
+                            AppText("1111", "Umbertoooo") {
                                 padding(24, 56)
                             }
-                            CEditText("abTuT", "some Texttt")
-                            CButton("666", "-- click after entering text") {
+                            AppEditText("abTuT", "some Texttt")
+                            AppButton("666", "-- click after entering text") {
                                 click = "333"
                             }
-                            CColumn("1122") {
-                                CText("1123", "Helllo")
-                                CText("1233", "afasgrg")
+                            AppColumn("1122") {
+                                AppText("1123", "Helllo")
+                                AppText("1233", "afasgrg")
                             }
-                            CButton("777", "get data from DB") {
+                            AppButton("777", "get data from DB") {
                                 click = "333"
                             }
                         }
@@ -214,12 +215,12 @@ fun Application.configureRouting() {
                     val texxxxt = call.receive<Map<String, String>>()["abTuT"].toString()
 
                     call.respond(
-                        CColumn(
+                        AppColumn(
                             "a6bc"
                         ) {
-                            CImage("6ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
-                            CText("6pba", "Helltthppo!")
-                            CText("11116", texxxxt)
+                            AppImage("6ab", "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg")
+                            AppText("6pba", "Helltthppo!")
+                            AppText("11116", texxxxt)
                         })
                 }
 
@@ -232,65 +233,65 @@ fun Application.configureRouting() {
                     val texxt = call.receive<Map<String, String>>()["abTuT"].toString()
 
                     call.respond(
-                        CColumn("a6bc") {
-                            CImage(
+                        AppColumn("a6bc") {
+                            AppImage(
                                 "6ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CText("6pba", "DATA FROM DB --- Helltthppo!")
-                            CText("11116", texxt)
+                            AppText("6pba", "DATA FROM DB --- Helltthppo!")
+                            AppText("11116", texxt)
                         }
                     )
                 }
 
                 "112" -> {
                     call.respond(
-                        CLazyColumn("abc") {
-                            CImage(
+                        AppLazyColumn("abc") {
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CImage(
+                            AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CEditText(
+                            AppEditText(
                                 "abTT",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
                             )
-                            CText("ba", "Helltthppo!")
+                            AppText("ba", "Helltthppo!")
                         }
                     )
                 }
