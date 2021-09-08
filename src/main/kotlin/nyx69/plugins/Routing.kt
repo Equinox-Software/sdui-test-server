@@ -195,7 +195,7 @@ fun Application.configureRouting() {
                         AppLazyRow("afggefgfe", style = {
                             width = FILL
                         }) {
-                            (0..8).forEach {
+                            (0..20).forEach {
                                 AppColumn("ffff") {
                                     AppText("YEEEE", "ROW ROW")
                                     AppText("YEEEE", "ROW lelelel ROW") {
