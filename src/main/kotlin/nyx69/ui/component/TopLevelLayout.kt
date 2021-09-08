@@ -23,7 +23,7 @@ object TopLevelLayout {
         id: String,
         action: (CAction.() -> Unit)? = null,
         style: (CStyle.() -> Unit)? = null,
-        children: AppComponent.() -> Unit =
+        children: AppComponent.() -> Unit
     ) =
         AppComponent(
             id,
