@@ -43,6 +43,15 @@ fun Application.configureRouting() {
                         "abc"
                     ) {
                         CEditText("abTuT", "some zzTexttt")
+
+
+                        CBox("",{
+                            padding(200)
+                            color = 0xFF553345
+                        }){
+
+                        }
+
                         CEditText("abTuT", "someio Texttt")
                         CText("aa", "AAAAAAA")
                         CBox("bb") {
