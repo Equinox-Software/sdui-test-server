@@ -10,7 +10,7 @@ import nyx69.ui.type.ComponentType
 @Serializable
 data class AppLayout(
     override val id: String,
-    override val type: ComponentType,
+    override val type: @Contextual ComponentType,
     override val action: CAction? = null,
     override val style: CStyle? = null,
     private val children: MutableList<@Contextual AppComponent> = mutableListOf()
