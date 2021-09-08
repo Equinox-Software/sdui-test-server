@@ -62,7 +62,7 @@ object TopLevelLayout {
     ) =
         AppComponent(
             id,
-           HORIZONTAL,
+            HORIZONTAL,
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(children)
 }

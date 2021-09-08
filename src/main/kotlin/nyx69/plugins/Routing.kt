@@ -8,7 +8,6 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
-import nyx69.ui.component.TopLevelLayout
 import nyx69.ui.component.TopLevelLayout.AppColumn
 import nyx69.ui.component.TopLevelLayout.AppLazyColumn
 import nyx69.ui.style.FILL
@@ -75,7 +74,7 @@ fun Application.configureRouting() {
             get("b") {
                 call.respond(
                     AppColumn(
-                        "abc",style={
+                        "abc", style = {
                             padding(30)
                         }
                     ) {
@@ -158,8 +157,8 @@ fun Application.configureRouting() {
                             width = FILL
                         }) {
                             (0..15).forEach {
-                            }
                             AppText("ba", "Hellppo!- $it")
+                            }
                         }
                         AppButton("122", "click!!") {
                             click = "333"
@@ -173,36 +172,36 @@ fun Application.configureRouting() {
 
             get("d") {
                 call.respond(
-                    AppLazyColumn("abc",style={
-                        width= FILL
+                    AppLazyColumn("abc", style = {
+                        width = FILL
                     }) {
                         (0..15).forEach {
                             AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                            ){
+                            ) {
                                 height = 90
                                 width = 160
                             }
                             AppText("ba", "Image $it")
                         }
 
-                        AppDivider("dfef"){
-                            height=10
-                            width=100
+                        AppDivider("dfef") {
+                            height = 10
+                            width = 100
                             padding(12)
                         }
 
                         AppLazyRow("afggefgfe", style = {
                             width = FILL
-                        }){
+                        }) {
                             (0..8).forEach {
-                                AppColumn("ffff"){
-                                    AppText("YEEEE","ROW ROW")
-                                    AppText("YEEEE","ROW lelelel ROW"){
-                                        color=if(it%2==0) 0xFF662234 else 0xFF887744
+                                AppColumn("ffff") {
+                                    AppText("YEEEE", "ROW ROW")
+                                    AppText("YEEEE", "ROW lelelel ROW") {
+                                        color = if (it % 2 == 0) 0xFF662234 else 0xFF887744
                                     }
-                                    AppText("YEEEE","rowItem $it")
+                                    AppText("YEEEE", "rowItem $it")
                                 }
                             }
 
