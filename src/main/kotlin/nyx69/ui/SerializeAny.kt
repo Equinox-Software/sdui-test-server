@@ -8,26 +8,32 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.encoding.encodeStructure
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.encodeToJsonElement
+import nyx69.ui.component.AppComponent
+import nyx69.ui.component.AppGeneric
+import nyx69.ui.component.AppLayout
+import nyx69.ui.component.AppWidget
 
 @OptIn(ExperimentalSerializationApi::class)
-@Serializer(forClass = Any::class)
-object AnySerializer : KSerializer<Any> {
+@Serializer(forClass = AppComponent::class)
+object ComponentSerializer : KSerializer<AppComponent> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Any", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: Any) {
+    override fun serialize(encoder: Encoder, value: AppComponent) {
         when (value) {
-            is String -> encoder.encodeString(value)
-            is Int -> encoder.encodeInt(value)
-            is Boolean -> encoder.encodeBoolean(value)
-            is Long -> encoder.encodeLong(value)
-            is List<*> -> encoder.encodeSerializableValue(
-                ListSerializer(AnySerializer), value as List<@kotlinx.serialization.Serializable(
-                    nyx69.ui.AnySerializer::class
-                ) Any>
-            )
+            is AppLayout -> Json.encodeToJsonElement(value)
+            is AppWidget -> Json.encodeToJsonElement(value)
+            is AppGeneric -> Json.encodeToJsonElement(value)
             else -> throw SerializationException("Unsupported Type! Can't serialize $value.")
         }
+    }
+
+    override fun deserialize(decoder: Decoder): AppComponent {
+        TODO("Not yet implemented")
     }
 
     //   override fun deserialize(decoder: Decoder): Any {

@@ -1,5 +1,7 @@
 package nyx69.ui.component
 
+import kotlinx.serialization.Serializer
+import nyx69.ui.ComponentSerializer
 import nyx69.ui.action.CAction
 import nyx69.ui.style.CStyle
 import nyx69.ui.type.ComponentType
