@@ -4,9 +4,10 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.encodeToJsonElement
+import nyx69.ui.component.AppComponent
 
 @Suppress("FunctionName")
-fun CPage(layout: Component, data: CData): Page {
+fun CPage(layout: AppComponent, data: CData): Page {
 
     /*  val encodedData = emptyMap<String, JsonElement>().toMutableMap()
 
@@ -47,6 +48,6 @@ sealed class CData {
 
 
 @Serializable
-data class Page(val layout: Component, val data: JsonElement)
+data class Page(val layout: AppComponent, val data: JsonElement)
 
 

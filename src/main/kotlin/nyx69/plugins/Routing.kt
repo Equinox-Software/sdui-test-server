@@ -46,10 +46,10 @@ fun Application.configureRouting() {
                         "abc"
                     ) {
                         AppEditText("abTuT", "some zzTexttt")
-                        AppBox("",style = {
+                        AppBox("", style = {
                             padding(200)
                             color = 0xFF553345
-                        }){
+                        }) {
                             AppText("aa", "AAjjjjjAAAAA")
                             AppText("aa", "AAAAAkkkkkkkkkkkAA")
                         }
@@ -158,7 +158,7 @@ fun Application.configureRouting() {
             get("d") {
                 call.respond(
                     AppLazyColumn("abc") {
-                        (0..15).forEach { entry->
+                        (0..15).forEach { entry ->
                             AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"

@@ -17,21 +17,29 @@ object TopLevelWidget {
             Json.encodeToJsonElement(text),
         )
 
-    fun AppEditText(id: String, text: String, action: (CAction.() -> Unit)? = null, style: (CStyle.() -> Unit)? = null) =
-        AppWidget(id, WidgetType.EDIT_TEXT, action?.let { CAction().apply(it) },
+    fun AppEditText(
+        id: String,
+        text: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null
+    ) =
+        AppWidget(
+            id, WidgetType.EDIT_TEXT, action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }, Json.encodeToJsonElement(text)
         )
 
     fun AppImage(id: String, url: String, action: (CAction.() -> Unit)? = null, style: (CStyle.() -> Unit)? = null) =
-        AppWidget(id, WidgetType.IMAGE, action?.let { CAction().apply(it) },
+        AppWidget(
+            id, WidgetType.IMAGE, action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }, Json.encodeToJsonElement(url)
         )
 
-    fun AppButton(id: String, text: String, style: (CStyle.() -> Unit)? = null, action: (CAction.() -> Unit),) = AppWidget(
-        id,
-        WidgetType.BUTTON,
-        CAction().apply(action),
-        style?.let { CStyle().apply(it) },
-        Json.encodeToJsonElement(text)
-    )
+    fun AppButton(id: String, text: String, style: (CStyle.() -> Unit)? = null, action: (CAction.() -> Unit)) =
+        AppWidget(
+            id,
+            WidgetType.BUTTON,
+            CAction().apply(action),
+            style?.let { CStyle().apply(it) },
+            Json.encodeToJsonElement(text)
+        )
 }

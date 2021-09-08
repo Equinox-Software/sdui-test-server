@@ -14,6 +14,6 @@ data class AppWidget(
     override val action: CAction? = null,
     override var style: CStyle? = null,
     val data: JsonElement? = null,
-) : AppComponent{
+) : AppComponent {
 
 }
