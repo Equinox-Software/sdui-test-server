@@ -10,6 +10,7 @@ import nyx69.locations.Profile
 import nyx69.locations.Type
 import nyx69.ui.component.TopLevelLayout.AppColumn
 import nyx69.ui.component.TopLevelLayout.AppLazyColumn
+import nyx69.ui.style.FILL
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
@@ -142,7 +143,10 @@ fun Application.configureRouting() {
                                 color = 0xFFAA66BB
                                 padding(40)
                             }
-                            AppText("ba", "Hellppo!")
+                            AppText("ba", "HellpHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppopo!"){
+                                width= FILL
+                                height=50
+                            }
                         }
                         AppButton("122", "click!!") {
                             click = "333"

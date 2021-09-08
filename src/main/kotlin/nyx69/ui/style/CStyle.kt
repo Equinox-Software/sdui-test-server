@@ -5,8 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CStyle(
-    @InternalAPI var padding: PaddingValues? = null,
-    var color: Long? = null
+    @InternalAPI var padding: List<Int>? = null,
+    var color: Long? = null,
+    var width: Int? = null,
+    var height: Int? = null
 ) {
     @OptIn(InternalAPI::class)
     fun padding(all: Int) {
@@ -22,7 +24,10 @@ data class CStyle(
     fun padding(start: Int, top: Int, end: Int, bottom: Int) {
         padding = listOf(start, top, end, bottom)
     }
+
 }
+
+const val FILL = -1
 
 
 
