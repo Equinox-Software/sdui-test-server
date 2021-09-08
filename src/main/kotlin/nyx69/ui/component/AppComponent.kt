@@ -11,14 +11,14 @@ import nyx69.ui.type.ComponentType
 @Serializable
 sealed class AppComponent {
     abstract val id: String
-    abstract val type: ComponentType
+    abstract val componentType: ComponentType
     abstract val action: CAction?
     abstract val  style: CStyle?
 
     @Serializable
     data class AppGeneric(
         override val id: String,
-        override val type: ComponentType,
+        override val componentType: ComponentType,
         override val action: CAction? = null,
         override val style: CStyle? = null,
     ) : AppComponent()
@@ -26,7 +26,7 @@ sealed class AppComponent {
     @Serializable
     data class AppWidget(
         override val id: String,
-        override val type: ComponentType,
+        override val componentType: ComponentType,
         override val action: CAction? = null,
         override val style: CStyle? = null,
         private val data: JsonElement,
@@ -35,7 +35,7 @@ sealed class AppComponent {
     @Serializable
     data class AppLayout(
         override val id: String,
-        override val type: ComponentType,
+        override val componentType: ComponentType,
         override val action: CAction? = null,
         override val style: CStyle? = null,
         private val children: MutableList<@Contextual AppComponent> = mutableListOf()
