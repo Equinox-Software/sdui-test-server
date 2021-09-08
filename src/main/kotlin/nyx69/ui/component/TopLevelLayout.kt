@@ -2,7 +2,7 @@ package nyx69.ui.component
 
 import nyx69.ui.action.CAction
 import nyx69.ui.style.CStyle
-import nyx69.ui.type.LayoutType
+import nyx69.ui.type.LayoutType.*
 
 @Suppress("FunctionName")
 object TopLevelLayout {
@@ -14,7 +14,7 @@ object TopLevelLayout {
     ) =
         AppLayout(
             id,
-            LayoutType.SCROLL_VERTICAL,
+            SCROLL_VERTICAL,
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(content)
 
@@ -24,9 +24,11 @@ object TopLevelLayout {
         style: (CStyle.() -> Unit)? = null,
         content: AppLayout.() -> Unit
     ) =
-        AppLayout(id, LayoutType.BOX, action?.let { CAction().apply(it) }, style?.let { CStyle().apply(it) }).apply(
-            content
-        )
+        AppLayout(
+            id,
+            BOX,
+            action?.let { CAction().apply(it) },
+            style?.let { CStyle().apply(it) }).apply(content)
 
     fun AppColumn(
         id: String,
@@ -36,7 +38,7 @@ object TopLevelLayout {
     ) =
         AppLayout(
             id,
-            LayoutType.VERTICAL,
+            VERTICAL,
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(content)
 }
