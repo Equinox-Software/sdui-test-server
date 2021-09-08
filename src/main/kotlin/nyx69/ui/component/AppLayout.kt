@@ -10,8 +10,8 @@ import nyx69.ui.type.LayoutType
 class AppLayout(
     override val id: String,
     override val type: LayoutType,
-    override val action: CAction?,
-    override var style: CStyle?,
+    override val action: CAction? =null,
+    override var style: CStyle? =null,
     var children: MutableList<AppComponent> = mutableListOf()
 ) : AppComponent {
     fun AppText(
