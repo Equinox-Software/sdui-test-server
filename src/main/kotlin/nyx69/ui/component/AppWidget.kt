@@ -8,7 +8,7 @@ import nyx69.ui.style.CStyle
 import nyx69.ui.type.ComponentType
 
 @Suppress("FunctionName")
-
+@Polymorphic
 @Serializable
 class AppWidget(
     override val id: String,
