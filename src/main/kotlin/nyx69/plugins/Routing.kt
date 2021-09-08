@@ -8,6 +8,7 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
+import nyx69.ui.component.TopLevelLayout
 import nyx69.ui.component.TopLevelLayout.AppColumn
 import nyx69.ui.component.TopLevelLayout.AppLazyColumn
 import nyx69.ui.style.FILL
@@ -145,10 +146,20 @@ fun Application.configureRouting() {
                                 color = 0xFFAA66BB
                                 padding(40)
                             }
-                            AppText("ba", "HellpHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppopo!"){
-                                width= FILL
-                                height=50
+                            AppText(
+                                "ba",
+                                "HellpHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppoHellppopo!"
+                            ) {
+                                width = FILL
+                                height = 50
                             }
+                        }
+                        AppLazyRow("afggefgfe", style = {
+                            width = FILL
+                        }) {
+                            (0..15).forEach {
+                            }
+                            AppText("ba", "Hellppo!- $it")
                         }
                         AppButton("122", "click!!") {
                             click = "333"
@@ -162,8 +173,10 @@ fun Application.configureRouting() {
 
             get("d") {
                 call.respond(
-                    AppLazyColumn("abc") {
-                        (0..15).forEach { entry ->
+                    AppLazyColumn("abc",style={
+                        width= FILL
+                    }) {
+                        (0..15).forEach {
                             AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
@@ -171,7 +184,28 @@ fun Application.configureRouting() {
                                 height = 90
                                 width = 160
                             }
-                            AppText("ba", "Image $entry")
+                            AppText("ba", "Image $it")
+                        }
+
+                        AppDivider("dfef"){
+                            height=10
+                            width=100
+                            padding(12)
+                        }
+
+                        AppLazyRow("afggefgfe", style = {
+                            width = FILL
+                        }){
+                            (0..8).forEach {
+                                AppColumn("ffff"){
+                                    AppText("YEEEE","ROW ROW")
+                                    AppText("YEEEE","ROW lelelel ROW"){
+                                        color=if(it%2==0) 0xFF662234 else 0xFF887744
+                                    }
+                                    AppText("YEEEE","rowItem $it")
+                                }
+                            }
+
                         }
 
                         AppEditText(

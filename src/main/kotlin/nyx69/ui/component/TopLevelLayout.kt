@@ -18,6 +18,18 @@ object TopLevelLayout {
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(children)
 
+    fun AppLazyRow(
+        id: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null,
+        children: AppComponent.() -> Unit
+    ) =
+        AppComponent(
+            id,
+            SCROLL_ HORIZONTAL,
+            action?.let { CAction().apply(it) },
+            style?.let { CStyle().apply(it) }).apply(children)
+
     fun AppBox(
         id: String,
         action: (CAction.() -> Unit)? = null,
@@ -39,6 +51,18 @@ object TopLevelLayout {
         AppComponent(
             id,
             VERTICAL,
+            action?.let { CAction().apply(it) },
+            style?.let { CStyle().apply(it) }).apply(children)
+
+    fun AppRow(
+        id: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null,
+        children: AppComponent.() -> Unit
+    ) =
+        AppComponent(
+            id,
+           HORIZONTAL,
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(children)
 }

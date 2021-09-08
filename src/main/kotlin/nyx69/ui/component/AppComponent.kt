@@ -48,6 +48,13 @@ class AppComponent(
         content: AppComponent.() -> Unit
     ) = this.children?.add(TopLevelLayout.AppLazyColumn(id, action, style, content))
 
+    fun AppLazyRow(
+        id: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null,
+        content: AppComponent.() -> Unit
+    ) = this.children?.add(TopLevelLayout.AppLazyRow(id, action, style, content))
+
     fun AppBox(
         id: String,
         action: (CAction.() -> Unit)? = null,
@@ -61,6 +68,13 @@ class AppComponent(
         style: (CStyle.() -> Unit)? = null,
         content: AppComponent.() -> Unit
     ) = this.children?.add(TopLevelLayout.AppColumn(id, action, style, content))
+
+    fun AppRow(
+        id: String,
+        action: (CAction.() -> Unit)? = null,
+        style: (CStyle.() -> Unit)? = null,
+        content: AppComponent.() -> Unit
+    ) = this.children?.add(TopLevelLayout.AppRow(id, action, style, content))
 
     fun AppDivider(
         id: String, style: (CStyle.() -> Unit)? = null
