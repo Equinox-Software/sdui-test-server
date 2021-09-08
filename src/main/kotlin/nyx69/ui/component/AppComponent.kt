@@ -8,6 +8,6 @@ import nyx69.ui.type.ComponentType
 interface AppComponent{
     val id: String
     val type: ComponentType
-     val action: CAction?=null
-     val style: CStyle?=null
+    val action: CAction?
+    val style: CStyle?
 }
