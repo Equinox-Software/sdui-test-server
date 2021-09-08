@@ -10,10 +10,10 @@ import nyx69.ui.type.ComponentType
 @Suppress("FunctionName")
 @Serializable
 sealed class AppComponent(
-    val _id: String,
-    val _type: ComponentType,
-    val _action: CAction?,
-    val _style: CStyle?
+    val i: String,
+    val t: ComponentType,
+    val a: CAction?,
+    val s: CStyle?
 ) {
     @Serializable
     data class AppGeneric(
