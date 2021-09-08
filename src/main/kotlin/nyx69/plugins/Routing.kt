@@ -74,7 +74,9 @@ fun Application.configureRouting() {
             get("b") {
                 call.respond(
                     AppColumn(
-                        "abc"
+                        "abc",style={
+                            padding(30)
+                        }
                     ) {
                         AppText("aa", " --- BBB ---")
                         AppBox(
@@ -94,7 +96,7 @@ fun Application.configureRouting() {
                             click = "333"
                         }
                         AppDivider("kkk") {
-                            padding(20, 40)
+                            padding(20, 80)
                         }
                         AppButton("112", "click for scrolll!!") {
                             navigate = "d"
