@@ -29,8 +29,8 @@ data class Component(
     fun CLazyColumn(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
         this.children?.add(Layout.CLazyColumn(id, style, content))
 
-    fun CBox(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
-        this.children?.add(Layout.CBox(id, style, content))
+ //   fun CBox(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+   //     this.children?.add(Layout.CBox(id, style, content))
 
     fun CColumn(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
         this.children?.add(Layout.CColumn(id, style, content))
@@ -62,8 +62,8 @@ object Layout {
             content
         )
 
-    fun CBox(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
-        Component(id, BOX, style = style?.let { CStyle().apply(it) }, children = mutableListOf()).apply(content)
+//    fun CBox(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+    //      Component(id, BOX, style = style?.let { CStyle().apply(it) }, children = mutableListOf()).apply(content)
 
     fun CColumn(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
         Component(id, VERTICAL, style = style?.let { CStyle().apply(it) }, children = mutableListOf()).apply(content)
@@ -72,12 +72,18 @@ object Layout {
 //maybe let Layout/Widget extend Component and just pass own classes for any of that
 
 // prettier?
+
 fun Component?.CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
     this?.children?.add(
-            Component(
-                id,
-                TEXT,
-                Json.encodeToJsonElement(text),
-                style = style?.let { CStyle().apply(it) })
+        Component(
+            id,
+            TEXT,
+            Json.encodeToJsonElement(text),
+            style = style?.let { CStyle().apply(it) })
     ) ?: Component(id, TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
 
+
+fun Component?.CBox(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+    this?.children?.add(
+        Component(id, VERTICAL, style = style?.let { CStyle().apply(it) }, children = mutableListOf()).apply(content)
+    ) ?: Component(id, VERTICAL, style = style?.let { CStyle().apply(it) }, children = mutableListOf()).apply(content)
