@@ -25,8 +25,6 @@ data class Component(
     fun CButton(id: String, text: String, style: (CStyle.() -> Unit)? = null, action: CAction.() -> Unit) =
         this.children?.add(Widget.CButton(id, text, style, action))
 
-    fun CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
-        this.children?.add(Widget.CText(id, text, style))
 
     fun CLazyColumn(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
         this.children?.add(Layout.CLazyColumn(id, style, content))
@@ -40,8 +38,8 @@ data class Component(
 
 @Suppress("FunctionName")
 object Widget {
-    fun CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
-        Component(id, TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
+    //   fun CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
+    //     Component(id, TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
 
     fun CEditText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
         Component(id, EDIT_TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
@@ -72,3 +70,14 @@ object Layout {
 }
 
 //maybe let Layout/Widget extend Component and just pass own classes for any of that
+
+// prettier?
+fun Component?.CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
+    this?.children?.add(
+            Component(
+                id,
+                TEXT,
+                Json.encodeToJsonElement(text),
+                style = style?.let { CStyle().apply(it) })
+    ) ?: Component(id, TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
+

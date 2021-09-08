@@ -8,6 +8,7 @@ import io.ktor.routing.*
 import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
+import nyx69.ui.CText
 import nyx69.ui.Layout.CColumn
 import nyx69.ui.Layout.CLazyColumn
 
@@ -85,7 +86,7 @@ fun Application.configureRouting() {
                             click = "333"
                         }
                         CButton("112", "click for scrolll!!") {
-                            navigate="d"
+                            navigate = "d"
                         }
                     }
                 )
@@ -143,10 +144,10 @@ fun Application.configureRouting() {
                 )
             }
 
-            get("d"){
+            get("d") {
                 call.respond(
                     CLazyColumn("abc") {
-                        (0..15).forEach{
+                        (0..15).forEach {
                             CImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
@@ -164,7 +165,7 @@ fun Application.configureRouting() {
         }
 
         get("routes") {
-            call.respond(listOf("a", "b", "c","d"))
+            call.respond(listOf("a", "b", "c", "d"))
         }
 
         post("/click{id}") {
