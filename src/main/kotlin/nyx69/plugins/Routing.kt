@@ -85,7 +85,7 @@ fun Application.configureRouting() {
                             click = "333"
                         }
                         CButton("112", "click for scrolll!!") {
-                            click = "333"
+                            navigate="d"
                         }
                     }
                 )
@@ -143,10 +143,28 @@ fun Application.configureRouting() {
                 )
             }
 
+            get("d"){
+                call.respond(
+                    CLazyColumn("abc") {
+                        (0..15).forEach{
+                            CImage(
+                                "ab",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                        }
+
+                        CEditText(
+                            "abTT",
+                            "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                        )
+                        CText("ba", "Helltthppo!")
+                    }
+                )
+            }
         }
 
         get("routes") {
-            call.respond(listOf("a", "b", "c"))
+            call.respond(listOf("a", "b", "c","d"))
         }
 
         post("/click{id}") {

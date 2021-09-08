@@ -14,30 +14,61 @@ data class Component(
     val data: JsonElement? = null,
     var children: MutableList<Component>? = null,
     val action: CAction? = null,
-    val style: CStyle? = null
+    var style: CStyle? = null
 ) {
-    fun CEditText(id: String, text: String) = this.children?.add(Widget.CEditText(id, text))
-    fun CImage(id: String, url: String) = this.children?.add(Widget.CImage(id, url))
-    fun CButton(id: String, text: String, action: CAction.() -> Unit) = this.children?.add(Widget.CButton(id, text, action))
-    fun CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) = this.children?.add(Widget.CText(id, text, style))
-    fun CLazyColumn(id: String, content: Component.() -> Unit) = this.children?.add(Layout.CLazyColumn(id, content))
-    fun CBox(id: String, content: Component.() -> Unit) = this.children?.add(Layout.CBox(id, content))
-    fun CColumn(id: String, content: Component.() -> Unit) = this.children?.add(Layout.CColumn(id, content))
+    fun CEditText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
+        this.children?.add(Widget.CEditText(id, text, style))
+
+    fun CImage(id: String, url: String, style: (CStyle.() -> Unit)? = null) =
+        this.children?.add(Widget.CImage(id, url, style))
+
+    fun CButton(id: String, text: String, style: (CStyle.() -> Unit)? = null, action: CAction.() -> Unit) =
+        this.children?.add(Widget.CButton(id, text, style, action))
+
+    fun CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
+        this.children?.add(Widget.CText(id, text, style))
+
+    fun CLazyColumn(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+        this.children?.add(Layout.CLazyColumn(id, style, content))
+
+    fun CBox(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+        this.children?.add(Layout.CBox(id, style, content))
+
+    fun CColumn(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+        this.children?.add(Layout.CColumn(id, style, content))
 }
 
 @Suppress("FunctionName")
 object Widget {
-    fun CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) = Component(id, TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
-    fun CEditText(id: String, text: String) = Component(id, EDIT_TEXT, Json.encodeToJsonElement(text))
-    fun CImage(id: String, url: String) = Component(id, IMAGE, Json.encodeToJsonElement(url))
-    fun CButton(id: String, text: String, action: CAction.() -> Unit) = Component(id, BUTTON, Json.encodeToJsonElement(text), action = CAction().apply(action))
+    fun CText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
+        Component(id, TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
+
+    fun CEditText(id: String, text: String, style: (CStyle.() -> Unit)? = null) =
+        Component(id, EDIT_TEXT, Json.encodeToJsonElement(text), style = style?.let { CStyle().apply(it) })
+
+    fun CImage(id: String, url: String, style: (CStyle.() -> Unit)? = null) =
+        Component(id, IMAGE, Json.encodeToJsonElement(url), style = style?.let { CStyle().apply(it) })
+
+    fun CButton(id: String, text: String, style: (CStyle.() -> Unit)? = null, action: CAction.() -> Unit) = Component(
+        id,
+        BUTTON,
+        Json.encodeToJsonElement(text),
+        action = CAction().apply(action),
+        style = style?.let { CStyle().apply(it) })
 }
 
 @Suppress("FunctionName")
 object Layout {
-    fun CLazyColumn(id: String, content: Component.() -> Unit) = Component(id, SCROLL_VERTICAL, children = mutableListOf()).apply(content)
-    fun CBox(id: String, content: Component.() -> Unit) = Component(id, BOX, children = mutableListOf()).apply(content)
-    fun CColumn(id: String, content: Component.() -> Unit) = Component(id, VERTICAL, children = mutableListOf()).apply(content)
+    fun CLazyColumn(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+        Component(id, SCROLL_VERTICAL, style = style?.let { CStyle().apply(it) }, children = mutableListOf()).apply(
+            content
+        )
+
+    fun CBox(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+        Component(id, BOX, style = style?.let { CStyle().apply(it) }, children = mutableListOf()).apply(content)
+
+    fun CColumn(id: String, style: (CStyle.() -> Unit)? = null, content: Component.() -> Unit) =
+        Component(id, VERTICAL, style = style?.let { CStyle().apply(it) }, children = mutableListOf()).apply(content)
 }
 
 //maybe let Layout/Widget extend Component and just pass own classes for any of that
