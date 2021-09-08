@@ -26,7 +26,7 @@ object TopLevelLayout {
     ) =
         AppComponent(
             id,
-            SCROLL_ HORIZONTAL,
+            SCROLL_HORIZONTAL,
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(children)
 
