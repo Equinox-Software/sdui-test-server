@@ -16,5 +16,3 @@ data class CAction(
         select = destination
     }
 }
-
-fun action(actions: CAction.() -> Unit) = CAction().apply(actions)

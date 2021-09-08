@@ -1,5 +1,6 @@
 package nyx69.ui.component
 
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import nyx69.ui.action.CAction
 import nyx69.ui.style.CStyle
@@ -7,12 +8,12 @@ import nyx69.ui.type.LayoutType
 
 @Suppress("FunctionName")
 @Serializable
-data class AppLayout(
+class AppLayout(
     override val id: String,
     override val type: LayoutType,
     override val action: CAction? = null,
     override var style: CStyle? = null,
-    var children: MutableList<AppComponent> = mutableListOf()
+    private val children: MutableList<@Contextual AppComponent> = mutableListOf()
 ) : AppComponent {
 
     fun AppText(
