@@ -8,7 +8,7 @@ import nyx69.ui.type.ComponentType
 
 @Suppress("FunctionName")
 @Serializable
-sealed class AppWidget(
+data class AppWidget(
     override val id: String,
     override val type: ComponentType,
     override val action: CAction? = null,
