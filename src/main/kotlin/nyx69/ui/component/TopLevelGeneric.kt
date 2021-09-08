@@ -2,7 +2,6 @@ package nyx69.ui.component
 
 import nyx69.ui.style.CStyle
 import nyx69.ui.type.ComponentType
-import nyx69.ui.component.AppComponent
 
 @Suppress("FunctionName")
 object TopLevelGeneric {
@@ -11,7 +10,7 @@ object TopLevelGeneric {
         id: String,
         style: (CStyle.() -> Unit)? = null
     ) = AppComponent(
-            id,
-            ComponentType.DIVIDER,
-            style = style?.let { CStyle().apply(it) })
+        id,
+        ComponentType.DIVIDER,
+        style = style?.let { CStyle().apply(it) })
 }

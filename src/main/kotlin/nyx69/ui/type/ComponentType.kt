@@ -1,14 +1,28 @@
 package nyx69.ui.type
 
-enum class ComponentType(code:Byte) {
-    SCROLL_VERTICAL(0),
-    BOX(1),
-    VERTICAL(2),
-    SELECTABLE_LIST(3),
-    SELECTABLE_ROW(4),
-    TEXT(5),
-    BUTTON(6),
-    IMAGE(7),
-    EDIT_TEXT(8),
-    DIVIDER(9)
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+enum class ComponentType {
+    @SerialName("0")
+    SCROLL_VERTICAL,
+    @SerialName("1")
+    BOX,
+    @SerialName("2")
+    VERTICAL,
+    @SerialName("3")
+    SELECTABLE_LIST,
+    @SerialName("4")
+    SELECTABLE_ROW,
+    @SerialName("5")
+    TEXT,
+    @SerialName("6")
+    BUTTON,
+    @SerialName("7")
+    IMAGE,
+    @SerialName("8")
+    EDIT_TEXT,
+    @SerialName("9")
+    DIVIDER
 }

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CStyle(
-    @InternalAPI var padding: List<Int>? = null,
+    @InternalAPI var padding: PaddingValues? = null,
     var color: Long? = null
 ) {
     @OptIn(InternalAPI::class)

@@ -92,8 +92,8 @@ fun Application.configureRouting() {
                         AppButton("122", "click!!") {
                             click = "333"
                         }
-                        AppDivider("kkk"){
-                            padding(20,40)
+                        AppDivider("kkk") {
+                            padding(20, 40)
                         }
                         AppButton("112", "click for scrolll!!") {
                             navigate = "d"

@@ -5,7 +5,6 @@ import kotlinx.serialization.json.encodeToJsonElement
 import nyx69.ui.action.CAction
 import nyx69.ui.style.CStyle
 import nyx69.ui.type.ComponentType.*
-import nyx69.ui.component.AppComponent
 
 @Suppress("FunctionName")
 object TopLevelWidget {
