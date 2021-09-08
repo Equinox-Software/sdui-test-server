@@ -7,7 +7,7 @@ import nyx69.ui.type.LayoutType
 
 @Suppress("FunctionName")
 @Serializable
-class AppLayout(
+sealed class AppLayout(
     override val id: String,
     override val type: LayoutType,
     override val action: CAction? = null,
