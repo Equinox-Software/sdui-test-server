@@ -1,6 +1,5 @@
 package nyx69.ui
 
-import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -108,7 +107,6 @@ sealed class AppComponent(
 @DslMarker
 annotation class CLayoutDSL
 
-
 interface CComponent {
     val id: String
     val action: (CAction.() -> Unit)?
@@ -116,7 +114,8 @@ interface CComponent {
 }
 
 interface CLayout : CComponent {
-    val content: Component.() -> Unit
+    val children: MutableList<CComponent>
+
 }
 
 interface CWidget : CComponent {
@@ -124,55 +123,35 @@ interface CWidget : CComponent {
 }
 
 @CLayoutDSL
-class BoxxBuilder : CLayout {
-
-    private var component= Component(id,BOX)
-
-    override var action: (CAction.() -> Unit)? = null
-    override var style: (CStyle.() -> Unit)? = null
-    override lateinit var content: (Component.() -> Unit)
-
-    fun build():Component = component
+class CCBox(
+    override val id: String,
+    override val action: (CAction.() -> Unit)?,
+    override val style: (CStyle.() -> Unit)?,
+    override val children: MutableList<CComponent>
+) : CLayout {
+    fun build(child: CComponent): CComponent {
+        children.add(child)
+        return CCBox(id, action, style, children)
+    }
 }
-
-fun CBox(id: String, stylee: (StyleBuilder.() -> Unit)? = null, content: Component.() -> Unit): Component  {
-
-    val component = Component(id,BOX)
-
-
-        stylee?.let {
-            val builder = StyleBuilder()
-            builder.stylee()
-            return@let builder.build()
-        }
-
-    return component
-}
-
-
 
 @CLayoutDSL
-class StyleBuilder {
-
-    private var style= CStyle()
-
-    @OptIn(InternalAPI::class)
-    fun padding(all: Int) {
-       style. padding = listOf(all, all, all, all)
-    }
-
-    @OptIn(InternalAPI::class)
-    fun padding(vertical: Int, horizontal: Int) {
-        style.padding = listOf(vertical, horizontal, vertical, horizontal)
-    }
-
-    @OptIn(InternalAPI::class)
-    fun padding(start: Int, top: Int, end: Int, bottom: Int) {
-        style.padding = listOf(start, top, end, bottom)
-    }
-
-    var color:Long? = null
-
-   fun build():CStyle = style
+class CCText(override val id: String): CWidget {
+    override val action: (CAction.() -> Unit)? = null
+    override  val style: (CStyle.() -> Unit)?= null
+    override lateinit var data: JsonElement
 }
+
+
+
+fun CLayout.CText(
+    id: String,
+    action: (CAction.() -> Unit)?,
+    style: (CStyle.() -> Unit)?,
+    data: (CCText.() -> Unit)
+) {
+
+
+}
+
 

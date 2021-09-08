@@ -9,6 +9,8 @@ import nyx69.ktorHttpClient
 import nyx69.locations.Profile
 import nyx69.locations.Type
 import nyx69.ui.CBox
+import nyx69.ui.CCBox
+import nyx69.ui.CCText
 import nyx69.ui.CText
 import nyx69.ui.Layout.CColumn
 import nyx69.ui.Layout.CLazyColumn
@@ -45,15 +47,14 @@ fun Application.configureRouting() {
                         CEditText("abTuT", "some zzTexttt")
 
 
-                        CBox("",{
+                        CCBox("",style = {
                             padding(200)
                             color = 0xFF553345
                         }){
-
                         }
 
                         CEditText("abTuT", "someio Texttt")
-                        CText("aa", "AAAAAAA")
+                        CCText("aa", "AAAAAAA")
                         CBox("bb") {
                             CText(
                                 "ab",
