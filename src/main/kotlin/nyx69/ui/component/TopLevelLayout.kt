@@ -1,10 +1,8 @@
 package nyx69.ui.component
 
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.encodeToJsonElement
 import nyx69.ui.action.CAction
 import nyx69.ui.style.CStyle
-import nyx69.ui.type.LayoutType.*
+import nyx69.ui.type.ComponentType.*
 
 @Suppress("FunctionName")
 object TopLevelLayout {
@@ -16,7 +14,7 @@ object TopLevelLayout {
     ) =
         AppLayout(
             id,
-            Json.encodeToJsonElement(SCROLL_VERTICAL),
+            SCROLL_VERTICAL,
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(content)
 
@@ -28,7 +26,7 @@ object TopLevelLayout {
     ) =
         AppLayout(
             id,
-            Json.encodeToJsonElement(BOX),
+            BOX,
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(content)
 
@@ -40,7 +38,7 @@ object TopLevelLayout {
     ) =
         AppLayout(
             id,
-            Json.encodeToJsonElement(VERTICAL),
+            VERTICAL,
             action?.let { CAction().apply(it) },
             style?.let { CStyle().apply(it) }).apply(content)
 }

@@ -1,19 +1,16 @@
 package nyx69.ui.component
 
 import kotlinx.serialization.Contextual
-import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonElement
 import nyx69.ui.action.CAction
 import nyx69.ui.style.CStyle
 import nyx69.ui.type.ComponentType
 
 @Suppress("FunctionName")
-@Polymorphic
 @Serializable
 data class AppLayout(
     override val id: String,
-    override val type: JsonElement,
+    override val type: ComponentType,
     override val action: CAction? = null,
     override val style: CStyle? = null,
     private val children: MutableList<@Contextual AppComponent> = mutableListOf()
@@ -63,4 +60,8 @@ data class AppLayout(
         style: (CStyle.() -> Unit)? = null,
         content: AppComponent.() -> Unit
     ) = this.children.add(TopLevelLayout.AppColumn(id, action, style, content))
+
+    fun AppDivider(
+        id: String, style: (CStyle.() -> Unit)? = null
+    ) = this.children.add(TopLevelGeneric.AppDivider(id, style))
 }

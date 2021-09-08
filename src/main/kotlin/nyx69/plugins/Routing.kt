@@ -10,7 +10,6 @@ import nyx69.locations.Profile
 import nyx69.locations.Type
 import nyx69.ui.component.TopLevelLayout.AppColumn
 import nyx69.ui.component.TopLevelLayout.AppLazyColumn
-import nyx69.ui.component.TopLevelWidget.AppImage
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
@@ -89,8 +88,12 @@ fun Application.configureRouting() {
                         AppButton("122", "navigate") {
                             navigate = "c"
                         }
+                        AppDivider("kkk")
                         AppButton("122", "click!!") {
                             click = "333"
+                        }
+                        AppDivider("kkk"){
+                            padding(20,40)
                         }
                         AppButton("112", "click for scrolll!!") {
                             navigate = "d"
