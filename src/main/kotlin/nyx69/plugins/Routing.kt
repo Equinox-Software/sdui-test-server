@@ -165,7 +165,10 @@ fun Application.configureRouting() {
                             AppImage(
                                 "ab",
                                 "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                            )
+                            ){
+                                height = 90
+                                width = 160
+                            }
                             AppText("ba", "Image $entry")
                         }
 
