@@ -44,7 +44,7 @@ val client = HttpClient(CIO) {
     }
    */
 
-    HttpResponseValidator {
+  /*  HttpResponseValidator {
         validateResponse { response: HttpResponse ->
             val statusCode = response.status.value
 
@@ -52,7 +52,7 @@ val client = HttpClient(CIO) {
 
             when (statusCode) {
                 in 300..399 -> throw RedirectResponseException(response,response.receive())
-                in 400..499 -> throw RedirectResponseException(response,response.receive()) //(BackendError(response.status.value, response.receive())
+                in 400..499 -> throw ClientRequestException(response,response.receive()) //(BackendError(response.status.value, response.receive())
                 in 500..599 -> throw ServerResponseException(response,response.receive())
             }
 
@@ -66,4 +66,19 @@ val client = HttpClient(CIO) {
         handleResponseException { cause: Throwable ->
             throw cause
         }}
+
+   */
 }
+
+suspend fun <T> HttpClient.requestAndCatch(
+    block: suspend HttpClient.() -> T,
+    errorHandler: suspend ResponseException.() -> T
+): T = runCatching { block() }
+    .getOrElse {
+        when (it) {
+            is ResponseException -> it.errorHandler()
+            else -> throw it
+        }
+    }
+
+
