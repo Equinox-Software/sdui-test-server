@@ -41,6 +41,8 @@ val client = HttpClient(CIO) {
                 in 500..599 -> throw ServerResponseException(response,response.receive())
             }
 
+
+
             if (statusCode >= 600) {
                 throw ResponseException(response,response.receive())
             }
