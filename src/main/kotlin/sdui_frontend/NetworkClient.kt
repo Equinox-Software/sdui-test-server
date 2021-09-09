@@ -27,14 +27,14 @@ val client = HttpClient(CIO) {
         })
     }
 
-    install(Logging) {
+  /*  install(Logging) {
         logger = object : Logger {
             override fun log(message: String) {
                 println("CLIENT => $message")
             }
-
         }
         level = LogLevel.ALL
     }
+   */
 }
 
