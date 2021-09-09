@@ -251,14 +251,7 @@ fun Application.configureRouting() {
 
 
 
-        authenticate {
-            get("/hello") {
-                val principal = call.principal<JWTPrincipal>()
-                val username = principal!!.payload.getClaim("username").asString()
-                val expiresAt = principal.expiresAt?.time?.minus(System.currentTimeMillis())
-                call.respondText("Hello, $username! Token will expire in $expiresAt ms.")
-            }
-        }
+
 
         post("/click{id}") {
 
