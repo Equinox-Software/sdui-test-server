@@ -1,9 +1,8 @@
 package sdui_frontend.ui.component
 
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.encodeToJsonElement
-import sdui_frontend.ui.action.CAction
-import sdui_frontend.ui.style.CStyle
+import kotlinx.serialization.json.*
+import sdui_frontend.ui.action.*
+import sdui_frontend.ui.style.*
 import sdui_frontend.ui.type.ComponentType.*
 
 @Suppress("FunctionName")

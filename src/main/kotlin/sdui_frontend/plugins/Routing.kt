@@ -226,23 +226,20 @@ fun Application.configureRouting() {
 
                 val user = call.receive<UserLogin>()
 
-                println("---------------- now POST + $user")
-
                 val tokenRequest: HttpResponse = client.post("auth/login") {
                     header(HttpHeaders.ContentType, ContentType.Application.Json)
                     body = user
                 }
-                println("---------------- now POST + $user")
 
                 if (tokenRequest.status == HttpStatusCode.OK) {
-                    print("---------------- iff")
+                    print("---------------- Login valid. Sending routes...")
                     val token: String? = tokenRequest.receive<Map<String, String>>()["token"]
                     token?.let {
+                        //TODO validity should come from server :P
                         call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
                     } ?: call.respond(HttpStatusCode.InternalServerError, "Received no token.")
                 } else
                     call.respond(tokenRequest)
-
 
 
                 //also needs to handler User-NOTEXIST and Pasword being wrong.

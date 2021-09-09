@@ -1,6 +1,6 @@
 package sdui_frontend.ui.action
 
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.*
 
 @Serializable
 data class CAction(

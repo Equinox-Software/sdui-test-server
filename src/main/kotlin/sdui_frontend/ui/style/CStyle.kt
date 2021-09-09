@@ -1,7 +1,7 @@
 package sdui_frontend.ui.style
 
 import io.ktor.util.*
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.*
 
 @Serializable
 data class CStyle(

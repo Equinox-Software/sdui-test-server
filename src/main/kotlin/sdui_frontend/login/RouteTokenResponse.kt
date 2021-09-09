@@ -1,10 +1,10 @@
 package sdui_frontend.login
 
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.*
 
 @Serializable
 data class RouteTokenResponse(
-val token:String,
-val validUntil: Long,
-val routes: List<String>
+    val token: String,
+    val validUntil: Long,
+    val routes: List<String>
 )

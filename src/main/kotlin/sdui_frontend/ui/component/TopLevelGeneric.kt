@@ -1,7 +1,7 @@
 package sdui_frontend.ui.component
 
-import sdui_frontend.ui.style.CStyle
-import sdui_frontend.ui.type.ComponentType
+import sdui_frontend.ui.style.*
+import sdui_frontend.ui.type.*
 
 @Suppress("FunctionName")
 object TopLevelGeneric {

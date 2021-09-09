@@ -1,10 +1,8 @@
 package sdui_frontend.ui
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.encodeToJsonElement
-import sdui_frontend.ui.component.AppComponent
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
+import sdui_frontend.ui.component.*
 
 @Suppress("FunctionName")
 fun CPage(layout: AppComponent, data: CData): Page {

@@ -1,11 +1,10 @@
 package sdui_frontend.ui.component
 
-import kotlinx.serialization.Contextual
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonElement
-import sdui_frontend.ui.action.CAction
-import sdui_frontend.ui.style.CStyle
-import sdui_frontend.ui.type.ComponentType
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
+import sdui_frontend.ui.action.*
+import sdui_frontend.ui.style.*
+import sdui_frontend.ui.type.*
 
 @Suppress("FunctionName")
 @Serializable

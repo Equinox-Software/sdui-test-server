@@ -1,10 +1,7 @@
 package sdui_frontend
 
 import io.ktor.application.*
-import io.ktor.client.features.*
-import io.ktor.client.request.*
 import io.ktor.features.*
-import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.serialization.*
 import io.ktor.server.cio.*
@@ -23,7 +20,6 @@ fun main() {
                 ignoreUnknownKeys = true
             })
         }
-
 
         install(CallLogging) {
             level = Level.INFO
