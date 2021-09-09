@@ -1,23 +1,40 @@
 package sdui_frontend
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
-import io.ktor.client.features.DefaultRequest
-import io.ktor.client.features.defaultRequest
-import io.ktor.client.request.header
-import io.ktor.client.request.host
-import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
-import io.ktor.http.URLProtocol
+import io.ktor.client.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.features.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.logging.*
+import io.ktor.client.request.*
+import io.ktor.http.*
 
 
 val client = HttpClient(CIO) {
 
     defaultRequest {
-        host = "sdui-test-database.herokuapp.com/"
+        host = "sdui-test-database.herokuapp.com"
         url {
             protocol = URLProtocol.HTTPS
         }
+    }
+
+    install(JsonFeature) {
+        serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
+            prettyPrint = true
+            //   isLenient = true
+            ignoreUnknownKeys = true
+        })
+    }
+
+    install(Logging) {
+        logger = object : Logger {
+            override fun log(message: String) {
+                println("CLIENT => $message")
+            }
+
+        }
+        level = LogLevel.ALL
     }
 
     install(DefaultRequest) {
