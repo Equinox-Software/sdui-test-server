@@ -238,8 +238,12 @@ fun Application.configureRouting() {
                             //TODO validity should come from server :P
                             call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
                         } ?: call.respond(HttpStatusCode.InternalServerError, "Received no token.")
-                    } else
-                        call.respond(tokenRequest.receive<BackendError>())
+                    } else{
+val error = tokenRequest.receive<BackendError>()
+                        print("----- error::: $error")
+                        call.respond(error)
+                    }
+
 
                 //also needs to handler User-NOTEXIST and Pasword being wrong.
 
