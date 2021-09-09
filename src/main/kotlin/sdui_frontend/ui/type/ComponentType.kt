@@ -1,4 +1,4 @@
-package nyx69.ui.type
+package sdui_frontend.ui.type
 
 enum class ComponentType {
     SCROLL_VERTICAL,

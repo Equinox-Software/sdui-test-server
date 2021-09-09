@@ -1,4 +1,4 @@
-package nyx69.ui.action
+package sdui_frontend.ui.action
 
 enum class ComponentActionType {
     CLICK, SELECT

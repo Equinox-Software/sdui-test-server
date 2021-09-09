@@ -1,4 +1,4 @@
-package nyx69.login
+package sdui_frontend.login
 
 import io.ktor.auth.*
 import kotlinx.serialization.Serializable

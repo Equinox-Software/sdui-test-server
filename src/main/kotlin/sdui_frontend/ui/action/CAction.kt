@@ -1,4 +1,4 @@
-package nyx69.ui.action
+package sdui_frontend.ui.action
 
 import kotlinx.serialization.Serializable
 

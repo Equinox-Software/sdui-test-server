@@ -1,4 +1,4 @@
-package nyx69.ui.style
+package sdui_frontend.ui.style
 
 import io.ktor.util.*
 import kotlinx.serialization.Serializable

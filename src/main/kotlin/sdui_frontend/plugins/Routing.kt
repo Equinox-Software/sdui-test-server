@@ -1,4 +1,4 @@
-package nyx69.plugins
+package sdui_frontend.plugins
 
 import io.ktor.application.Application
 import io.ktor.application.call
@@ -22,14 +22,14 @@ import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.route
 import io.ktor.routing.routing
-import nyx69.client
-import nyx69.locations.Profile
-import nyx69.locations.Type
-import nyx69.login.RouteTokenResponse
-import nyx69.login.UserLogin
-import nyx69.ui.component.TopLevelLayout.AppColumn
-import nyx69.ui.component.TopLevelLayout.AppLazyColumn
-import nyx69.ui.style.FILL
+import sdui_frontend.client
+import sdui_frontend.locations.Profile
+import sdui_frontend.locations.Type
+import sdui_frontend.login.RouteTokenResponse
+import sdui_frontend.login.UserLogin
+import sdui_frontend.ui.component.TopLevelLayout.AppColumn
+import sdui_frontend.ui.component.TopLevelLayout.AppLazyColumn
+import sdui_frontend.ui.style.FILL
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)

@@ -1,10 +1,10 @@
-package nyx69.ui.component
+package sdui_frontend.ui.component
 
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
-import nyx69.ui.action.CAction
-import nyx69.ui.style.CStyle
-import nyx69.ui.type.ComponentType.*
+import sdui_frontend.ui.action.CAction
+import sdui_frontend.ui.style.CStyle
+import sdui_frontend.ui.type.ComponentType.*
 
 @Suppress("FunctionName")
 object TopLevelWidget {

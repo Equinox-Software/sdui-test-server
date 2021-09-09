@@ -1,8 +1,8 @@
-package nyx69
+package sdui_frontend
 
 import io.ktor.http.*
 import io.ktor.server.testing.*
-import nyx69.plugins.configureRouting
+import sdui_frontend.plugins.configureRouting
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

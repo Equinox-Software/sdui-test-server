@@ -1,2 +1,2 @@
-web: ./build/install/nyx69/bin/nyx69
+web: ./build/install/sdui_frontend/bin/sdui_frontend
 

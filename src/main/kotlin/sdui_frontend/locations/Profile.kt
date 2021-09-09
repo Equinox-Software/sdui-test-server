@@ -1,4 +1,4 @@
-package nyx69.locations
+package sdui_frontend.locations
 
 import io.ktor.locations.*
 

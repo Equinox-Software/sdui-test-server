@@ -1,4 +1,4 @@
-package nyx69.model
+package sdui_frontend.model
 
 import kotlinx.serialization.Serializable
 

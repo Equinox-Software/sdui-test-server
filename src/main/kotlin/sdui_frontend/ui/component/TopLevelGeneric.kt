@@ -1,7 +1,7 @@
-package nyx69.ui.component
+package sdui_frontend.ui.component
 
-import nyx69.ui.style.CStyle
-import nyx69.ui.type.ComponentType
+import sdui_frontend.ui.style.CStyle
+import sdui_frontend.ui.type.ComponentType
 
 @Suppress("FunctionName")
 object TopLevelGeneric {

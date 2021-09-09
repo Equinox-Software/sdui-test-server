@@ -1,10 +1,10 @@
-package nyx69.ui
+package sdui_frontend.ui
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.encodeToJsonElement
-import nyx69.ui.component.AppComponent
+import sdui_frontend.ui.component.AppComponent
 
 @Suppress("FunctionName")
 fun CPage(layout: AppComponent, data: CData): Page {
