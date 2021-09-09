@@ -258,9 +258,7 @@ fun Application.configureRouting() {
                         call.respond(HttpStatusCode.InternalServerError, "Received no token.")
                     }
                 } else {
-                    val error = tokenRequest.receive<BackendError>()
-                    print("----- error::: $error")
-                    call.respond(error)
+                    call.respond(tokenRequest)
                 }
 
 
