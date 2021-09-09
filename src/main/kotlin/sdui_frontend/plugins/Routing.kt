@@ -248,9 +248,9 @@ fun Application.configureRouting() {
                     {
                         when (response.status) {
                             HttpStatusCode.BadRequest -> {
-                                call.respond(response.receive())
+                                call.respond( response.status, response.content.toString())
                             } // Throw errors or transform to T
-                            HttpStatusCode.Conflict -> {
+                            HttpStatusCode.Unauthorized -> {
                                 call.respond( response.status, response.content.toString())
                             }
                             else -> throw this
