@@ -22,6 +22,9 @@ import sdui_frontend.ui.style.*
 
 @OptIn(KtorExperimentalLocationsAPI::class)
 fun Application.configureRouting() {
+
+    install(Locations)
+
     routing {
         get("/") {
             call.respondText("Hello World!")
