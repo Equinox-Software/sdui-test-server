@@ -237,7 +237,10 @@ fun Application.configureRouting() {
                         token?.let {
                             //TODO validity should come from server :P
                             call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
-                        } ?: call.respond(HttpStatusCode.InternalServerError, "Received no token.")
+                        } ?: run{
+                            print("---------------- no token :(  ")
+                            call.respond(HttpStatusCode.InternalServerError, "Received no token.")
+                        }
                     } else{
 val error = tokenRequest.receive<BackendError>()
                         print("----- error::: $error")
