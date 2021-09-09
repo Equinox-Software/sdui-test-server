@@ -239,7 +239,7 @@ fun Application.configureRouting() {
                         call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
                     } ?: call.respond(HttpStatusCode.InternalServerError, "Received no token.")
                 } else
-                    call.respond(tokenRequest)
+                    call.respond(tokenRequest.request)
 
 
                 //also needs to handler User-NOTEXIST and Pasword being wrong.
