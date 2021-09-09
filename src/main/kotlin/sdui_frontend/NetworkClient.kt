@@ -7,11 +7,11 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
 
 
 val client = HttpClient(CIO) {
-
     defaultRequest {
         host = "sdui-test-database.herokuapp.com"
         url {
@@ -19,6 +19,8 @@ val client = HttpClient(CIO) {
         }
         contentType(ContentType.Application.Json)
     }
+
+    expectSuccess = false
 
     install(JsonFeature) {
         serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
