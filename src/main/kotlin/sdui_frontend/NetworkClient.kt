@@ -10,6 +10,7 @@ import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import sdui_frontend.model.*
 
 
 val client = HttpClient(CIO) {
@@ -37,7 +38,7 @@ val client = HttpClient(CIO) {
 
             when (statusCode) {
                 in 300..399 -> throw RedirectResponseException(response,response.receive())
-                in 400..499 -> throw ClientRequestException(response, response.receive())
+                in 400..499 -> throw BackendError(response.status.value, response.receive())
                 in 500..599 -> throw ServerResponseException(response,response.receive())
             }
 
