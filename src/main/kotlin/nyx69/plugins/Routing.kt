@@ -2,7 +2,6 @@ package nyx69.plugins
 
 import io.ktor.application.Application
 import io.ktor.application.call
-import io.ktor.application.install
 import io.ktor.auth.authenticate
 import io.ktor.auth.jwt.JWTPrincipal
 import io.ktor.auth.principal
@@ -14,6 +13,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 import io.ktor.locations.KtorExperimentalLocationsAPI
 import io.ktor.locations.Locations
+import io.ktor.locations.Locations.Feature.install
 import io.ktor.locations.get
 import io.ktor.request.receive
 import io.ktor.response.respond
@@ -238,11 +238,11 @@ fun Application.configureRouting() {
 
 
         route("auth"){
-            post("signin") {
+            post("login") {
 
                 val user = call.receive<UserLogin>()
 
-                val tokenRequest: HttpResponse =  client.post("auth/signin"){
+                val tokenRequest: HttpResponse =  client.post("auth/login"){
                     contentType(ContentType.Application.Json)
                     body = user
                 }
