@@ -227,7 +227,7 @@ fun Application.configureRouting() {
 
                 val user = call.receive<UserLogin>()
 
-               try{
+
                    val tokenRequest: HttpResponse = client.post("auth/login") {
 
                        body = user
@@ -263,9 +263,7 @@ fun Application.configureRouting() {
 
                 }
 
-               }catch (e:Throwable){
-                   call.respond(e)
-               }
+
 
 
                 //also needs to handler User-NOTEXIST and Pasword being wrong.
