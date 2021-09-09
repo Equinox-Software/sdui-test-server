@@ -1,42 +1,27 @@
 package sdui_frontend.plugins
 
-import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.auth.authenticate
-import io.ktor.auth.jwt.JWTPrincipal
-import io.ktor.auth.principal
-import io.ktor.client.call.receive
-import io.ktor.client.request.post
-import io.ktor.client.statement.HttpResponse
-import io.ktor.http.ContentType
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.contentType
-import io.ktor.locations.KtorExperimentalLocationsAPI
-import io.ktor.locations.Locations
-import io.ktor.locations.Locations.Feature.install
-import io.ktor.locations.get
-import io.ktor.request.receive
-import io.ktor.response.respond
-import io.ktor.response.respondText
-import io.ktor.routing.get
-import io.ktor.routing.post
-import io.ktor.routing.route
-import io.ktor.routing.routing
-import sdui_frontend.client
-import sdui_frontend.locations.Profile
+import io.ktor.application.*
+import io.ktor.auth.*
+import io.ktor.auth.jwt.*
+import io.ktor.client.call.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.locations.*
+import io.ktor.request.*
+import io.ktor.response.*
+import io.ktor.routing.*
+import sdui_frontend.*
+import sdui_frontend.locations.*
 import sdui_frontend.locations.Type
-import sdui_frontend.login.RouteTokenResponse
-import sdui_frontend.login.UserLogin
+import sdui_frontend.login.*
 import sdui_frontend.ui.component.TopLevelLayout.AppColumn
 import sdui_frontend.ui.component.TopLevelLayout.AppLazyColumn
-import sdui_frontend.ui.style.FILL
+import sdui_frontend.ui.style.*
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
 fun Application.configureRouting() {
-    install(Locations) {
-    }
-
     routing {
         get("/") {
             call.respondText("Hello World!")
@@ -174,14 +159,14 @@ fun Application.configureRouting() {
                             width = FILL
                         }) {
                             (0..15).forEach {
-                            AppText("ba", "Hellppo!- $it")
+                                AppText("ba", "Hellppo!- $it")
                             }
                         }
                         AppButton("122", "click!!") {
                             click = "333"
                         }
                         AppButton("112", "click for AAa!!") {
-                            navigate="a"
+                            navigate = "a"
                         }
                     }
                 )
@@ -211,7 +196,7 @@ fun Application.configureRouting() {
 
                         AppLazyRow("afggefgfe", style = {
                             width = FILL
-                            padding(45,0)
+                            padding(45, 0)
                         }) {
                             (0..20).forEach {
                                 AppColumn("ffff") {
@@ -237,33 +222,29 @@ fun Application.configureRouting() {
 
 
 
-        route("auth"){
+        route("auth") {
             post("login") {
 
                 val user = call.receive<UserLogin>()
 
-                val tokenRequest: HttpResponse =  client.post("auth/login"){
+                val tokenRequest: HttpResponse = client.post("auth/login") {
                     contentType(ContentType.Application.Json)
                     body = user
                 }
 
-                if (tokenRequest.status == HttpStatusCode.OK){
-                        val token:String? = tokenRequest.receive<Map<String,String>>()["token"]
-                        token?.let{
-                            call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
-                        } ?:
-                        call.respond(HttpStatusCode.InternalServerError, "Received no token.")
-                    }
-
-                    else
-                        call.respond(tokenRequest)
+                if (tokenRequest.status == HttpStatusCode.OK) {
+                    val token: String? = tokenRequest.receive<Map<String, String>>()["token"]
+                    token?.let {
+                        call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
+                    } ?: call.respond(HttpStatusCode.InternalServerError, "Received no token.")
+                } else
+                    call.respond(tokenRequest)
 
 
-
-                    //also needs to handler User-NOTEXIST and Pasword being wrong.
-                }
+                //also needs to handler User-NOTEXIST and Pasword being wrong.
             }
         }
+
 
 
 
