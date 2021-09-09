@@ -42,31 +42,26 @@ val client = HttpClient(CIO) {
     }
    */
 
-    httpResponseValidator()
-}
-
-
-fun HttpClientConfig<CIOEngineConfig>.httpResponseValidator() {
     HttpResponseValidator {
-    validateResponse { response: HttpResponse ->
-        val statusCode = response.status.value
+        validateResponse { response: HttpResponse ->
+            val statusCode = response.status.value
 
-        println("HTTP status: $statusCode")
+            println("HTTP status: $statusCode")
 
-        when (statusCode) {
-            in 300..399 -> throw RedirectResponseException(response,response.receive())
-            in 400..499 -> BackendError(response.status.value, response.receive())
-            in 500..599 -> throw ServerResponseException(response,response.receive())
+            when (statusCode) {
+                in 300..399 -> throw RedirectResponseException(response,response.receive())
+                in 400..499 -> BackendError(response.status.value, response.receive())
+                in 500..599 -> throw ServerResponseException(response,response.receive())
+            }
+
+
+
+            if (statusCode >= 600) {
+                throw ResponseException(response,response.receive())
+            }
         }
 
-
-
-        if (statusCode >= 600) {
-            throw ResponseException(response,response.receive())
-        }
-    }
-
-    handleResponseException { cause: Throwable ->
-        throw cause
-    }}
+        handleResponseException { cause: Throwable ->
+            throw cause
+        }}
 }
