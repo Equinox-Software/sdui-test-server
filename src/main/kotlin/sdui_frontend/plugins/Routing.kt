@@ -251,7 +251,7 @@ fun Application.configureRouting() {
                                 call.respond( response.status, response.content.toString())
                             } // Throw errors or transform to T
                             HttpStatusCode.Unauthorized -> {
-                                call.respond( response.status, response.content.toString())
+                                call.respond( response.status, response.receive<String>())
                             }
                             else -> throw this
                         }
