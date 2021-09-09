@@ -30,29 +30,7 @@ val client = HttpClient(CIO) {
         })
     }
 
-    HttpResponseValidator {
-        validateResponse { response: HttpResponse ->
-            val statusCode = response.status.value
 
-            println("HTTP status: $statusCode")
-
-            when (statusCode) {
-                in 300..399 -> throw RedirectResponseException(response,response.receive())
-                in 400..499 -> throw BackendError(response.status.value, response.receive())
-                in 500..599 -> throw ServerResponseException(response,response.receive())
-            }
-
-
-
-            if (statusCode >= 600) {
-                throw ResponseException(response,response.receive())
-            }
-        }
-
-        handleResponseException { cause: Throwable ->
-            throw cause
-        }
-    }
 
   /*  install(Logging) {
         logger = object : Logger {
@@ -63,5 +41,32 @@ val client = HttpClient(CIO) {
         level = LogLevel.ALL
     }
    */
+
+    httpResponseValidator()
 }
 
+
+fun HttpClientConfig<CIOEngineConfig>.httpResponseValidator() {
+    HttpResponseValidator {
+    validateResponse { response: HttpResponse ->
+        val statusCode = response.status.value
+
+        println("HTTP status: $statusCode")
+
+        when (statusCode) {
+            in 300..399 -> throw RedirectResponseException(response,response.receive())
+            in 400..499 -> BackendError(response.status.value, response.receive())
+            in 500..599 -> throw ServerResponseException(response,response.receive())
+        }
+
+
+
+        if (statusCode >= 600) {
+            throw ResponseException(response,response.receive())
+        }
+    }
+
+    handleResponseException { cause: Throwable ->
+        throw cause
+    }}
+}
