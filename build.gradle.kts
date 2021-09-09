@@ -8,10 +8,10 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.5.30"
 }
 
-group = "nyx69"
+group = "sdui_frontend"
 version = "0.0.1"
 application {
-    mainClass.set("nyx69.ApplicationKt")
+    mainClass.set("sdui_frontend.ApplicationKt")
 }
 
 tasks.create("stage") {

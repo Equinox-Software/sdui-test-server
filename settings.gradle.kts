@@ -1,1 +1,1 @@
-rootProject.name = "nyx69"
+rootProject.name = "sdui_frontend"
