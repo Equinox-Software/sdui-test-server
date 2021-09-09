@@ -6,7 +6,7 @@ import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
-val ktorHttpClient = HttpClient(CIO) {
+val client = HttpClient(CIO) {
 
     defaultRequest {
         host = "sdui-test-database.herokuapp.com/"

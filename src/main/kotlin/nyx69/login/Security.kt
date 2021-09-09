@@ -1,16 +1,25 @@
-package nyx69.plugins
+package nyx69.login
 
 import com.auth0.jwk.JwkProviderBuilder
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import io.ktor.application.*
-import io.ktor.auth.*
-import io.ktor.auth.jwt.*
-import io.ktor.http.content.*
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.*
-import kotlinx.serialization.Serializable
+import io.ktor.application.Application
+import io.ktor.application.call
+import io.ktor.application.install
+import io.ktor.auth.Authentication
+import io.ktor.auth.authenticate
+import io.ktor.auth.jwt.JWTPrincipal
+import io.ktor.auth.jwt.jwt
+import io.ktor.auth.principal
+import io.ktor.http.content.file
+import io.ktor.http.content.static
+import io.ktor.http.content.staticRootFolder
+import io.ktor.request.receive
+import io.ktor.response.respond
+import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.post
+import io.ktor.routing.routing
 import java.io.File
 import java.security.KeyFactory
 import java.security.interfaces.RSAPrivateKey
@@ -109,8 +118,7 @@ fun Application.configureSecurity() {
 
      */
 
-    val privateKeyString =
-        "MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAtfJaLrzXILUg1U3N1KV8yJr92GHn5OtYZR7qWk1Mc4cy4JGjklYup7weMjBD9f3bBVoIsiUVX6xNcYIr0Ie0AQIDAQABAkEAg+FBquToDeYcAWBe1EaLVyC45HG60zwfG1S4S3IB+y4INz1FHuZppDjBh09jptQNd+kSMlG1LkAc/3znKTPJ7QIhANpyB0OfTK44lpH4ScJmCxjZV52mIrQcmnS3QzkxWQCDAiEA1Tn7qyoh+0rOO/9vJHP8U/beo51SiQMw0880a1UaiisCIQDNwY46EbhGeiLJR1cidr+JHl86rRwPDsolmeEF5AdzRQIgK3KXL3d0WSoS//K6iOkBX3KMRzaFXNnDl0U/XyeGMuUCIHaXv+n+Brz5BDnRbWS+2vkgIe9bUNlkiArpjWvX+2we"
+    val privateKeyString = "MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAtfJaLrzXILUg1U3N1KV8yJr92GHn5OtYZR7qWk1Mc4cy4JGjklYup7weMjBD9f3bBVoIsiUVX6xNcYIr0Ie0AQIDAQABAkEAg+FBquToDeYcAWBe1EaLVyC45HG60zwfG1S4S3IB+y4INz1FHuZppDjBh09jptQNd+kSMlG1LkAc/3znKTPJ7QIhANpyB0OfTK44lpH4ScJmCxjZV52mIrQcmnS3QzkxWQCDAiEA1Tn7qyoh+0rOO/9vJHP8U/beo51SiQMw0880a1UaiisCIQDNwY46EbhGeiLJR1cidr+JHl86rRwPDsolmeEF5AdzRQIgK3KXL3d0WSoS//K6iOkBX3KMRzaFXNnDl0U/XyeGMuUCIHaXv+n+Brz5BDnRbWS+2vkgIe9bUNlkiArpjWvX+2we"
     val issuer = "https://rw-ktor-server.herokuapp.com"
     val audience = "https://rw-ktor-server.herokuapp.com/hello"
     val myRealm = "Access to 'hello'"
@@ -121,7 +129,7 @@ fun Application.configureSecurity() {
         .build()
 
     install(Authentication) {
-        jwt("auth-jwt") {
+        jwt {
             realm = myRealm
             verifier(jwkProvider, issuer) {
                 acceptLeeway(3)
@@ -137,13 +145,13 @@ fun Application.configureSecurity() {
     }
     routing {
         post("/login") {
-            val user = call.receive<User>()
+            val user = call.receive<UserLogin>()
             // TODO Check username and password
             val publicKey = jwkProvider.get("6f8856ed-9189-488f-9011-0ff4b6c08edc").publicKey
             val keySpecPKCS8 = PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyString))
             val privateKey = KeyFactory.getInstance("RSA").generatePrivate(keySpecPKCS8)
             val token = JWT.create()
-                .withAudience(audience)
+             //   .withAudience(audience)
                 .withIssuer(issuer)
                 .withClaim("username", user.username)
                 .withExpiresAt(Date(System.currentTimeMillis() + 60000))
@@ -151,7 +159,7 @@ fun Application.configureSecurity() {
             call.respond(hashMapOf("token" to token))
         }
 
-        authenticate("auth-jwt") {
+        authenticate {
             get("/hello") {
                 val principal = call.principal<JWTPrincipal>()
                 val username = principal!!.payload.getClaim("username").asString()
@@ -168,5 +176,3 @@ fun Application.configureSecurity() {
 
 }
 
-@Serializable
-data class User(val username: String, val password: String)

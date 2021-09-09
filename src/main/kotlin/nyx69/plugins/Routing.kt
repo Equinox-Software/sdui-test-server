@@ -1,13 +1,32 @@
 package nyx69.plugins
 
-import io.ktor.application.*
-import io.ktor.locations.*
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.*
-import nyx69.ktorHttpClient
+import io.ktor.application.Application
+import io.ktor.application.call
+import io.ktor.application.install
+import io.ktor.auth.authenticate
+import io.ktor.auth.jwt.JWTPrincipal
+import io.ktor.auth.principal
+import io.ktor.client.call.receive
+import io.ktor.client.request.post
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.contentType
+import io.ktor.locations.KtorExperimentalLocationsAPI
+import io.ktor.locations.Locations
+import io.ktor.locations.get
+import io.ktor.request.receive
+import io.ktor.response.respond
+import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.post
+import io.ktor.routing.route
+import io.ktor.routing.routing
+import nyx69.client
 import nyx69.locations.Profile
 import nyx69.locations.Type
+import nyx69.login.RouteTokenResponse
+import nyx69.login.UserLogin
 import nyx69.ui.component.TopLevelLayout.AppColumn
 import nyx69.ui.component.TopLevelLayout.AppLazyColumn
 import nyx69.ui.style.FILL
@@ -17,8 +36,6 @@ import nyx69.ui.style.FILL
 fun Application.configureRouting() {
     install(Locations) {
     }
-
-    val client = ktorHttpClient
 
     routing {
         get("/") {
@@ -163,8 +180,8 @@ fun Application.configureRouting() {
                         AppButton("122", "click!!") {
                             click = "333"
                         }
-                        AppButton("112", "click for scrolll!!") {
-                            click = "333"
+                        AppButton("112", "click for AAa!!") {
+                            navigate="a"
                         }
                     }
                 )
@@ -218,8 +235,45 @@ fun Application.configureRouting() {
             }
         }
 
-        get("routes") {
-            call.respond(listOf("a", "b", "c", "d"))
+
+
+        route("auth"){
+            post("signin") {
+
+                val user = call.receive<UserLogin>()
+
+                val tokenRequest: HttpResponse =  client.post("auth/signin"){
+                    contentType(ContentType.Application.Json)
+                    body = user
+                }
+
+                if (tokenRequest.status == HttpStatusCode.OK){
+                        val token:String? = tokenRequest.receive<Map<String,String>>()["token"]
+                        token?.let{
+                            call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
+                        } ?:
+                        call.respond(HttpStatusCode.InternalServerError, "Received no token.")
+                    }
+
+                    else
+                        call.respond(tokenRequest)
+
+
+
+                    //also needs to handler User-NOTEXIST and Pasword being wrong.
+                }
+            }
+        }
+
+
+
+        authenticate {
+            get("/hello") {
+                val principal = call.principal<JWTPrincipal>()
+                val username = principal!!.payload.getClaim("username").asString()
+                val expiresAt = principal.expiresAt?.time?.minus(System.currentTimeMillis())
+                call.respondText("Hello, $username! Token will expire in $expiresAt ms.")
+            }
         }
 
         post("/click{id}") {

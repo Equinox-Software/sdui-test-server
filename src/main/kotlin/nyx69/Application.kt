@@ -7,8 +7,8 @@ import io.ktor.serialization.*
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*
 import kotlinx.serialization.json.Json
+import nyx69.login.configureSecurity
 import nyx69.plugins.configureRouting
-import nyx69.plugins.configureSecurity
 import org.slf4j.event.Level
 
 fun main() {
