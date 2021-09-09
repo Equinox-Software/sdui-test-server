@@ -13,6 +13,7 @@ import sdui_frontend.*
 import sdui_frontend.locations.*
 import sdui_frontend.locations.Type
 import sdui_frontend.login.*
+import sdui_frontend.model.*
 import sdui_frontend.ui.component.TopLevelLayout.AppColumn
 import sdui_frontend.ui.component.TopLevelLayout.AppLazyColumn
 import sdui_frontend.ui.style.*
@@ -238,7 +239,7 @@ fun Application.configureRouting() {
                             call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
                         } ?: call.respond(HttpStatusCode.InternalServerError, "Received no token.")
                     } else
-                        call.respond(tokenRequest)
+                        call.respond(tokenRequest.receive<BackendError>())
 
                 //also needs to handler User-NOTEXIST and Pasword being wrong.
 
