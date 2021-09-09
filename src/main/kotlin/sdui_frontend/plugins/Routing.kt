@@ -1,8 +1,6 @@
 package sdui_frontend.plugins
 
 import io.ktor.application.*
-import io.ktor.auth.*
-import io.ktor.auth.jwt.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -228,20 +226,23 @@ fun Application.configureRouting() {
 
                 val user = call.receive<UserLogin>()
 
-                print("---------------- now POST")
+                println("---------------- now POST + $user")
 
                 val tokenRequest: HttpResponse = client.post("auth/login") {
-                //    contentType(ContentType.Application.Json)
+                    contentType(ContentType.Application.Json)
                     body = user
                 }
+                println("---------------- now POST + $user")
 
                 if (tokenRequest.status == HttpStatusCode.OK) {
+                    print("---------------- iff")
                     val token: String? = tokenRequest.receive<Map<String, String>>()["token"]
                     token?.let {
                         call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
                     } ?: call.respond(HttpStatusCode.InternalServerError, "Received no token.")
                 } else
                     call.respond(tokenRequest)
+
 
 
                 //also needs to handler User-NOTEXIST and Pasword being wrong.
