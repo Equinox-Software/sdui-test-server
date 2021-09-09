@@ -251,7 +251,7 @@ fun Application.configureRouting() {
                                 call.respond(response.receive())
                             } // Throw errors or transform to T
                             HttpStatusCode.Conflict -> {
-                                call.respond(response.receive())
+                                call.respond( response.status, response.content.toString())
                             }
                             else -> throw this
                         }
