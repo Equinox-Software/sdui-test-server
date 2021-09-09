@@ -52,7 +52,7 @@ val client = HttpClient(CIO) {
 
             when (statusCode) {
                 in 300..399 -> throw RedirectResponseException(response,response.receive())
-              //  in 400..499 -> BackendError(response.status.value, response.receive())
+                in 400..499 -> throw RedirectResponseException(response,response.receive()) //(BackendError(response.status.value, response.receive())
                 in 500..599 -> throw ServerResponseException(response,response.receive())
             }
 
