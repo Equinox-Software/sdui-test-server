@@ -1,21 +1,18 @@
 package sdui_frontend
 
 import io.ktor.application.*
-import io.ktor.client.features.HttpCallValidator.Companion.install
-import io.ktor.features.CallLogging
-import io.ktor.features.ContentNegotiation
-import io.ktor.response.*
-import io.ktor.routing.*
-import io.ktor.server.cio.CIO
+import io.ktor.features.*
+import io.ktor.request.*
+import io.ktor.server.cio.*
 import io.ktor.server.engine.*
-import kotlinx.serialization.json.Json
-import org.slf4j.event.Level
+import kotlinx.serialization.json.*
+import org.slf4j.event.*
 
 
 fun main() { embeddedServer(CIO as ApplicationEngineFactory<*, *>, System.getenv("PORT").toInt(), module = Application::module).start(wait = true)}
 
 fun Application.module(){
-    install(ContentNegotiation) {
+   install(ContentNegotiation) {
         json(Json {
             prettyPrint = true
             //     isLenient = true
@@ -30,7 +27,9 @@ fun Application.module(){
 
 
 
+
+
     //  configureSecurity()
 
-    // configureRouting()
+   //  configureRouting()
 }
