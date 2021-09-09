@@ -25,8 +25,6 @@ fun Application.configureRouting() {
 
     install(Locations)
 
-    install(Authentication)
-
     routing {
         get("/") {
             call.respondText("Hello World!")
