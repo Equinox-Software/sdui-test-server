@@ -22,6 +22,8 @@ val client = HttpClient(CIO) {
         contentType(ContentType.Application.Json)
     }
 
+    expectSuccess=false
+
     install(JsonFeature) {
         serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
             prettyPrint = true
