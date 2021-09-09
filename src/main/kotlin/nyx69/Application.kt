@@ -1,18 +1,25 @@
 package nyx69
 
+import io.ktor.*
 import io.ktor.application.*
+import io.ktor.auth.*
+import io.ktor.auth.jwt.*
 import io.ktor.features.*
+import io.ktor.features.CallLogging.Feature.install
+import io.ktor.http.*
+import io.ktor.http.content.*
 import io.ktor.request.*
+import io.ktor.response.*
+import io.ktor.routing.*
 import io.ktor.serialization.*
-import io.ktor.server.cio.*
-import io.ktor.server.engine.*
+import io.ktor.server.cio.CIO
+import io.ktor.server.engine.ApplicationEngineFactory
+import io.ktor.server.engine.embeddedServer
 import kotlinx.serialization.json.Json
-import nyx69.login.configureSecurity
-import nyx69.plugins.configureRouting
 import org.slf4j.event.Level
 
 fun main() {
-    embeddedServer(CIO, System.getenv("PORT").toInt()) {
+    embeddedServer(CIO as ApplicationEngineFactory<*, *>, System.getenv("PORT").toInt()) {
         install(ContentNegotiation) {
             json(Json {
                 prettyPrint = true
@@ -26,9 +33,9 @@ fun main() {
             filter { call -> call.request.path().startsWith("/") }
         }
 
-        configureSecurity()
+      //  configureSecurity()
 
-        configureRouting()
+       // configureRouting()
 
     }.start(wait = true)
 }
