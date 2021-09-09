@@ -229,8 +229,11 @@ fun Application.configureRouting() {
                 println("---------------- now POST + $user")
 
                 val tokenRequest: HttpResponse = client.post("auth/login") {
+                  //  contentType(ContentType.Application.Json)
+                  //  body = user
+
                     contentType(ContentType.Application.Json)
-                    body = user
+                    body = "TEST"
                 }
                 println("---------------- now POST + $user")
 

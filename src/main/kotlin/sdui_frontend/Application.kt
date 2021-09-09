@@ -24,6 +24,7 @@ fun main() {
             })
         }
 
+
         install(CallLogging) {
             level = Level.INFO
             filter { call -> call.request.path().startsWith("/") }
