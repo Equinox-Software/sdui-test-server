@@ -227,48 +227,9 @@ fun Application.configureRouting() {
 
                 val user = call.receive<UserLogin>()
 
-               try{
-                   val tokenRequest: HttpResponse =
 
 
-            /*        print("---------------- Login valid. Sending routes...")
-                    val token: String? = tokenRequest.receive<Map<String, String>>()["token"]
-                    token?.let {
-                        //TODO validity should come from server :P
-                        call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
-                    } ?: run {
-                        print("---------------- no token :(  ")
-                        call.respond(tokenRequest.receive<BackendError>())
-                    }
-
-             */
-
-
-               //something like this would be much better! then also sending Statuses from backend :)
-                    if (tokenRequest.status == HttpStatusCode.OK) {
-                    print("---------------- Login valid. Sending routes...")
-                    val token: String? = tokenRequest.receive<Map<String, String>>()["token"]
-                    token?.let {
-                        //TODO validity should come from server :P
-                        print("---------------- Login valzzzzid. Sending routes...")
-                        call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
-                    } ?: run {
-                        print("---------------- no token :(  ")
-                        call.respond(HttpStatusCode.InternalServerError, "Received no token.")
-                    }
-                } else {
-
-                }
-
-               }catch (e:Throwable){
-                   call.respond(e)
-               }
-
-
-
-                // Example call
-                client.requestAndCatch(
-                    {
+                client.requestAndCatch({
 
 
                         val tokenRequest: HttpResponse = client.post("auth/login") { body = user }
