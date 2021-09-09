@@ -36,5 +36,13 @@ val client = HttpClient(CIO) {
         }
         level = LogLevel.ALL
     }
+
+    HttpResponseValidator {
+        handleResponseException { exception ->
+            val clientException = exception as? ClientRequestException ?: return@handleResponseException
+            val exceptionResponse = exception.response
+
+        }
+    }
 }
 
