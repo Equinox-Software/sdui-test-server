@@ -9,6 +9,7 @@ import io.ktor.server.cio.*
 import io.ktor.server.engine.*
 import kotlinx.serialization.json.*
 import org.slf4j.event.*
+import sdui_frontend.plugins.*
 
 
 fun main() { embeddedServer(CIO as ApplicationEngineFactory<*, *>, System.getenv("PORT").toInt(), module = Application::module).start(wait = true)}
@@ -33,5 +34,5 @@ fun Application.module(){
 
     //  configureSecurity()
 
-   //  configureRouting()
+   configureRouting()
 }
