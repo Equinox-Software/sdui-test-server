@@ -235,7 +235,6 @@ fun Application.configureRouting() {
                         val tokenRequest: HttpResponse = client.post("auth/login") { body = user }
 
                         if (tokenRequest.status == HttpStatusCode.OK) {
-                            print("---------------- Login valid. Sending routes...")
                             val token: String? = tokenRequest.receive<Map<String, String>>()["token"]
                             token?.let {
                                 //TODO validity should come from server :P
@@ -248,7 +247,7 @@ fun Application.configureRouting() {
                     {
                         when (response.status) {
                             HttpStatusCode.BadRequest -> {
-                                call.respond( response.status, response.content.toString())
+                                call.respond( response.status, response.receive<String>())
                             } // Throw errors or transform to T
                             HttpStatusCode.Unauthorized -> {
                                 call.respond( response.status, response.receive<String>())
