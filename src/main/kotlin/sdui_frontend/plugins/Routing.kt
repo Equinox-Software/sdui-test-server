@@ -226,7 +226,6 @@ fun Application.configureRouting() {
 
                 val user = call.receive<UserLogin>()
 
-                try {
                     val tokenRequest: HttpResponse = client.post("auth/login") {
                         body = user
                     }
@@ -239,11 +238,7 @@ fun Application.configureRouting() {
                             call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
                         } ?: call.respond(HttpStatusCode.InternalServerError, "Received no token.")
                     } else
-                        call.respond(tokenRequest.request)
-                } catch (e: Throwable) {
-
-                    call.respond(HttpStatusCode.InternalServerError, "uh oh")
-                }
+                        call.respond(tokenRequest)
 
                 //also needs to handler User-NOTEXIST and Pasword being wrong.
 
