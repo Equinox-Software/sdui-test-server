@@ -76,7 +76,7 @@ fun Application.configureRouting() {
                         AppButton("122", "click!!") {
                             click = "333"
                         }
-                        AppButton("112", "click for scrolll!!") {
+                        AppButton("112", "´This should carry over data.") {
                             navigate= "e"
                         }
                     }
@@ -241,7 +241,7 @@ fun Application.configureRouting() {
 
             }
 
-            post("e") {
+            get("e") {
                 val data = call.receive<Map<String,JsonElement>>()
 
 
