@@ -11,7 +11,6 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-import kotlinx.serialization.json.Json.Default.encodeToString
 import sdui_frontend.*
 import sdui_frontend.locations.*
 import sdui_frontend.locations.Type
@@ -53,7 +52,7 @@ fun Application.configureRouting() {
                     AppColumn(
                         "abc"
                     ) {
-                        AppEditText("abTuT", "some zzTexttt"){
+                        AppEditText("abTuT", "some zzTexttt") {
                             padding(top = 50)
                         }
                         AppBox("", style = {
@@ -79,7 +78,7 @@ fun Application.configureRouting() {
                             click = "333"
                         }
                         AppButton("112", "This should carry over data.") {
-                            navigate= "e"
+                            navigate = "e"
                         }
                     }
                 )
@@ -186,57 +185,57 @@ fun Application.configureRouting() {
 
             get("d") {
                 call.respond(
-                    AppRow("dddddd"){
-                    AppLazyColumn("abc", style = {
-                        width = FILL
-                    }) {
-                        (0..15).forEach {
-                            AppImage(
-                                "ab",
-                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                            ) {
-                                height = 90
-                                width = 160
-                            }
-                            AppText("ba", "Image $it")
-                        }
-
-                        AppDivider("dfef") {
-                            height = 10
-                            width = 100
-                            padding(12)
-                        }
-
-                        AppLazyRow("afggefgfe", style = {
+                    AppRow("dddddd") {
+                        AppLazyColumn("abc", style = {
                             width = FILL
-                            padding(45, 0)
                         }) {
-                            (0..20).forEach {
-                                AppColumn("ffff") {
-                                    AppText("YEEEE", "ROW ROW")
-                                    AppText("YEEEE", "ROW lelelel ROW") {
-                                        color = if (it % 2 == 0) 0xFF662234 else 0xFF887744
-                                    }
-                                    AppText("YEEEE", "rowItem $it")
+                            (0..15).forEach {
+                                AppImage(
+                                    "ab",
+                                    "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                                ) {
+                                    height = 90
+                                    width = 160
                                 }
+                                AppText("ba", "Image $it")
                             }
 
+                            AppDivider("dfef") {
+                                height = 10
+                                width = 100
+                                padding(12)
+                            }
+
+                            AppLazyRow("afggefgfe", style = {
+                                width = FILL
+                                padding(45, 0)
+                            }) {
+                                (0..20).forEach {
+                                    AppColumn("ffff") {
+                                        AppText("YEEEE", "ROW ROW")
+                                        AppText("YEEEE", "ROW lelelel ROW") {
+                                            color = if (it % 2 == 0) 0xFF662234 else 0xFF887744
+                                        }
+                                        AppText("YEEEE", "rowItem $it")
+                                    }
+                                }
+
+                            }
+
+                            AppEditText(
+                                "abTT",
+                                "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
+                            )
+                            AppText("ba", "Helltthppo!")
                         }
 
-                        AppEditText(
-                            "abTT",
-                            "https://cdn.wallpapersafari.com/46/29/MTLnRp.jpg"
-                        )
-                        AppText("ba", "Helltthppo!")
-                    }
 
-
-                        AppText("eeee", "You can scroll me down :D"){
+                        AppText("eeee", "You can scroll me down :D") {
                             padding(start = 25)
-                            color= 0xFF223344
+                            color = 0xFF223344
                         }
-                        AppText("eeee", "lelelel"){
-                            color= 0xFFFF0000
+                        AppText("eeee", "lelelel") {
+                            color = 0xFFFF0000
                         }
                     }
                 )
@@ -244,12 +243,12 @@ fun Application.configureRouting() {
             }
 
             get("e") {
-                val data = call.receive<Map<String,JsonElement>>()
+                val data = call.receive<Map<String, JsonElement>>()
 
-println("---- DATA --- $data")
+                println("---- DATA --- $data")
 
                 call.respond(
-                    AppText("deee", Json.encodeToString(data["abTpuT"]))
+                    AppText("deee", Json.decodeFromJsonElement(data["abTpuT"]!!))
                 )
             }
         }
