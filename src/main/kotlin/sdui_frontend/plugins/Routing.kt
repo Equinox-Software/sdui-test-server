@@ -233,26 +233,27 @@ fun Application.configureRouting() {
                 client.requestAndCatch({
 
 
-                        val tokenRequest: HttpResponse = client.post("auth/login") { body = user }
+                    val tokenRequest: HttpResponse = client.post("auth/login") { body = user }
 
-                        if (tokenRequest.status == HttpStatusCode.OK) {
-                            val token: String? = tokenRequest.receive<Map<String, String>>()["token"]
-                            token?.let {
-                                //TODO validity should come from server :P
-                                print("---------------- Login valzzzzid. Sending routes...")
-                                call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
-                            }
+                    if (tokenRequest.status == HttpStatusCode.OK) {
+                        val token: String? = tokenRequest.receive<Map<String, String>>()["token"]
+                        token?.let {
+                            //TODO validity should come from server :P
+                            println("---------------- Login valid. Sending routes...")
+                            call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
                         }
+                    }
 
-                    },
+                },
                     {
                         when (response.status) {
-                            HttpStatusCode.BadRequest -> {
-                                call.respond( BackendError(WRONG_MAIL, response.receive()))
-                            } // Throw errors or transform to T
-                            HttpStatusCode.Unauthorized -> {
-                                call.respond( BackendError(WRONG_PASSWORD, response.receive()))
-                            }
+                            HttpStatusCode.BadRequest -> call.respond(BackendError(WRONG_MAIL, response.receive()))
+                            HttpStatusCode.Unauthorized -> call.respond(
+                                BackendError(
+                                    WRONG_PASSWORD,
+                                    response.receive()
+                                )
+                            )
                             else -> throw this
                         }
                     }
