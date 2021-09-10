@@ -17,6 +17,7 @@ import sdui_frontend.model.*
 import sdui_frontend.ui.component.TopLevelLayout.AppColumn
 import sdui_frontend.ui.component.TopLevelLayout.AppLazyColumn
 import sdui_frontend.ui.style.*
+import sdui_frontend.util.*
 
 
 @OptIn(KtorExperimentalLocationsAPI::class)
@@ -247,10 +248,10 @@ fun Application.configureRouting() {
                     {
                         when (response.status) {
                             HttpStatusCode.BadRequest -> {
-                                call.respond( response.status, response.receive<String>())
+                                call.respond( BackendError(WRONG_MAIL, response.receive()))
                             } // Throw errors or transform to T
                             HttpStatusCode.Unauthorized -> {
-                                call.respond( response.status, response.receive<String>())
+                                call.respond( BackendError(WRONG_PASSWORD, response.receive()))
                             }
                             else -> throw this
                         }
