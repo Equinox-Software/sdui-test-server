@@ -25,7 +25,7 @@ import sdui_frontend.ui.style.*
 import sdui_frontend.util.*
 
 
-@OptIn(KtorExperimentalLocationsAPI::class)
+@OptIn(KtorExperimentalLocationsAPI::class, kotlinx.serialization.ExperimentalSerializationApi::class)
 fun Application.configureRouting() {
 
     install(Locations)
@@ -45,6 +45,8 @@ fun Application.configureRouting() {
             call.respondText("Inside $it")
         }
 
+        //these pages should also be authorized.. need to send Bearer $token when making request
+
         route("content") {
             get("a") {
                 call.respond(
@@ -61,7 +63,7 @@ fun Application.configureRouting() {
                             AppText("aa", "AAjjjjjAAAAA")
                             AppText("aa", "AAAAAkkkkkkkkkkkAA")
                         }
-                        AppEditText("abTuT", "someio Texttt")
+                        AppEditText("abTpuT", "someio Texttt")
                         AppText("aa", "AAAAAAA")
                         AppBox("bb") {
                             AppText(
@@ -247,7 +249,7 @@ fun Application.configureRouting() {
 
 
                 call.respond(
-                    AppText("deee", Json.encodeToString(data["abTuT"]))
+                    AppText("deee", Json.encodeToString(data["abTpuT"]))
                 )
             }
         }
