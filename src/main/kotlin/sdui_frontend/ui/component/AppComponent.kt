@@ -13,7 +13,7 @@ class AppComponent(
     val type: ComponentType,
     val action: CAction? = null,
     val style: CStyle? = null,
-    val data: JsonElement? = null,
+    var data: JsonElement? = null,
     val children: MutableList<@Contextual AppComponent>? = mutableListOf()
 ) {
     fun AppText(

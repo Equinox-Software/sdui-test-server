@@ -9,6 +9,9 @@ import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json.Default.encodeToString
 import sdui_frontend.*
 import sdui_frontend.locations.*
 import sdui_frontend.locations.Type
@@ -17,6 +20,7 @@ import sdui_frontend.model.*
 import sdui_frontend.ui.component.TopLevelLayout.AppColumn
 import sdui_frontend.ui.component.TopLevelLayout.AppLazyColumn
 import sdui_frontend.ui.component.TopLevelLayout.AppRow
+import sdui_frontend.ui.component.TopLevelWidget.AppText
 import sdui_frontend.ui.style.*
 import sdui_frontend.util.*
 
@@ -47,7 +51,9 @@ fun Application.configureRouting() {
                     AppColumn(
                         "abc"
                     ) {
-                        AppEditText("abTuT", "some zzTexttt")
+                        AppEditText("abTuT", "some zzTexttt"){
+                            data = Json.encodeToJsonElement("some zzTexttt")
+                        }
                         AppBox("", style = {
                             padding(200)
                             color = 0xFF553345
@@ -71,7 +77,7 @@ fun Application.configureRouting() {
                             click = "333"
                         }
                         AppButton("112", "click for scrolll!!") {
-                            click = "333"
+                            navigate= "e"
                         }
                     }
                 )
@@ -228,11 +234,21 @@ fun Application.configureRouting() {
                             color= 0xFF223344
                         }
                         AppText("eeee", "lelelel"){
-                            color= 0xFF770000
+                            color= 0xFFFF0000
                         }
                     }
                 )
 
+            }
+
+            post("e") {
+                val data = call.receive<Map<String,JsonElement>>()
+
+
+
+                call.respond(
+                    AppText("deee", Json.encodeToString(data["abTuT"]))
+                )
             }
         }
 
@@ -253,7 +269,7 @@ fun Application.configureRouting() {
                         token?.let {
                             //TODO validity should come from server :P
                             println("---------------- Login valid. Sending routes...")
-                            call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d")))
+                            call.respond(RouteTokenResponse(it, 50000, listOf("a", "b", "c", "d", "e")))
                         }
                     }
 
