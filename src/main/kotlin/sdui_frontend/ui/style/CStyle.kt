@@ -16,12 +16,12 @@ data class CStyle(
     }
 
     @OptIn(InternalAPI::class)
-    fun padding(vertical: Int, horizontal: Int) {
+    fun padding(vertical: Int=0, horizontal: Int=0) {
         padding = listOf(vertical, horizontal, vertical, horizontal)
     }
 
     @OptIn(InternalAPI::class)
-    fun padding(start: Int, top: Int, end: Int, bottom: Int) {
+    fun padding(start: Int=0, top: Int=0, end: Int=0, bottom: Int=0) {
         padding = listOf(start, top, end, bottom)
     }
 

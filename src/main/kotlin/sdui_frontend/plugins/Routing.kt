@@ -16,6 +16,7 @@ import sdui_frontend.login.*
 import sdui_frontend.model.*
 import sdui_frontend.ui.component.TopLevelLayout.AppColumn
 import sdui_frontend.ui.component.TopLevelLayout.AppLazyColumn
+import sdui_frontend.ui.component.TopLevelLayout.AppRow
 import sdui_frontend.ui.style.*
 import sdui_frontend.util.*
 
@@ -177,6 +178,7 @@ fun Application.configureRouting() {
 
             get("d") {
                 call.respond(
+                    AppRow("dddddd"){
                     AppLazyColumn("abc", style = {
                         width = FILL
                     }) {
@@ -219,7 +221,18 @@ fun Application.configureRouting() {
                         )
                         AppText("ba", "Helltthppo!")
                     }
+
+
+                        AppText("eeee", "You can scroll me down :D"){
+                            padding(start = 25)
+                            color= 0xFF223344
+                        }
+                        AppText("eeee", "lelelel"){
+                            color= 0xFF770000
+                        }
+                    }
                 )
+
             }
         }
 
