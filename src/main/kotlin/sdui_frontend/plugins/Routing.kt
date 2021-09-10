@@ -54,7 +54,7 @@ fun Application.configureRouting() {
                         "abc"
                     ) {
                         AppEditText("abTuT", "some zzTexttt"){
-                            data = Json.encodeToJsonElement("some zzTexttt")
+                            padding(top = 50)
                         }
                         AppBox("", style = {
                             padding(200)
@@ -78,7 +78,7 @@ fun Application.configureRouting() {
                         AppButton("122", "click!!") {
                             click = "333"
                         }
-                        AppButton("112", "´This should carry over data.") {
+                        AppButton("112", "This should carry over data.") {
                             navigate= "e"
                         }
                     }
@@ -246,7 +246,7 @@ fun Application.configureRouting() {
             get("e") {
                 val data = call.receive<Map<String,JsonElement>>()
 
-
+println("---- DATA --- $data")
 
                 call.respond(
                     AppText("deee", Json.encodeToString(data["abTpuT"]))
