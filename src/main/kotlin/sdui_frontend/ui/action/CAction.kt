@@ -6,7 +6,8 @@ import kotlinx.serialization.*
 data class CAction(
     var click: String? = null,
     var navigate: String? = null,
-    var select: String? = null
+    var select: String? = null,
+    var keys: List<String>?=null
 ) {
     fun CAction.click(destination: String) {
         click = destination
